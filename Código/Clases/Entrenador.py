@@ -2,21 +2,39 @@ from Clase_persona import Persona
 
 class Entrenador(Persona):
 
-    def __init__(self, nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios, sistema_juego):
+    def __init__(
+        self,
+        nombre,
+        apellido,
+        fecha_nacimiento,
+        nacionalidad,
+        licencia,
+        experiencia_anios,
+        sistema_juego,
+    ):
         super().__init__(nombre, apellido, fecha_nacimiento, nacionalidad)
         self.licencia = licencia
         self.experiencia_anios = experiencia_anios
         self.sistema_juego = sistema_juego
 
     def mostrar_datos(self):
-        return{
+        return {
             **super().mostrar_datos(),
             "licencia": self.licencia,
             "experiencia_anios": self.experiencia_anios,
-            "sistema_juego": self.sistema_juego
+            "sistema_juego": self.sistema_juego,
         }
-    
-    def actualizar_datos(self, nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevaLicencia, nuevaExperiencia_anios, nuevoSistema_juego):
+
+    def actualizar_datos(
+        self,
+        nuevoNombre,
+        nuevoApellido,
+        nuevaFecha_nacimiento,
+        nuevaNacionalidad,
+        nuevaLicencia,
+        nuevaExperiencia_anios,
+        nuevoSistema_juego,
+    ):
 
         self.nombre = nuevoNombre
         self.apellido = nuevoApellido
