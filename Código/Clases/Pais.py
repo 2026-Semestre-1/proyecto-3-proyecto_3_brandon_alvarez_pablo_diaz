@@ -38,3 +38,11 @@ class Pais:
         self.ranking = n_ranking_fifa
 
         return True
+
+    def mostrar_datos(self):
+        return {
+            "codigo_fifa": self.codigo,
+            "nombre": self.nombre,
+            "continente": self.continente,
+            "ranking_fifa": self.ranking,
+        }
