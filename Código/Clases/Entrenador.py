@@ -1,6 +1,5 @@
 from Clase_persona import Persona
 
-
 class Entrenador(Persona):
 
     def __init__(self, nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios, sistema_juego):
