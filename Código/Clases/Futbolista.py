@@ -1,5 +1,17 @@
+from Clase_persona import Persona
+
+
 class futbolista:
-    def __init__(self, dorsal, posicion, puntuaje_indivual):
+    def __init__(
+        self,
+        nombre,
+        apellido,
+        fecha_nacimiento,
+        nacionalidad,
+        dorsal,
+        posicion,
+        puntuaje_indivual,
+    ):
 
         if not isinstance(dorsal, int):
             return "El dorsal debe de ser un número entero."
@@ -9,6 +21,8 @@ class futbolista:
 
         if not isinstance(puntuaje_indivual, int):
             return "El puntuaje_indivual debe de ser un número entero."
+
+        super().__init__(nombre, apellido, fecha_nacimiento, nacionalidad)
 
         self.dorsal = dorsal
         self.posicion = posicion
@@ -32,43 +46,51 @@ class futbolista:
 
     def actualizar_datos(
         self,
-        n_dorsal,
-        n_posicion,
-        n_total_tarjeta_amarilla,
-        n_total_tarjeta_roja,
-        n_goles,
-        n_asistencias,
-        n_puntuaje_indivual,
+        nuevoNombre,
+        nuevoApellido,
+        nuevaFecha_nacimiento,
+        nuevaNacionalidad,
+        nuevoDorsal,
+        nuevaPosicion,
+        nuevoTotal_tarjeta_amarilla,
+        nuevoTotal_tarjeta_roja,
+        nuevoGoles,
+        nuevaAsistencias,
+        nuevoPuntuaje_indivual,
     ):
 
-        if not isinstance(n_dorsal, int):
+        if not isinstance(nuevoDorsal, int):
             return "El dorsal debe de ser un número entero."
 
-        if not isinstance(n_posicion, str):
+        if not isinstance(nuevaPosicion, str):
             return "La posicion debe de ser un string."
 
-        if not isinstance(n_total_tarjeta_amarilla, int):
+        if not isinstance(nuevoTotal_tarjeta_amarilla, int):
             return "El total de tarjetas amarillas deben de ser números enteros."
 
-        if not isinstance(n_total_tarjeta_roja, int):
+        if not isinstance(nuevoTotal_tarjeta_roja, int):
             return "El total de tarjetas rojas deben de ser números enteros."
 
-        if not isinstance(n_goles, int):
+        if not isinstance(nuevoGoles, int):
             return "Los goles deben de ser números enteros."
 
-        if not isinstance(n_asistencias, int):
+        if not isinstance(nuevaAsistencias, int):
             return "Las asistencias deben de ser números enteros."
 
-        if not isinstance(n_puntuaje_indivual, int):
+        if not isinstance(nuevoPuntuaje_indivual, int):
             return "El puntuaje_indivual debe de ser un número entero."
 
-        self.dorsal = n_dorsal
-        self.posicion = n_posicion
-        self.total_tarjeta_amarilla = n_total_tarjeta_amarilla
-        self.total_tarjeta_roja = n_total_tarjeta_roja
-        self.goles = n_goles
-        self.asistencias = n_asistencias
-        self.puntuaje_indivual = n_puntuaje_indivual
+        self.nombre = nuevoNombre
+        self.apellido = nuevoApellido
+        self.fecha_nacimiento = nuevaFecha_nacimiento
+        self.nacionalidad = nuevaNacionalidad
+        self.dorsal = nuevoDorsal
+        self.posicion = nuevaPosicion
+        self.total_tarjeta_amarilla = nuevoTotal_tarjeta_amarilla
+        self.total_tarjeta_roja = nuevoTotal_tarjeta_roja
+        self.goles = nuevoGoles
+        self.asistencias = nuevaAsistencias
+        self.puntuaje_indivual = nuevoPuntuaje_indivual
 
         return True
 

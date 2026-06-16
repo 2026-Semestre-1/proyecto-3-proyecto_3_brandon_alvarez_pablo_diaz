@@ -18,24 +18,26 @@ class Pais:
         self.continente = continente
         self.ranking = ranking_fifa
 
-    def actualizar_datos(self, n_codigo_fifa, n_nombre, n_continente, n_ranking_fifa):
+    def actualizar_datos(
+        self, nuevoCodigo_fifa, nuevoNombre, nuevoContinente, nuevoRanking_fifa
+    ):
 
-        if not isinstance(n_codigo_fifa, str):
+        if not isinstance(nuevoCodigo_fifa, str):
             return "El codigo de fifa debe de ser un string."
 
-        if not isinstance(n_nombre, str):
+        if not isinstance(nuevoNombre, str):
             return "El nombre debe de ser un string."
 
-        if not isinstance(n_continente, str):
+        if not isinstance(nuevoContinente, str):
             return "El continente debe de ser un string."
 
-        if not isinstance(n_ranking_fifa, int):
+        if not isinstance(nuevoRanking_fifa, int):
             return "El ranking de la fifa debe de ser un número entero."
 
-        self.codigo = n_codigo_fifa
-        self.nombre = n_nombre
-        self.continente = n_continente
-        self.ranking = n_ranking_fifa
+        self.codigo = nuevoCodigo_fifa
+        self.nombre = nuevoNombre
+        self.continente = nuevoContinente
+        self.ranking = nuevoRanking_fifa
 
         return True
 
