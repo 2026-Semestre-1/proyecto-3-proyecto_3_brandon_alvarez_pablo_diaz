@@ -1,7 +1,7 @@
-from Clase_persona import Persona
+from Código.Clases.Persona import Persona
 
 
-class futbolista:
+class Futbolista(Persona):
     def __init__(
         self,
         nombre,
@@ -10,38 +10,38 @@ class futbolista:
         nacionalidad,
         dorsal,
         posicion,
-        puntuaje_indivual,
+        puntaje_individual,
     ):
 
         if not isinstance(dorsal, int):
-            return "El dorsal debe de ser un número entero."
+            raise TypeError("El dorsal debe de ser un número entero.")
 
         if not isinstance(posicion, str):
-            return "La posicion debe de ser un string."
+            raise TypeError("La posicion debe de ser un string.")
 
-        if not isinstance(puntuaje_indivual, int):
-            return "El puntuaje_indivual debe de ser un número entero."
+        if not isinstance(puntaje_individual, int):
+            raise TypeError("El puntaje_individual debe de ser un número entero.")
 
         super().__init__(nombre, apellido, fecha_nacimiento, nacionalidad)
 
         self.dorsal = dorsal
         self.posicion = posicion
-        self.total_tarjeta_amarilla = 0
-        self.total_tarjeta_roja = 0
+        self.total_tarjetas_amarillas = 0
+        self.total_tarjetas_rojas = 0
         self.goles = 0
         self.asistencias = 0
-        self.puntuaje_indivual = puntuaje_indivual
+        self.puntaje_individual = puntaje_individual
 
     def mostrar_datos(self):
         return {
             **super().mostrar_datos(),
             "dorsal": self.dorsal,
             "posicion": self.posicion,
-            "total_tarjeta_amarilla": self.total_tarjeta_amarilla,
-            "total_tarjeta_roja": self.total_tarjeta_roja,
+            "total_tarjetas_amarillas": self.total_tarjetas_amarillas,
+            "total_tarjetas_rojas": self.total_tarjetas_rojas,
             "goles": self.goles,
             "asistencias": self.asistencias,
-            "puntuaje_indivual": self.puntuaje_indivual,
+            "puntaje_individual": self.puntaje_individual,
         }
 
     def actualizar_datos(
@@ -52,11 +52,11 @@ class futbolista:
         nuevaNacionalidad,
         nuevoDorsal,
         nuevaPosicion,
-        nuevoTotal_tarjeta_amarilla,
-        nuevoTotal_tarjeta_roja,
+        nuevototal_tarjetas_amarillas,
+        nuevototal_tarjetas_rojas,
         nuevoGoles,
         nuevaAsistencias,
-        nuevoPuntuaje_indivual,
+        nuevopuntaje_individual,
     ):
 
         if not isinstance(nuevoDorsal, int):
@@ -65,10 +65,10 @@ class futbolista:
         if not isinstance(nuevaPosicion, str):
             return "La posicion debe de ser un string."
 
-        if not isinstance(nuevoTotal_tarjeta_amarilla, int):
+        if not isinstance(nuevototal_tarjetas_amarillas, int):
             return "El total de tarjetas amarillas deben de ser números enteros."
 
-        if not isinstance(nuevoTotal_tarjeta_roja, int):
+        if not isinstance(nuevototal_tarjetas_rojas, int):
             return "El total de tarjetas rojas deben de ser números enteros."
 
         if not isinstance(nuevoGoles, int):
@@ -77,8 +77,8 @@ class futbolista:
         if not isinstance(nuevaAsistencias, int):
             return "Las asistencias deben de ser números enteros."
 
-        if not isinstance(nuevoPuntuaje_indivual, int):
-            return "El puntuaje_indivual debe de ser un número entero."
+        if not isinstance(nuevopuntaje_individual, int):
+            return "El puntaje_individual debe de ser un número entero."
 
         self.nombre = nuevoNombre
         self.apellido = nuevoApellido
@@ -86,11 +86,11 @@ class futbolista:
         self.nacionalidad = nuevaNacionalidad
         self.dorsal = nuevoDorsal
         self.posicion = nuevaPosicion
-        self.total_tarjeta_amarilla = nuevoTotal_tarjeta_amarilla
-        self.total_tarjeta_roja = nuevoTotal_tarjeta_roja
+        self.total_tarjetas_amarillas = nuevototal_tarjetas_amarillas
+        self.total_tarjetas_rojas = nuevototal_tarjetas_rojas
         self.goles = nuevoGoles
         self.asistencias = nuevaAsistencias
-        self.puntuaje_indivual = nuevoPuntuaje_indivual
+        self.puntaje_individual = nuevopuntaje_individual
 
         return True
 
@@ -108,10 +108,13 @@ class futbolista:
 
         if tipo == "amarilla":
 
-            self.total_tarjeta_amarilla += 1
+            self.total_tarjetas_amarillas += 1
+            return True
+
+        elif tipo == "roja":
+
+            self.total_tarjetas_rojas += 1
             return True
 
         else:
-
-            self.total_tarjeta_roja += 1
-            return True
+            return f"La tarjeta {tipo}, es incorrecta, solo se permite roja o amarilla."
