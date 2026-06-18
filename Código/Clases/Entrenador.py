@@ -1,4 +1,4 @@
-from Código.Clases.Persona import Persona
+from Persona import Persona
 
 class Entrenador(Persona):
 

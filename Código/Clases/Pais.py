@@ -16,7 +16,7 @@ class Pais:
         self.codigo = codigo_fifa
         self.nombre = nombre
         self.continente = continente
-        self.ranking = ranking_fifa
+        self.ranking_fifa = ranking_fifa
 
     def actualizar_datos(
         self, nuevoCodigo_fifa, nuevoNombre, nuevoContinente, nuevoRanking_fifa
