@@ -10,8 +10,13 @@ class Futbolista(Persona):
         nacionalidad,
         dorsal,
         posicion,
+        total_tarjetas_amarillas,
+        total_tarjetas_rojas,
+        goles,
+        asistencias,
         puntaje_individual,
     ):
+        super().__init__(nombre, apellido, fecha_nacimiento, nacionalidad)
 
         if not isinstance(dorsal, int):
             raise TypeError("El dorsal debe de ser un número entero.")
@@ -19,17 +24,31 @@ class Futbolista(Persona):
         if not isinstance(posicion, str):
             raise TypeError("La posicion debe de ser un string.")
 
-        if not isinstance(puntaje_individual, int):
-            raise TypeError("El puntaje_individual debe de ser un número entero.")
+        if not isinstance(total_tarjetas_amarillas, int):
+            raise TypeError(
+                "El total de las tarjetas amarillas deben de ser números enteros"
+            )
 
-        super().__init__(nombre, apellido, fecha_nacimiento, nacionalidad)
+        if not isinstance(total_tarjetas_rojas, int):
+            raise TypeError(
+                "El total de las tarjetas rojas deben de ser números enteros"
+            )
+
+        if not isinstance(goles, int):
+            raise TypeError("Los goles deben de ser números enteros")
+
+        if not isinstance(asistencias, int):
+            raise TypeError("Las asistencias deben de ser números enteros")
+
+        if not isinstance(puntaje_individual, int):
+            raise TypeError("El puntaje individual debe de ser un número.")
 
         self.dorsal = dorsal
         self.posicion = posicion
-        self.total_tarjetas_amarillas = 0
-        self.total_tarjetas_rojas = 0
-        self.goles = 0
-        self.asistencias = 0
+        self.total_tarjetas_amarillas = total_tarjetas_amarillas
+        self.total_tarjetas_rojas = total_tarjetas_rojas
+        self.goles = goles
+        self.asistencias = asistencias
         self.puntaje_individual = puntaje_individual
 
     def mostrar_datos(self):
