@@ -1,5 +1,6 @@
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
+from Clases.Entrenador import Entrenador
 
 
 def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
@@ -41,17 +42,6 @@ def cargar_pais():
     return lista
 
 
-"""
-nombre,
-apellido,
-fecha_nacimiento,
-nacionalidad,
-dorsal,
-posicion,
-puntaje_individual,
-"""
-
-
 def guardar_Futbolista(
     nombre,
     apellido,
@@ -64,6 +54,7 @@ def guardar_Futbolista(
     goles,
     asistencias,
     puntaje_individual,
+    codigo_equipo,
 ):
 
     archivo = open("Código/Archivos_txt/jugadores.txt", "a")
@@ -89,6 +80,8 @@ def guardar_Futbolista(
         + str(asistencias)
         + "|"
         + str(puntaje_individual)
+        + "|"
+        + str(codigo_equipo)
         + "\n"
     )
     archivo.close()
@@ -112,21 +105,22 @@ def cargar_futbolista():
             partes[9] = int(partes[9])
             partes[10] = int(partes[10])
 
-            lista += [
-                Futbolista(
-                    partes[0],
-                    partes[1],
-                    partes[2],
-                    partes[3],
-                    partes[4],
-                    partes[5],
-                    partes[6],
-                    partes[7],
-                    partes[8],
-                    partes[9],
-                    partes[10],
-                )
-            ]
+            jugador = Futbolista(
+                partes[0],
+                partes[1],
+                partes[2],
+                partes[3],
+                partes[4],
+                partes[5],
+                partes[6],
+                partes[7],
+                partes[8],
+                partes[9],
+                partes[10],
+            )
+
+            jugador.codigo_equipo = partes[11]
+            lista += [jugador]
 
         archivo.close()
 
@@ -134,3 +128,32 @@ def cargar_futbolista():
         pass  # si el archivo no existe, arranca vacío
 
     return lista
+
+
+def guardar_seleccion(seleccion):
+
+    if seleccion.entrenador != None:
+        nombre_e = seleccion.entrenador.nombre
+        apellido_e = seleccion.entrenador.apellido
+
+    else:
+        nombre_e = "None"
+        apellido_e = "None"
+
+    archivo = open("Código/Archivos_txt/selecciones.txt", "a")
+    archivo.write(
+        str(seleccion.codigo_equipo)
+        + "|"
+        + str(seleccion.pais.codigo_fifa)
+        + "|"
+        + str(nombre_e)
+        + "|"
+        + str(apellido_e)
+        + "\n"
+    )
+    archivo.close()
+
+
+def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
+
+    pass
