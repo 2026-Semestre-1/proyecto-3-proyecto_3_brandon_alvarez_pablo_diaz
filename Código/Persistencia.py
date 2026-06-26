@@ -1,6 +1,7 @@
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
 from Clases.Entrenador import Entrenador
+from Clases.Seleccion import Seleccion
 
 
 def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
@@ -142,9 +143,9 @@ def guardar_seleccion(seleccion):
 
     archivo = open("Código/Archivos_txt/selecciones.txt", "a")
     archivo.write(
-        str(seleccion.codigo_equipo)
+        str(seleccion.pais.codigo_fifa)
         + "|"
-        + str(seleccion.pais.codigo_fifa)
+        + str(seleccion.codigo_equipo)
         + "|"
         + str(nombre_e)
         + "|"
@@ -156,4 +157,51 @@ def guardar_seleccion(seleccion):
 
 def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
 
-    pass
+    lista = []
+
+    try:
+
+        archivo = open("Código/Archivos_txt/selecciones.txt", "r")
+
+        for linea in archivo:
+            partes = linea.strip().split("|")
+
+            for pais in lista_paises:
+
+                if pais.codigo_fifa == partes[0]:
+
+                    pais_encontrado = pais
+
+                    break
+
+            seleccion_uso = Seleccion(partes[1], pais_encontrado)
+
+            if partes[2] != "None":
+
+                for entrenador in lista_entrenadores:
+
+                    if (
+                        entrenador.nombre == partes[2]
+                        and entrenador.apellido == partes[3]
+                    ):
+
+                        entrenador_encontrado = entrenador
+
+                        break
+
+                seleccion_uso.asignar_entrenador(entrenador_encontrado)
+
+            for jugador in lista_jugadores:
+
+                if jugador.codigo_equipo == partes[1]:
+
+                    seleccion_uso.agregar_jugador(jugador)
+
+            lista += [seleccion_uso]
+
+        archivo.close()
+
+    except FileNotFoundError:
+        pass  # si el archivo no existe, arranca vacío
+
+    return lista

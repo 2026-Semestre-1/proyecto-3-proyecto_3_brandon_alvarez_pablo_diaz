@@ -1,6 +1,5 @@
 from Pais import Pais
 from Entrenador import Entrenador
-from Futbolista import Futbolista
 
 
 # ==============================
