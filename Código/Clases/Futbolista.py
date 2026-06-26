@@ -1,4 +1,4 @@
-from Persona import Persona
+from Clases.Persona import Persona
 
 
 class Futbolista(Persona):

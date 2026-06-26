@@ -1,5 +1,5 @@
-from Pais import Pais
-from Entrenador import Entrenador
+from Clases.Pais import Pais
+from Clases.Entrenador import Entrenador
 
 
 # ==============================

@@ -1,6 +1,5 @@
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
-from Clases.Entrenador import Entrenador
 from Clases.Seleccion import Seleccion
 
 
