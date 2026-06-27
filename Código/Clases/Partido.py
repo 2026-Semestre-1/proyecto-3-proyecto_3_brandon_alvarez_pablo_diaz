@@ -6,7 +6,7 @@ class Partido:
 
     contador_id = 0
 
-    def __init__(self, equipo_1, equipo_2, fase, grupo):
+    def __init__(self, equipo_1, equipo_2, fase, grupo, fecha):
 
         Partido.contador_id += 1
 
@@ -17,6 +17,7 @@ class Partido:
         self.grupo = grupo
         self.goles_equipo1 = 0
         self.goles_equipo2 = 0
+        self.fecha = fecha
 
     def simular(self):
 

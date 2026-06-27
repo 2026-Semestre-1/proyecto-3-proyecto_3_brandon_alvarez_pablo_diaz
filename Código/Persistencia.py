@@ -1,6 +1,7 @@
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
 from Clases.Seleccion import Seleccion
+from Clases.Partido import Partido
 
 
 def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
