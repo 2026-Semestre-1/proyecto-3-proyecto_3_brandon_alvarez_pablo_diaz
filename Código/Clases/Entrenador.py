@@ -42,7 +42,7 @@ class Entrenador(Persona):
             "sistema_juego": self.sistema_juego,
         }
 
-    # ================================= Función actualizar datos ==========================================
+    # ================================= Función actualizar datos =======================================
     # Nombre: actualizar_datos
     # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevaLicencia,                                 nuevaExperiencia_anios y nuevoSistema_juego.
     # Salidas: No retorna nada pero actualiza los datos del entrenador.
