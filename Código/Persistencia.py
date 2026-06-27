@@ -281,6 +281,9 @@ def guardar_partidos_fase(fase):
             archivo.close()
         
         except FileNotFoundError:
-            pass 
+            pass # si el archivo no existe, arranca vacío
 
         return partidos
+    
+
+    def largoLista
