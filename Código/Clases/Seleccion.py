@@ -1,22 +1,6 @@
 from Clases.Pais import Pais
 from Clases.Entrenador import Entrenador
-
-
-# ==============================
-# Nombre: largo_jugadores
-# Entradas: lista_jugadores
-# Salidas: Cantidad de jugadores en la seleccion
-# Restricciones:
-# ==============================
-def largo_jugadores(lista_jugadores):
-
-    largo = 0
-
-    for i in lista_jugadores:
-
-        largo += 1
-
-    return largo
+from Utilidades import largoLista
 
 
 class Seleccion:
@@ -109,7 +93,7 @@ class Seleccion:
 
         hubo_cambio = True
 
-        largo = largo_jugadores(self.jugadores)
+        largo = largoLista(self.jugadores)
 
         while hubo_cambio:
 
@@ -149,7 +133,7 @@ class Seleccion:
 
         jugadores_ordenados = self.ordenamiento_jugadores()
 
-        if largo_jugadores(jugadores_ordenados) < 11:
+        if largoLista(jugadores_ordenados) < 11:
             return False
 
         promedio = 0
