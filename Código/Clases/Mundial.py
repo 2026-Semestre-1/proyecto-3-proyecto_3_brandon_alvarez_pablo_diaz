@@ -1,11 +1,9 @@
-from Clases.Entrenador import Entrenador
 from Clases.Fase import Fase
-from Clases.Futbolista import Futbolista
 from Clases.Grupo import Grupo
 from Clases.Pais import Pais
-from Clases.Partido import Partido
 from Clases.Seleccion import Seleccion
 from Utilidades import largoLista
+from Persistencia import *
 
 
 class Mundial:
@@ -167,3 +165,24 @@ class Mundial:
             grupo.mostrar_tabla()
 
         return True
+
+    def generar_reporte(self):
+
+        todos_jugadores = []
+
+        for seleccion in self.selecciones:
+
+            todos_jugadores += seleccion.jugadores
+
+        selecciones_puntos = []
+
+        for grupo in self.grupos:
+
+            for fila in grupo.tabla:
+
+                selecciones_puntos += [[fila[0], fila[1]]]
+
+        guardar_ranking_goleadores(todos_jugadores)
+        guardar_ranking_selecciones(selecciones_puntos)
+
+        return
