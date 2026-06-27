@@ -249,7 +249,38 @@ def guardar_partidos_fase(fase):
             linea += str(penales_equipo1) + "|" + str(penales_equipo2) + "\n"
         else:
             linea += "0|0\n"
-            
+
         archivo.write(linea)
 
     archivo.close()
+
+
+    def cargar_partidos():
+
+        partidos = []
+
+        try:
+            archivo = open("Código/Archivos_txt/partidos.txt", "r")
+
+            for linea in archivo:
+                partes = linea.strip().split("|")
+
+                fase_o_grupo = partes[0]
+                nombre_equipo1 = partes[1]
+                nombre_equipo2 = partes[2]
+                goles_equipo1 = int(partes[3])
+                goles_equipo2 = int(partes[4])
+                fecha = partes[5]
+                penales_equipo1 = int(partes[6])
+                penales_equipo2 = int(partes[7])
+
+                datos_partido = [fase_o_grupo, nombre_equipo1, nombre_equipo2, goles_equipo1, goles_equipo2, fecha, penales_equipo1, penales_equipo2] 
+
+                partidos += [datos_partido]
+
+            archivo.close()
+        
+        except FileNotFoundError:
+            pass 
+
+        return partidos
