@@ -38,5 +38,23 @@ class Fase:
 
             self.penales += [[partido, penales_equipo1, penales_equipo2]]
 
+    def mostrar_juegos(self): #sujeto a cambios
+        lista_textos = []
+
+        for partido in self.partidos:
+
+            texto_partido = partido.mostrar_resultado()
+
+            for registro in self.penales:
+                if registro[0] == partido: #es para buscar el partido exacto
+
+                    penales_equipo1 = registro[1]
+                    penales_equipo2 = registro[2]
+
+                    texto_partido += f"(Penales: {penales_equipo1} - {penales_equipo2})"
+
+            lista_textos += [texto_partido]
+
+        return lista_textos
     
 
