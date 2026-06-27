@@ -205,3 +205,19 @@ def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
         pass  # si el archivo no existe, arranca vacío
 
     return lista
+
+
+def guardar_partidos_grupo(grupo):
+
+    archivo = open("Código/Archivos_txt/partidos.txt", "a")
+
+    for partido in grupo.partidos:
+        linea = ( str(grupo.nombre_grupo) + "|" 
+                 + str(partido.equipo_1.pais.nombre) + "|"
+                 + str(partido.equipo_2.pais.nombre) + "|"
+                 + str(partido.goles_equipo1) + "|"
+                 + str(partido.goles_equipo2) + "|"
+                 + str(partido.fecha) + "\n")
+        archivo.write(linea)
+
+    archivo.close()
