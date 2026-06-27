@@ -1,9 +1,13 @@
 from tkinter import *
-from Clases.Pais import Pais
-from Clases.Persona import Persona
-from Clases.Futbolista import Futbolista
 from Clases.Entrenador import Entrenador
+from Clases.Fase import Fase
+from Clases.Futbolista import Futbolista
+from Clases.Grupo import Grupo
+from Clases.Mundial import Mundial
+from Clases.Pais import Pais
+from Clases.Partido import Partido
 from Clases.Seleccion import Seleccion
+from Utilidades import largoLista
 from Persistencia import *
 from tkinter import simpledialog, messagebox
 from tkinter import ttk

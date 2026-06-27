@@ -71,4 +71,35 @@ class Mundial:
 
             indice_seleccion += 1
 
-        return
+        return True
+
+    def jugar_fase_grupos(self):
+
+        if self.grupos == []:
+            print("No hay grupos, por favor crear grupos para poder jugar.")
+            return False
+
+        for grupo in self.grupos:
+
+            grupo.jugar_partidos()
+            grupo.calcular_tabla()
+
+        return True
+
+    def armar_fase_eliminatoria(self, nombre_fase, clasificados):
+
+        largo_clasificados = largoLista(clasificados)
+
+        indice = 0
+
+        fase = Fase(nombre_fase)
+
+        while indice < largo_clasificados:
+
+            fase.registrar_juego(clasificados[indice], clasificados[indice + 1])
+
+            indice += 2
+
+        self.fases += [fase]
+
+        return fase

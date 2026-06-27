@@ -212,12 +212,20 @@ def guardar_partidos_grupo(grupo):
     archivo = open("Código/Archivos_txt/partidos.txt", "a")
 
     for partido in grupo.partidos:
-        linea = ( str(grupo.nombre_grupo) + "|" 
-                 + str(partido.equipo_1.pais.nombre) + "|"
-                 + str(partido.equipo_2.pais.nombre) + "|"
-                 + str(partido.goles_equipo1) + "|"
-                 + str(partido.goles_equipo2) + "|"
-                 + str(partido.fecha) + "\n")
+        linea = (
+            str(grupo.nombre_grupo)
+            + "|"
+            + str(partido.equipo_1.pais.nombre)
+            + "|"
+            + str(partido.equipo_2.pais.nombre)
+            + "|"
+            + str(partido.goles_equipo1)
+            + "|"
+            + str(partido.goles_equipo2)
+            + "|"
+            + str(partido.fecha)
+            + "\n"
+        )
         archivo.write(linea)
 
     archivo.close()
@@ -238,13 +246,21 @@ def guardar_partidos_fase(fase):
                 penales_equipo1 = registro[1]
                 penales_equipo2 = registro[2]
 
-        linea = ( str(fase.nombre_fase) + "|" 
-                 + str(partido.equipo_1.pais.nombre) + "|"
-                 + str(partido.equipo_2.pais.nombre) + "|"
-                 + str(partido.goles_equipo1) + "|"
-                 + str(partido.goles_equipo2) + "|"
-                 + str(partido.fecha) + "\n")
-        
+        linea = (
+            str(fase.nombre_fase)
+            + "|"
+            + str(partido.equipo_1.pais.nombre)
+            + "|"
+            + str(partido.equipo_2.pais.nombre)
+            + "|"
+            + str(partido.goles_equipo1)
+            + "|"
+            + str(partido.goles_equipo2)
+            + "|"
+            + str(partido.fecha)
+            + "\n"
+        )
+
         if tiene_penales == True:
             linea += str(penales_equipo1) + "|" + str(penales_equipo2) + "\n"
         else:
@@ -253,7 +269,6 @@ def guardar_partidos_fase(fase):
         archivo.write(linea)
 
     archivo.close()
-
 
     def cargar_partidos():
 
@@ -274,17 +289,27 @@ def guardar_partidos_fase(fase):
                 penales_equipo1 = int(partes[6])
                 penales_equipo2 = int(partes[7])
 
-                datos_partido = [fase_o_grupo, nombre_equipo1, nombre_equipo2, goles_equipo1, goles_equipo2, fecha, penales_equipo1, penales_equipo2] 
+                datos_partido = [
+                    fase_o_grupo,
+                    nombre_equipo1,
+                    nombre_equipo2,
+                    goles_equipo1,
+                    goles_equipo2,
+                    fecha,
+                    penales_equipo1,
+                    penales_equipo2,
+                ]
 
                 partidos += [datos_partido]
 
             archivo.close()
-        
+
         except FileNotFoundError:
-            pass # si el archivo no existe, arranca vacío
+            pass  # si el archivo no existe, arranca vacío
 
         return partidos
-    
+
+
 def guardar_ranking_goleadores(lista_futbolistas):
 
     tamanno = largoLista(lista_futbolistas)
@@ -297,18 +322,24 @@ def guardar_ranking_goleadores(lista_futbolistas):
                 lista_futbolistas[j] = lista_futbolistas[j + 1]
                 lista_futbolistas[j + 1] = temporal
 
-    
     archivo = open("Código/Archivos_txt/ranking_goleadores.txt", "w")
 
     for jugador in lista_futbolistas:
 
-        nombre_completo = str(jugador.nombre) + " " + str(jugador.apellido) + " " + " (#" + str(jugador.dorsal) + ")"
+        nombre_completo = (
+            str(jugador.nombre)
+            + " "
+            + str(jugador.apellido)
+            + " "
+            + " (#"
+            + str(jugador.dorsal)
+            + ")"
+        )
 
         linea = nombre_completo + "|" + str(jugador.goles) + "\n"
         archivo.write(linea)
 
     archivo.close()
-
 
     def cargar_ranking_goleadores():
         goleadores = []
@@ -330,6 +361,6 @@ def guardar_ranking_goleadores(lista_futbolistas):
             archivo.close()
 
         except FileNotFoundError:
-            pass # si el archivo no existe, arranca vacío
+            pass  # si el archivo no existe, arranca vacío
 
         return goleadores
