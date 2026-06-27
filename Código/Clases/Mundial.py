@@ -1,3 +1,4 @@
+# =========================================== Librerias ============================================
 from Clases.Fase import Fase
 from Clases.Grupo import Grupo
 from Clases.Pais import Pais
@@ -5,7 +6,15 @@ from Clases.Seleccion import Seleccion
 from Utilidades import largoLista
 from Persistencia import *
 
+# ==================================================================================================
 
+
+# ========================================= Clase Mundial =========================================
+# Nombre: Mundial
+# Entradas: nombre y anio(año).
+# Salidas: nombre, anio(año), paises, selecciones, grupos, fases, campeon.
+# Restricciones:
+# ==================================================================================================
 class Mundial:
     def __init__(self, nombre, anio):
 
@@ -23,6 +32,13 @@ class Mundial:
         self.fases = []
         self.campeon = None
 
+    # =================================== Funcion registrar país ===================================
+    # Nombre: registrar_pais
+    # Entradas: pais.
+    # Salidas: True si el país fue guardado con éxito.
+    # Restricciones:
+    # ==============================================================================================
+
     def registrar_pais(self, pais):
 
         if not isinstance(pais, Pais):
@@ -32,6 +48,13 @@ class Mundial:
 
         return True
 
+    # ================================ Funcion registrar seleccion =================================
+    # Nombre: registrar_seleccion
+    # Entradas: seleccion.
+    # Salidas: True si la seleccion fue guardado con éxito.
+    # Restricciones:
+    # ==============================================================================================
+
     def registrar_seleccion(self, seleccion):
 
         if not isinstance(seleccion, Seleccion):
@@ -40,6 +63,13 @@ class Mundial:
         self.selecciones += [seleccion]
 
         return True
+
+    # ================================ Funcion crear grupos ========================================
+    # Nombre: crear_grupos
+    # Entradas: Cantidad_grupos.
+    # Salidas: Grupos creados con las selecciones
+    # Restricciones:
+    # ==============================================================================================
 
     def crear_grupos(self, cantidad_grupos):
 
@@ -71,6 +101,13 @@ class Mundial:
 
         return True
 
+    # ================================ Funcion jugar fase grupos ==================================
+    # Nombre: jugar_fase_grupos
+    # Entradas: Ninguna.
+    # Salidas: Ejecuta jugar_partidos() de cada grupo y calcula sus tablas.
+    # Restricciones:
+    # ==============================================================================================
+
     def jugar_fase_grupos(self):
 
         if self.grupos == []:
@@ -83,6 +120,13 @@ class Mundial:
             grupo.calcular_tabla()
 
         return True
+
+    # ================================ Funcion armar fase eliminatoria =============================
+    # Nombre: armar_fase_eliminatoria
+    # Entradas: nombre_fase y clasificados.
+    # Salidas: Crea los enfrentamientos de la fase eliminatoria a partir de los equipos clasificados.
+    # Restricciones:
+    # ==============================================================================================
 
     def armar_fase_eliminatoria(self, nombre_fase, clasificados):
 
@@ -102,11 +146,25 @@ class Mundial:
 
         return fase
 
+    # ================================ Funcion jugar fase eliminatoria =============================
+    # Nombre: jugar_fase_eliminatoria
+    # Entradas: fase
+    # Salidas: ejecuta jugar_fase() de la fase indicada y retorna los clasificados a la siguiente ronda.
+    # Restricciones:
+    # ==============================================================================================
+
     def jugar_fase_eliminatoria(self, fase):
 
         fase.jugar_fase()
 
         return fase.obtener_clasificados()
+
+    # ================================ Funcion determinar campeon ==================================
+    # Nombre: determinar_campeon
+    # Entradas: Ninguna.
+    # Salidas: Ejecuta el flujo completo desde octavos (o dieciseisavos) hasta la final asigna el                                                                atributo campeon.
+    # Restricciones:
+    # ==============================================================================================
 
     def determinar_campeon(self):
 
@@ -137,7 +195,14 @@ class Mundial:
 
         self.campeon = clasificados[0]
 
-        return
+        return True
+
+    # ================================ Funcion nombre final ========================================
+    # Nombre: nombre_final
+    # Entradas: largo_clasificados
+    # Salidas: Determina el nombre de la fase que se esta jugando.
+    # Restricciones:
+    # ==============================================================================================
 
     def nombre_final(self, largo_clasificados):
 
@@ -158,6 +223,13 @@ class Mundial:
 
         return None  # número de clasificados no reconocido
 
+    # ================================ Funcion mostrar tabla general ===============================
+    # Nombre: mostrar_tabla_general
+    # Entradas: Ninguna.
+    # Salidas: Muestra las tablas de posiciones de todos los grupos.
+    # Restricciones:
+    # ==============================================================================================
+
     def mostrar_tabla_general(self):
 
         for grupo in self.grupos:
@@ -165,6 +237,13 @@ class Mundial:
             grupo.mostrar_tabla()
 
         return True
+
+    # ================================ Funcion generar_reporte =====================================
+    # Nombre: generar_reporte
+    # Entradas: Ninguna.
+    # Salidas: Genera el archivo de estadísticas generales del torneo.
+    # Restricciones:
+    # ==============================================================================================
 
     def generar_reporte(self):
 
