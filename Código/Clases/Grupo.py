@@ -1,7 +1,16 @@
+# ========================================== Librerias =============================================
 from Clases.Seleccion import Seleccion
 from Clases.Partido import Partido
 
+# ==================================================================================================
 
+
+# ================================= Función largo seleccion ========================================
+# Nombre: largo_seleccion
+# Entradas: lista_equipos
+# Salidas: Largo de la lista de equipos
+# Restricciones:
+# ==================================================================================================
 def largo_seleccion(lista_equipos):
 
     largo = 0
@@ -12,6 +21,12 @@ def largo_seleccion(lista_equipos):
     return largo
 
 
+# ================================= Función largoLista =============================================
+# Nombre: largoLista
+# Entradas: lista
+# Salidas: Largo de la lista
+# Restricciones:
+# ==================================================================================================
 def largoLista(lista):
 
     largo = 0
@@ -22,6 +37,12 @@ def largoLista(lista):
     return largo
 
 
+# ======================================= Clase Grupo =========================================
+# Nombre: Grupo
+# Entradas: nombre_grupo
+# Salidas: nombre_grupo, equipos, partidos, tabla y fechas_temporales.
+# Restricciones:
+# ==================================================================================================
 class Grupo:
 
     def __init__(self, nombre_grupo):
@@ -39,6 +60,12 @@ class Grupo:
             "01/01/2026",
         ]
 
+    # ================================= Función agregar equipo ==========================================
+    # Nombre: agregar_equipo
+    # Entradas: seleccion
+    # Salidas: Agrega una selección al grupo
+    # Restricciones:
+    # ==================================================================================================
     def agregar_equipo(self, seleccion):
 
         if not isinstance(seleccion, Seleccion):
@@ -51,6 +78,12 @@ class Grupo:
                 f"No se puede agregar a {seleccion.nombre}. El {self.nombre_grupo} ya está lleno."
             )
 
+    # ================================= Función jugar partidos =========================================
+    # Nombre: jugar_partidos
+    # Entradas: ninguna
+    # Salidas: Crea los partidos del grupo
+    # Restricciones:
+    # ==================================================================================================
     def jugar_partidos(self):
 
         self.partidos = []
@@ -76,6 +109,12 @@ class Grupo:
 
                 indice_fecha += 1
 
+    # ================================= Función calcular tabla =========================================
+    # Nombre: calcular_tabla
+    # Entradas: ninguna
+    # Salidas: Calcula la tabla del grupo
+    # Restricciones:
+    # ==================================================================================================
     def calcular_tabla(self):
 
         # [objeto Seleccion, puntos, goles_favor, goles_contra]
@@ -139,11 +178,23 @@ class Grupo:
                     self.tabla[j] = self.tabla[j + 1]
                     self.tabla[j + 1] = temporal
 
+    # ================================= Función obtener clasificados ===================================
+    # Nombre: obtener_clasificados
+    # Entradas: ninguna
+    # Salidas: Obtiene los equipos clasificados del grupo
+    # Restricciones:
+    # ==================================================================================================
     def obtener_clasificados(self):
         primer_lugar = self.tabla[0][0]
         segundo_lugar = self.tabla[1][0]
 
         return [primer_lugar, segundo_lugar]
 
+    # ================================= Función mostrar tabla ===================================
+    # Nombre: mostrar_tabla
+    # Entradas: ninguna
+    # Salidas: Muestra la tabla de posiciones del grupo
+    # Restricciones:
+    # ==================================================================================================
     def mostrar_tabla(self):
         return self.tabla

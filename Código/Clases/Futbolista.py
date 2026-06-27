@@ -6,8 +6,8 @@ from Clases.Persona import Persona
 
 # ======================================= Clase Futbolista =========================================
 # Nombre: Futbolista
-# Entradas: Clase Persona, nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion,                  total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual.
-# Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion,                                  total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual.
+# Entradas: Clase Persona, nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion, total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual.
+# Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion, total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual.
 # Restricciones:
 # ==================================================================================================
 class Futbolista(Persona):
@@ -63,7 +63,7 @@ class Futbolista(Persona):
     # ================================= Función mostrar datos ==========================================
     # Nombre: mostrar_datos
     # Entradas: ninguna
-    # Salidas: Datos de la Clase Persona, dorsal, posicion, total_tarjetas_amarillas, total_tarjetas_rojas,                         goles, asistencias y puntaje_individual.
+    # Salidas: Datos de la Clase Persona, dorsal, posicion, total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias y puntaje_individual.
     # Restricciones:
     # ==================================================================================================
 
@@ -81,7 +81,7 @@ class Futbolista(Persona):
 
     # ================================= Función actualizar datos =======================================
     # Nombre: actualizar_datos
-    # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevoDorsal,                          nuevaPosicion, nuevototal_tarjetas_amarillas, nuevototal_tarjetas_rojas, nuevoGoles, nuevaAsistencias                               y nuevopuntaje_individual.
+    # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevoDorsal, nuevaPosicion, nuevototal_tarjetas_amarillas, nuevototal_tarjetas_rojas, nuevoGoles, nuevaAsistencias y nuevopuntaje_individual.
     # Salidas: Permite modificar los atributos del futbolista.
     # Restricciones:
     # ==================================================================================================
