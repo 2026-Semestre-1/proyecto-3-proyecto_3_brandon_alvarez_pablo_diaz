@@ -57,4 +57,27 @@ class Fase:
 
         return lista_textos
     
+    def obtener_clasificados(self):
+        lista_ganadores = []
+
+        for partido in self.partidos:
+            ganador = partido.generar_ganador()
+
+            if ganador is None: #si es None, entonces es un empate
+
+                for registro in self.penales:
+                    if registro[0] == partido: #se busca el partido exacto
+
+                        penales_equipo1 = registro[1]
+                        penales_equipo2 = registro[2]
+
+                        if penales_equipo1 > penales_equipo2: #se define el ganador de los empates
+                            lista_ganadores += [partido.equipo_1]
+                        else:
+                            lista_ganadores += [partido.equipo_2]
+
+            else: #sino hay empate, entonces avanza el ganador directamente
+                lista_ganadores += [ganador]
+        
+        return lista_ganadores
 
