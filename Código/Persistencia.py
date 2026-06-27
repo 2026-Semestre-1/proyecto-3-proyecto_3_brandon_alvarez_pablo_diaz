@@ -270,7 +270,7 @@ def guardar_partidos_fase(fase):
 
     archivo.close()
 
-    def cargar_partidos():
+def cargar_partidos():
 
         partidos = []
 
@@ -341,7 +341,7 @@ def guardar_ranking_goleadores(lista_futbolistas):
 
     archivo.close()
 
-    def cargar_ranking_goleadores():
+def cargar_ranking_goleadores():
         goleadores = []
 
         try:
@@ -364,3 +364,83 @@ def guardar_ranking_goleadores(lista_futbolistas):
             pass  # si el archivo no existe, arranca vacío
 
         return goleadores
+    
+def guardar_ranking_selecciones(lista_selecciones):
+
+        #[seleccion, puntos]
+
+        tamanno = largoLista(lista_selecciones)
+
+        for i in range(tamanno):
+            for j in range(0, tamanno - i - 1):
+
+                seleccion_actual = lista_selecciones[j][0]
+                puntos_actual = lista_selecciones[j][1]
+                diferencia_goles_actual = seleccion_actual.total_goles_favor - seleccion_actual.total_goles_contra
+
+                #datos de la siguiente seleccion
+                seleccion_siguiente = lista_selecciones[j + 1][0]
+                puntos_siguiente = lista_selecciones[j + 1][1]
+                diferencia_goles_siguiente = seleccion_siguiente.total_goles_favor - seleccion_siguiente.total_goles_contra
+
+                #bandera
+                intercambiar = False
+
+                if puntos_actual < puntos_siguiente:
+                    intercambiar = True
+                #si se empatan de puntos, entonces por la diferencia de goles
+                elif puntos_actual == puntos_siguiente:
+                    if diferencia_goles_actual < diferencia_goles_siguiente:
+                        intercambiar = True
+
+                
+                if intercambiar == True:
+                    temporal = lista_selecciones[j]
+                    lista_selecciones[j] = lista_selecciones[j + 1]
+                    lista_selecciones[j + 1] = temporal
+
+        archivo = open("Código/Archivos_txt/ranking_selecciones.txt", "w")
+
+        for dato in lista_selecciones:
+            seleccion = dato[0]
+            puntos = dato[1]
+            diferencia_goles = seleccion.total_goles_favor - seleccion.total_goles_contra
+
+            linea = (
+                str(seleccion.pais.nombre) + "|"
+                + str(puntos) + "|"
+                + str(diferencia_goles) + "\n"
+            )
+
+            archivo.write(linea)
+
+        archivo.close()
+
+    
+def cargar_ranking_selecciones():
+
+    selecciones = []
+
+    try:
+
+        archivo = open("Código/Archivos_txt/ranking_selecciones.txt", "r")
+
+        for linea in archivo:
+            partes = linea.strip().split("|")
+
+            nombre_seleccion = partes[0]
+            puntos = int(partes[1])
+            diferencia_goles = int(partes[2])
+
+            datos_seleccion = [nombre_seleccion, puntos, diferencia_goles]
+
+            selecciones += [datos_seleccion]
+
+        archivo.close()
+
+    except FileNotFoundError:
+        pass  # si el archivo no existe, arranca vacío
+
+    return selecciones
+
+
