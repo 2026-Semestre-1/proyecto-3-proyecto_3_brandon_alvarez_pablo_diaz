@@ -162,7 +162,7 @@ class Mundial:
     # ================================ Funcion determinar campeon ==================================
     # Nombre: determinar_campeon
     # Entradas: Ninguna.
-    # Salidas: Ejecuta el flujo completo desde octavos (o dieciseisavos) hasta la final asigna el                                                                atributo campeon.
+    # Salidas: Ejecuta el flujo completo desde octavos (o dieciseisavos) hasta la final asigna el atributo campeon.
     # Restricciones:
     # ==============================================================================================
 

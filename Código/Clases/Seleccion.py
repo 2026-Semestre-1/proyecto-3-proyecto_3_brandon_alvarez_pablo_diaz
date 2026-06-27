@@ -1,8 +1,17 @@
+# =========================================== Librerias ============================================
 from Clases.Pais import Pais
 from Clases.Entrenador import Entrenador
 from Utilidades import largoLista
 
+# ==================================================================================================
 
+
+# ========================================= Clase Seleccion ==========================================
+# Nombre: Seleccion
+# Entradas: codigo_equipo, pais.
+# Salidas: codigo_equipo, pais, entrenador, jugadores, total_goles_favor, total_goles_contra, total_tarjetas_amarillas, total_tarjetas_rojas, fuerza_equipo.
+# Restricciones:
+# ==================================================================================================
 class Seleccion:
     def __init__(self, codigo_equipo, pais):
 
@@ -19,6 +28,12 @@ class Seleccion:
         self.total_tarjetas_rojas = 0
         self.fuerza_equipo = 0
 
+    # =================================== Funcion mostrar datos ==================================
+    # Nombre: mostrar_datos
+    # Entradas: ninguna.
+    # Salidas: Muestra la información de la selección, incluyendo país, entrenador y plantilla de jugadores.
+    # Restricciones:
+    # ==============================================================================================
     def mostrar_datos(self):
 
         datos_jugadores = []
@@ -43,6 +58,12 @@ class Seleccion:
             "fuerza_equipo": self.fuerza_equipo,
         }
 
+    # =================================== Funcion agregar jugador ==================================
+    # Nombre: agregar_jugador
+    # Entradas: futbolista.
+    # Salidas: True si el jugador fue agregado con éxito.
+    # Restricciones:
+    # ==============================================================================================
     def agregar_jugador(self, futbolista):
 
         cantidad_actual = 0
@@ -56,6 +77,12 @@ class Seleccion:
 
         return False
 
+    # =================================== Funcion eliminar jugador =================================
+    # Nombre: eliminar_jugador
+    # Entradas: dorsal.
+    # Salidas: True si el jugador fue eliminado con éxito.
+    # Restricciones:
+    # ==============================================================================================
     def eliminar_jugador(self, dorsal):
 
         nueva_lista = []
@@ -73,6 +100,12 @@ class Seleccion:
 
         return eliminado
 
+    # =================================== Funcion asignar entrenador ===============================
+    # Nombre: asignar_entrenador
+    # Entradas: entrenador.
+    # Salidas: True si el entrenador fue asignado con éxito.
+    # Restricciones:
+    # ==============================================================================================
     def asignar_entrenador(self, entrenador):
 
         if isinstance(entrenador, Entrenador):
@@ -81,6 +114,12 @@ class Seleccion:
 
         return False
 
+    # =================================== Funcion registrar resultado ==============================
+    # Nombre: registrar_resultado
+    # Entradas: goles_favor, goles_contra, tarjetas_am, tarjetas_roj.
+    # Salidas: True si el resultado fue registrado con éxito.
+    # Restricciones:
+    # ==============================================================================================
     def registrar_resultado(self, goles_favor, goles_contra, tarjetas_am, tarjetas_roj):
 
         self.total_goles_favor += goles_favor
@@ -89,6 +128,12 @@ class Seleccion:
         self.total_tarjetas_rojas += tarjetas_roj
         return True
 
+    # =================================== Funcion ordenamiento jugadores ===========================
+    # Nombre: ordenamiento_jugadores
+    # Entradas: ninguna.
+    # Salidas: Lista de jugadores ordenada por puntaje individual.
+    # Restricciones:
+    # ==============================================================================================
     def ordenamiento_jugadores(self):
 
         hubo_cambio = True
@@ -129,6 +174,12 @@ class Seleccion:
 
         return self.jugadores
 
+    # =================================== Funcion calcular fuerza equipo ===========================
+    # Nombre: calcular_fuerza_equipo
+    # Entradas: ninguna.
+    # Salidas: Fuerza del equipo.
+    # Restricciones:
+    # ==============================================================================================
     def calcular_fuerza_equipo(self):
 
         jugadores_ordenados = self.ordenamiento_jugadores()

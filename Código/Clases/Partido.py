@@ -1,8 +1,16 @@
+# =========================================== Librerias ============================================
 import random
-
 from Clases.Seleccion import Seleccion
 
+# ==================================================================================================
 
+
+# ========================================= Clase Partido =========================================
+# Nombre: Partido
+# Entradas: equipo_1, equipo_2, fase, grupo, fecha.
+# Salidas: equipo_1, equipo_2, fase, grupo, fecha.
+# Restricciones:
+# ==================================================================================================
 class Partido:
 
     contador_id = 0
@@ -20,6 +28,12 @@ class Partido:
         self.goles_equipo2 = 0
         self.fecha = fecha
 
+    # =================================== Funcion simular ==========================================
+    # Nombre: simular
+    # Entradas: ninguna.
+    # Salidas: ejecuta el algoritmo de simulación y asigna los goles de cada equipo..
+    # Restricciones:
+    # ==============================================================================================
     def simular(self):
 
         diferencia_fuerza = Seleccion.calcular_fuerza_equipo(
@@ -57,6 +71,12 @@ class Partido:
 
         return self.goles_equipo1, self.goles_equipo2
 
+    # =================================== Funcion generar ganador ==================================
+    # Nombre: generar_ganador
+    # Entradas: ninguna.
+    # Salidas: el equipo que ganó el partido.
+    # Restricciones:
+    # ==============================================================================================
     def generar_ganador(self):
 
         if self.goles_equipo1 > self.goles_equipo2:
@@ -71,5 +91,11 @@ class Partido:
             else:
                 return None  # si es otra fase, quiere decir que aún no hay ganador, entonces se debe ir a penales
 
+    # =================================== Funcion mostrarresultado ==================================
+    # Nombre: mostrar_resultado
+    # Entradas: ninguna.
+    # Salidas: un diccionario con los resultados del partido.
+    # Restricciones:
+    # ==============================================================================================
     def mostrar_resultado(self):
         return {"equipo_1": self.equipo_1, "equipo_2": self.equipo_2}

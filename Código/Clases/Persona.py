@@ -1,3 +1,9 @@
+# ========================================= Clase Persona ==========================================
+# Nombre: Persona
+# Entradas: nombre, apellido, fecha_nacimiento, nacionalidad.
+# Salidas: nombre, apellido, fecha_nacimiento, nacionalidad.
+# Restricciones:
+# ==================================================================================================
 class Persona:
     def __init__(self, nombre, apellido, fecha_nacimiento, nacionalidad):
 
@@ -20,6 +26,12 @@ class Persona:
         self.fecha_nacimiento = fecha_nacimiento
         self.nacionalidad = nacionalidad
 
+    # =================================== Funcion mostrar_datos ====================================
+    # Nombre: mostrar_datos
+    # Entradas: ninguna.
+    # Salidas: Muestra la información básica de la persona.
+    # Restricciones:
+    # ==============================================================================================
     def mostrar_datos(self):
         return {
             "nombre": self.nombre,
