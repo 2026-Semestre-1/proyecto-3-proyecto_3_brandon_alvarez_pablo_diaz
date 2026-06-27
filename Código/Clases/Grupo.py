@@ -55,9 +55,9 @@ class Grupo:
     def calcular_tabla(self):
         
         #[objeto Seleccion, puntos, goles_favor, goles_contra]
-        tabla = []
+        self.tabla = []
         for equipo in self.equipos:
-            tabla += [[equipo, 0, 0, 0]]
+            self.tabla += [[equipo, 0, 0, 0]]
 
         #recorrer los partidos y actualizar la matriz
         for partido in self.partidos:
@@ -68,7 +68,7 @@ class Grupo:
             ganador = partido.generar_ganador()
 
             #se buscan los equipos para actualizarlos
-            for fila in tabla:
+            for fila in self.tabla:
                 if fila[0] == equipo1: #si es el equipo 1 del partido
                     fila[2] = goles_equipo_uno
                     fila[3] = goles_equipo_dos
@@ -86,13 +86,13 @@ class Grupo:
                         fila[1] += 1 #un punto por empatar el partido
 
         #se ordena la tabla de mayor a menor utilizando Bubble Sort
-        tamanno = largoLista(tabla)
+        tamanno = largoLista(self.tabla)
 
         for i in range(tamanno):
             for j in range(0, tamanno - i - 1):
 
-                fila_actual = tabla[j]
-                fila_siguiente = tabla[j + 1]
+                fila_actual = self.tabla[j]
+                fila_siguiente = self.tabla[j + 1]
 
                 diferencia_goles_actual = fila_actual[2] - fila_siguiente[3] 
                 diferencia_goles_siguiente = fila_siguiente[2] - fila_siguiente[3]
@@ -111,7 +111,16 @@ class Grupo:
                             intercambiar = True
 
                 if intercambiar == True:
-                    temporal = tabla[j]
-                    tabla[j] = tabla[j + 1]
-                    tabla[j + 1] = temporal
+                    temporal = self.tabla[j]
+                    self.tabla[j] = self.tabla[j + 1]
+                    self.tabla[j + 1] = temporal
+
+    def obtener_clasificados(self):
+        primer_lugar = self.tabla[0][0]
+        segundo_lugar = self.tabla[1][0]
+
+        return [primer_lugar, segundo_lugar]
+    
+    def mostrar_tabla(self):
+        return self.tabla
 
