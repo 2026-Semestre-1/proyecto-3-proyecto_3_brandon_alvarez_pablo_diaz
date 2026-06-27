@@ -28,6 +28,7 @@ class Grupo:
         self.equipos = []
         self.partidos = []
         self.tabla = []
+        self.fechas_temporales = ["01/01/2026", "01/01/2026", "01/01/2026", "01/01/2026", "01/01/2026", "01/01/2026"]
 
     
     def agregar_equipo(self, seleccion):
@@ -44,14 +45,20 @@ class Grupo:
 
         self.partidos = []
 
+        indice_fecha = 0
+
         for i in range(largo_seleccion(self.equipos)):
             for j in range(i + 1, largo_seleccion(self.equipos)):
 
-                partido = Partido(self.equipos[i], self.equipos[j], "Fase de Grupos", self.nombre_grupo)
+                fecha_actual = self.fechas_temporales[indice_fecha]
+
+                partido = Partido(self.equipos[i], self.equipos[j], "Fase de Grupos", self.nombre_grupo, fecha_actual)
 
                 partido.simular()
 
                 self.partidos += [partido]
+
+                indice_fecha += 1
 
     def calcular_tabla(self):
         

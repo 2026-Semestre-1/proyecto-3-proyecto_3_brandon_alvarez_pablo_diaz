@@ -13,11 +13,14 @@ class Fase:
         self.nombre_fase = nombre_fase
         self.partidos = []
         self.penales = []
+        self.fecha_temporal = "01/01/2026"
 
     
     def registrar_juego(self, equipo1, equipo2):
 
-        nuevo_partido = Partido(equipo1, equipo2, self.nombre_fase, "")
+        fecha_asignada = self.fecha_temporal
+
+        nuevo_partido = Partido(equipo1, equipo2, self.nombre_fase, "", fecha_asignada)
 
         self.partidos += [nuevo_partido]
 
