@@ -27,6 +27,7 @@ class Grupo:
         self.nombre_grupo = nombre_grupo
         self.equipos = []
         self.partidos = []
+        self.tabla = []
 
     
     def agregar_equipo(self, seleccion):
@@ -123,4 +124,3 @@ class Grupo:
     
     def mostrar_tabla(self):
         return self.tabla
-
