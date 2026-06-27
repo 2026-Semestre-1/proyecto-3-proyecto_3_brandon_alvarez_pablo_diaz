@@ -1,7 +1,7 @@
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
 from Clases.Seleccion import Seleccion
-from Clases.Partido import Partido
+from Utilidades import *
 
 
 def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
@@ -285,5 +285,26 @@ def guardar_partidos_fase(fase):
 
         return partidos
     
+def guardar_ranking_goleadores(lista_futbolistas):
 
-    def largoLista
+    tamanno = largoLista(lista_futbolistas)
+
+    for i in range(tamanno):
+        for j in range(0, tamanno - i - 1):
+
+            if lista_futbolistas[j].goles < lista_futbolistas[j + 1].goles:
+                temporal = lista_futbolistas[j]
+                lista_futbolistas[j] = lista_futbolistas[j + 1]
+                lista_futbolistas[j + 1] = temporal
+
+    
+    archivo = open("Código/Archivos_txt/ranking_goleadores.txt", "w")
+
+    for jugador in lista_futbolistas:
+
+        nombre_completo = str(jugador.nombre) + " " + str(jugador.apellido) + " " + " (#" + str(jugador.dorsal) + ")"
+
+        linea = nombre_completo + "|" + str(jugador.goles) + "\n"
+        archivo.write(linea)
+
+    archivo.close()
