@@ -6,7 +6,7 @@ from Clases.Persona import Persona
 
 # ======================================= Clase Entrenador =========================================
 # Nombre: Entrenador
-# Entradas: Clase Persona
+# Entradas: Clase Persona,  nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios                              y sistema_juego.
 # Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios y sistema_juego.
 # Restricciones:
 # ==================================================================================================
@@ -27,7 +27,7 @@ class Entrenador(Persona):
         self.experiencia_anios = experiencia_anios
         self.sistema_juego = sistema_juego
 
-    # ================================= Funcion mostrar datos ==========================================
+    # ================================= Función mostrar datos ==========================================
     # Nombre: mostrar_datos
     # Entradas: ninguna
     # Salidas: Datos de la Clase Persona, Licencia, experiencia en anios(años) y sistema de juego.
@@ -42,7 +42,7 @@ class Entrenador(Persona):
             "sistema_juego": self.sistema_juego,
         }
 
-    # ================================= Funcion actualizar datos ==========================================
+    # ================================= Función actualizar datos =======================================
     # Nombre: actualizar_datos
     # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevaLicencia,                                 nuevaExperiencia_anios y nuevoSistema_juego.
     # Salidas: No retorna nada pero actualiza los datos del entrenador.

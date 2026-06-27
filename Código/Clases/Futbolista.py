@@ -1,6 +1,15 @@
+# ========================================== Librerias =============================================
 from Clases.Persona import Persona
 
+# ==================================================================================================
 
+
+# ======================================= Clase Futbolista =========================================
+# Nombre: Futbolista
+# Entradas: Clase Persona, nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion,                  total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual.
+# Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion,                                  total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual.
+# Restricciones:
+# ==================================================================================================
 class Futbolista(Persona):
     def __init__(
         self,
@@ -51,6 +60,13 @@ class Futbolista(Persona):
         self.asistencias = asistencias
         self.puntaje_individual = puntaje_individual
 
+    # ================================= Función mostrar datos ==========================================
+    # Nombre: mostrar_datos
+    # Entradas: ninguna
+    # Salidas: Datos de la Clase Persona, dorsal, posicion, total_tarjetas_amarillas, total_tarjetas_rojas,                         goles, asistencias y puntaje_individual.
+    # Restricciones:
+    # ==================================================================================================
+
     def mostrar_datos(self):
         return {
             **super().mostrar_datos(),
@@ -62,6 +78,13 @@ class Futbolista(Persona):
             "asistencias": self.asistencias,
             "puntaje_individual": self.puntaje_individual,
         }
+
+    # ================================= Función actualizar datos =======================================
+    # Nombre: actualizar_datos
+    # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevoDorsal,                          nuevaPosicion, nuevototal_tarjetas_amarillas, nuevototal_tarjetas_rojas, nuevoGoles, nuevaAsistencias                               y nuevopuntaje_individual.
+    # Salidas: Permite modificar los atributos del futbolista.
+    # Restricciones:
+    # ==================================================================================================
 
     def actualizar_datos(
         self,
@@ -113,15 +136,36 @@ class Futbolista(Persona):
 
         return True
 
+    # ================================= Función registrar gol =========================================
+    # Nombre: registrar_gol
+    # Entradas: Ninguna
+    # Salidas: True si el gol se registra correctamente.
+    # Restricciones:
+    # ==================================================================================================
+
     def registrar_gol(self):
 
         self.goles += 1
         return True
 
+    # ================================= Función registrar asistencia =======================================
+    # Nombre: registrar_asistencia
+    # Entradas: Ninguna
+    # Salidas: True si la asistencia se registra correctamente.
+    # Restricciones:
+    # ==================================================================================================
+
     def registrar_asistencia(self):
 
         self.asistencias += 1
         return True
+
+    # ================================= Función registrar tarjeta =======================================
+    # Nombre: registrar_tarjeta
+    # Entradas: tipo (string)
+    # Salidas: True si la tarjeta se registra correctamente.
+    # Restricciones: El tipo debe de ser "amarilla" o "roja".
+    # ==================================================================================================
 
     def registrar_tarjeta(self, tipo):
 
