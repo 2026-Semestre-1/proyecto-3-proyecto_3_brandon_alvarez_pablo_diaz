@@ -308,3 +308,28 @@ def guardar_ranking_goleadores(lista_futbolistas):
         archivo.write(linea)
 
     archivo.close()
+
+
+    def cargar_ranking_goleadores():
+        goleadores = []
+
+        try:
+
+            archivo = open("Código/Archivos_txt/ranking_goleadores.txt", "r")
+
+            for linea in archivo:
+                partes = linea.strip().split("|")
+
+                nombre_jugador = partes[0]
+                goles = int(partes[1])
+
+                datos_jugador = [nombre_jugador, goles]
+
+                goleadores += [datos_jugador]
+
+            archivo.close()
+
+        except FileNotFoundError:
+            pass # si el archivo no existe, arranca vacío
+
+        return goleadores
