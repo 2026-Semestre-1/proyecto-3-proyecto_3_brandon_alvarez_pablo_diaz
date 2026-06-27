@@ -1,7 +1,9 @@
-from Clases.Pais import Pais
-from Clases.Persona import Persona
-from Clases.Futbolista import Futbolista
 from Clases.Entrenador import Entrenador
+from Clases.Fase import Fase
+from Clases.Futbolista import Futbolista
+from Clases.Grupo import Grupo
+from Clases.Pais import Pais
+from Clases.Partido import Partido
 from Clases.Seleccion import Seleccion
 from Utilidades import largoLista
 
@@ -40,3 +42,33 @@ class Mundial:
         self.selecciones += [seleccion]
 
         return True
+
+    def crear_grupos(self, cantidad_grupos):
+
+        total_selecciones = largoLista(self.selecciones)
+
+        if total_selecciones < cantidad_grupos:
+            print(
+                f"Error: No se puede crear grupos con la cantidad actual de selecciones. \nSelecciones totales: {total_selecciones}"
+            )
+            return False
+
+        indice = 0
+
+        while indice < cantidad_grupos:
+
+            nombre = "Grupo " + chr(65 + indice)
+            self.grupos += [Grupo(nombre)]
+
+            indice += 1
+
+        indice_seleccion = 0
+
+        while indice_seleccion < total_selecciones:
+
+            numero_grupo = indice_seleccion % cantidad_grupos
+            self.grupos[numero_grupo].agregar_equipo(self.selecciones[indice_seleccion])
+
+            indice_seleccion += 1
+
+        return
