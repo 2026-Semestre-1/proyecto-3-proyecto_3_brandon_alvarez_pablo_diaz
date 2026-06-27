@@ -221,3 +221,35 @@ def guardar_partidos_grupo(grupo):
         archivo.write(linea)
 
     archivo.close()
+
+
+def guardar_partidos_fase(fase):
+
+    archivo = open("Código/Archivos_txt/partidos.txt", "a")
+
+    for partido in fase.partidos:
+        tiene_penales = False
+        penales_equipo1 = 0
+        penales_equipo2 = 0
+
+        for registro in fase.penales:
+            if registro[0] == partido:
+                tiene_penales = True
+                penales_equipo1 = registro[1]
+                penales_equipo2 = registro[2]
+
+        linea = ( str(fase.nombre_fase) + "|" 
+                 + str(partido.equipo_1.pais.nombre) + "|"
+                 + str(partido.equipo_2.pais.nombre) + "|"
+                 + str(partido.goles_equipo1) + "|"
+                 + str(partido.goles_equipo2) + "|"
+                 + str(partido.fecha) + "\n")
+        
+        if tiene_penales == True:
+            linea += str(penales_equipo1) + "|" + str(penales_equipo2) + "\n"
+        else:
+            linea += "0|0\n"
+            
+        archivo.write(linea)
+
+    archivo.close()
