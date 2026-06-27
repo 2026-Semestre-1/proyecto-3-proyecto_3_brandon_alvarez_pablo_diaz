@@ -1,8 +1,16 @@
+# ====================================== Librerias =================================================
 import random
-
 from Clases.Partido import Partido
 
+# ==================================================================================================
 
+
+# ======================================= Clase Fase ===============================================
+# Nombre: Fase
+# Entradas: nombre_fase.
+# Salidas: nombre_fase, partidos, penales y fecha_temporal.
+# Restricciones:
+# ==================================================================================================
 class Fase:
 
     def __init__(self, nombre_fase):
@@ -16,6 +24,13 @@ class Fase:
         self.penales = []
         self.fecha_temporal = "01/01/2026"
 
+    # ================================= Función registrar juego ========================================
+    # Nombre: registrar_juego
+    # Entradas: equipo1 y equipo2.
+    # Salidas: Crea un nuevo Partido entre los dos equipos y lo agrega a la fase.
+    # Restricciones:
+    # ==================================================================================================
+
     def registrar_juego(self, equipo1, equipo2):
 
         fecha_asignada = self.fecha_temporal
@@ -23,6 +38,13 @@ class Fase:
         nuevo_partido = Partido(equipo1, equipo2, self.nombre_fase, "", fecha_asignada)
 
         self.partidos += [nuevo_partido]
+
+    # ================================= Función jugar fase =============================================
+    # Nombre: jugar_fase
+    # Entradas: ninguna
+    # Salidas: Simula todos los partidos de la fase. En caso de empate, simula penales.
+    # Restricciones:
+    # ==================================================================================================
 
     def jugar_fase(self):
         self.penales = []  # por si se recorre dos veces, entonces se reinicia
@@ -40,6 +62,13 @@ class Fase:
                     penales_equipo2 = random.randint(2, 5)
 
             self.penales += [[partido, penales_equipo1, penales_equipo2]]
+
+    # ================================= Función mostrar juegos =========================================
+    # Nombre: mostrar_juegos
+    # Entradas: ninguna
+    # Salidas: Muestra los resultados de todos los partidos de la fase.
+    # Restricciones:
+    # ==================================================================================================
 
     def mostrar_juegos(self):  # sujeto a cambios
         lista_textos = []
@@ -59,6 +88,13 @@ class Fase:
             lista_textos += [texto_partido]
 
         return lista_textos
+
+    # ================================= Función obtener clasificados =========================================
+    # Nombre: obtener_clasificados
+    # Entradas: ninguna
+    # Salidas: Retorna la lista de equipos ganadores que avanzan a la siguiente fase.
+    # Restricciones:
+    # ==================================================================================================
 
     def obtener_clasificados(self):
         lista_ganadores = []

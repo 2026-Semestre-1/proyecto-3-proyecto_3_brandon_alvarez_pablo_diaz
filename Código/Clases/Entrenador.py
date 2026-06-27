@@ -6,7 +6,7 @@ from Clases.Persona import Persona
 
 # ======================================= Clase Entrenador =========================================
 # Nombre: Entrenador
-# Entradas: Clase Persona
+# Entradas: Clase Persona,  nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios                              y sistema_juego.
 # Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios y sistema_juego.
 # Restricciones:
 # ==================================================================================================
