@@ -2,6 +2,7 @@ import random
 
 from Clases.Seleccion import Seleccion
 
+
 class Partido:
 
     contador_id = 0
@@ -21,8 +22,10 @@ class Partido:
 
     def simular(self):
 
-        diferencia_fuerza = Seleccion.calcular_fuerza_equipo(self.equipo_1) - Seleccion.calcular_fuerza_equipo(self.equipo_2)
-        
+        diferencia_fuerza = Seleccion.calcular_fuerza_equipo(
+            self.equipo_1
+        ) - Seleccion.calcular_fuerza_equipo(self.equipo_2)
+
         if diferencia_fuerza < 0:
             diferencia_fuerza *= -1
 
@@ -41,7 +44,7 @@ class Partido:
                 self.goles_equipo1 = random.randint(1, 5)
             elif equipo_fuerte == "equipo2":
                 self.goles_equipo2 = random.randint(1, 5)
-    
+
         elif diferencia_fuerza > 30:
             if equipo_fuerte == "equipo1":
                 self.goles_equipo1 = random.randint(2, 7)
@@ -50,10 +53,9 @@ class Partido:
                 self.goles_equipo2 = random.randint(2, 7)
                 self.goles_equipo1 = random.randint(0, 3)
         else:
-            pass 
+            pass
 
         return self.goles_equipo1, self.goles_equipo2
-            
 
     def generar_ganador(self):
 
@@ -70,5 +72,4 @@ class Partido:
                 return None  # si es otra fase, quiere decir que aún no hay ganador, entonces se debe ir a penales
 
     def mostrar_resultado(self):
-        return {"equipo_1": self.equipo_1, 
-                "equipo_2": self.equipo_2}
+        return {"equipo_1": self.equipo_1, "equipo_2": self.equipo_2}

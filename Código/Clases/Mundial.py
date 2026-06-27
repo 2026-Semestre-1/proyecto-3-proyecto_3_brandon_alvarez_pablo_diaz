@@ -1,11 +1,9 @@
-from Clases.Entrenador import Entrenador
 from Clases.Fase import Fase
-from Clases.Futbolista import Futbolista
 from Clases.Grupo import Grupo
 from Clases.Pais import Pais
-from Clases.Partido import Partido
 from Clases.Seleccion import Seleccion
 from Utilidades import largoLista
+from Persistencia import *
 
 
 class Mundial:
@@ -103,3 +101,88 @@ class Mundial:
         self.fases += [fase]
 
         return fase
+
+    def jugar_fase_eliminatoria(self, fase):
+
+        fase.jugar_fase()
+
+        return fase.obtener_clasificados()
+
+    def determinar_campeon(self):
+
+        clasificados = []
+
+        for grupo in self.grupos:
+
+            clasificados += grupo.obtener_clasificados()
+
+        largo_clasificados = largoLista(clasificados)
+
+        while largo_clasificados != 1:
+
+            nombre = self.nombre_final(largo_clasificados)
+
+            if nombre == None:
+
+                print(
+                    f"Error: cantidad de clasificados inválida ({largo_clasificados})"
+                )
+                return False
+
+            fase = self.armar_fase_eliminatoria(nombre, clasificados)
+
+            clasificados = self.jugar_fase_eliminatoria(fase)
+
+            largo_clasificados = largoLista(clasificados)
+
+        self.campeon = clasificados[0]
+
+        return
+
+    def nombre_final(self, largo_clasificados):
+
+        if largo_clasificados == 32:
+            return "Dieciseisavos de Final"
+
+        if largo_clasificados == 16:
+            return "Octavos de Final"
+
+        if largo_clasificados == 8:
+            return "Cuartos de Final"
+
+        if largo_clasificados == 4:
+            return "Semifinal"
+
+        if largo_clasificados == 2:
+            return "Final"
+
+        return None  # número de clasificados no reconocido
+
+    def mostrar_tabla_general(self):
+
+        for grupo in self.grupos:
+
+            grupo.mostrar_tabla()
+
+        return True
+
+    def generar_reporte(self):
+
+        todos_jugadores = []
+
+        for seleccion in self.selecciones:
+
+            todos_jugadores += seleccion.jugadores
+
+        selecciones_puntos = []
+
+        for grupo in self.grupos:
+
+            for fila in grupo.tabla:
+
+                selecciones_puntos += [[fila[0], fila[1]]]
+
+        guardar_ranking_goleadores(todos_jugadores)
+        guardar_ranking_selecciones(selecciones_puntos)
+
+        return

@@ -2,6 +2,7 @@ import random
 
 from Clases.Partido import Partido
 
+
 class Fase:
 
     def __init__(self, nombre_fase):
@@ -9,13 +10,12 @@ class Fase:
         if not isinstance(nombre_fase, str):
             print("Error: el nombre de la fase no es válida")
             return
-        
+
         self.nombre_fase = nombre_fase
         self.partidos = []
         self.penales = []
         self.fecha_temporal = "01/01/2026"
 
-    
     def registrar_juego(self, equipo1, equipo2):
 
         fecha_asignada = self.fecha_temporal
@@ -25,7 +25,7 @@ class Fase:
         self.partidos += [nuevo_partido]
 
     def jugar_fase(self):
-        self.penales = [] #por si se recorre dos veces, entonces se reinicia
+        self.penales = []  # por si se recorre dos veces, entonces se reinicia
 
         for partido in self.partidos:
             partido.simular()
@@ -33,7 +33,7 @@ class Fase:
             if partido.goles_equipo1 == partido.goles_equipo2:
 
                 penales_equipo1 = 0
-                penales_equipo2 = 0 
+                penales_equipo2 = 0
 
                 while penales_equipo1 == penales_equipo2:
                     penales_equipo1 = random.randint(2, 5)
@@ -41,7 +41,7 @@ class Fase:
 
             self.penales += [[partido, penales_equipo1, penales_equipo2]]
 
-    def mostrar_juegos(self): #sujeto a cambios
+    def mostrar_juegos(self):  # sujeto a cambios
         lista_textos = []
 
         for partido in self.partidos:
@@ -49,7 +49,7 @@ class Fase:
             texto_partido = partido.mostrar_resultado()
 
             for registro in self.penales:
-                if registro[0] == partido: #es para buscar el partido exacto
+                if registro[0] == partido:  # es para buscar el partido exacto
 
                     penales_equipo1 = registro[1]
                     penales_equipo2 = registro[2]
@@ -59,28 +59,29 @@ class Fase:
             lista_textos += [texto_partido]
 
         return lista_textos
-    
+
     def obtener_clasificados(self):
         lista_ganadores = []
 
         for partido in self.partidos:
             ganador = partido.generar_ganador()
 
-            if ganador is None: #si es None, entonces es un empate
+            if ganador is None:  # si es None, entonces es un empate
 
                 for registro in self.penales:
-                    if registro[0] == partido: #se busca el partido exacto
+                    if registro[0] == partido:  # se busca el partido exacto
 
                         penales_equipo1 = registro[1]
                         penales_equipo2 = registro[2]
 
-                        if penales_equipo1 > penales_equipo2: #se define el ganador de los empates
+                        if (
+                            penales_equipo1 > penales_equipo2
+                        ):  # se define el ganador de los empates
                             lista_ganadores += [partido.equipo_1]
                         else:
                             lista_ganadores += [partido.equipo_2]
 
-            else: #sino hay empate, entonces avanza el ganador directamente
+            else:  # sino hay empate, entonces avanza el ganador directamente
                 lista_ganadores += [ganador]
-        
-        return lista_ganadores
 
+        return lista_ganadores

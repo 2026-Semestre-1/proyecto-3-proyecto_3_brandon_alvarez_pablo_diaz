@@ -1,6 +1,15 @@
+# ========================================== Librerias =============================================
 from Clases.Persona import Persona
 
+# ==================================================================================================
 
+
+# ======================================= Clase Entrenador =========================================
+# Nombre: Entrenador
+# Entradas: Clase Persona
+# Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios y sistema_juego.
+# Restricciones:
+# ==================================================================================================
 class Entrenador(Persona):
 
     def __init__(
@@ -18,6 +27,13 @@ class Entrenador(Persona):
         self.experiencia_anios = experiencia_anios
         self.sistema_juego = sistema_juego
 
+    # ================================= Funcion mostrar datos ==========================================
+    # Nombre: mostrar_datos
+    # Entradas: ninguna
+    # Salidas: Datos de la Clase Persona, Licencia, experiencia en anios(años) y sistema de juego.
+    # Restricciones:
+    # ==================================================================================================
+
     def mostrar_datos(self):
         return {
             **super().mostrar_datos(),
@@ -25,6 +41,13 @@ class Entrenador(Persona):
             "experiencia_anios": self.experiencia_anios,
             "sistema_juego": self.sistema_juego,
         }
+
+    # ================================= Funcion actualizar datos ==========================================
+    # Nombre: actualizar_datos
+    # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevaLicencia,                                 nuevaExperiencia_anios y nuevoSistema_juego.
+    # Salidas: No retorna nada pero actualiza los datos del entrenador.
+    # Restricciones:
+    # ==================================================================================================
 
     def actualizar_datos(
         self,
