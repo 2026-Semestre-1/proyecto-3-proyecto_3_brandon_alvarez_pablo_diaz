@@ -10,8 +10,6 @@ carpeta_codigo = os.path.dirname(carpeta_interfaz)
 # 3. Le decimos a Python: "¡Ey! También busque archivos para importar aquí"
 sys.path.append(carpeta_codigo)
 
-from Clases.Futbolista import Futbolista
-from Clases.Entrenador import Entrenador
 from Persistencia import *
 import customtkinter as ctk
 import random
