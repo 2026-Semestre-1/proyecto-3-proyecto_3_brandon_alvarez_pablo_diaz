@@ -36,7 +36,7 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
 # Restricciones:
 # ==============================================================================================
 def guardar_todos_paises(lista_paises):
-    archivo = open("Código/Archivos_txt/paises.txt", "w")  # "w" sobreescribe
+    archivo = open("Código/Archivos_txt/paises.txt", "w")
     for pais in lista_paises:
         archivo.write(
             str(pais.codigo_fifa)
