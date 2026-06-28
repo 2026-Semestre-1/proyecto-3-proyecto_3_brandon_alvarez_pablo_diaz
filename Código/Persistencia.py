@@ -143,9 +143,7 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
 # Salidas: None.
 # Restricciones:
 # ==============================================================================================
-def modificar_pais(
-    lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente, nuevo_ranking_fifa
-):
+def modificar_pais(lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente, nuevo_ranking_fifa):
 
     for pais in lista_paises:
 

@@ -219,6 +219,8 @@ class VentanaAdministracion(ctk.CTk):
                     pais.continente = nuevo_continente.get().strip()
                     pais.ranking_fifa = int(nuevo_ranking.get().strip())
 
+            modificar_pais(lista_paises, pais.codigo_fifa, pais.nombre, pais.continente, pais.ranking_fifa)
+
             self.cargar_paises_lista()
             self.actualizar_combo_paises()
             ventana_editar.destroy()
