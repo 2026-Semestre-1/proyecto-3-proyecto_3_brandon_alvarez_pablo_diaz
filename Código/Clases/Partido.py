@@ -36,9 +36,7 @@ class Partido:
     # ==============================================================================================
     def simular(self):
 
-        diferencia_fuerza = Seleccion.calcular_fuerza_equipo(
-            self.equipo_1
-        ) - Seleccion.calcular_fuerza_equipo(self.equipo_2)
+        diferencia_fuerza = Seleccion.calcular_fuerza_equipo(self.equipo_1) - Seleccion.calcular_fuerza_equipo(self.equipo_2)
 
         if diferencia_fuerza < 0:
             diferencia_fuerza *= -1
