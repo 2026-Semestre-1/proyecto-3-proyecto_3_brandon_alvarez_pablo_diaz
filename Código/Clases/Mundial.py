@@ -263,5 +263,3 @@ class Mundial:
 
         guardar_ranking_goleadores(todos_jugadores)
         guardar_ranking_selecciones(selecciones_puntos)
-
-        return

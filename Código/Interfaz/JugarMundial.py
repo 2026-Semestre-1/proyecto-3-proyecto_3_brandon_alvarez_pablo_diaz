@@ -22,7 +22,7 @@ class VentanaJugarMundial(ctk.CtkFrame):
         self.btn_grupos.pack(side="left", padx=15, pady=10)
 
         #boton para la siguiente ronda
-        self.btn_siguiente_ronda = ctk.CTkButton(self.controles, text="Simular siguiente ronda", state="disabled") #falta poner cosas
+        self.btn_siguiente_ronda = ctk.CTkButton(self.controles, text="Simular siguiente ronda", command=self.avanzar_ronda, state="disabled") #falta poner cosas
         self.btn_siguiente_ronda.pack(side="right", padx=15, pady=10)
 
         #pantalla de los resultados
@@ -87,8 +87,24 @@ class VentanaJugarMundial(ctk.CtkFrame):
         if largoLista(self.clasificados_actuales) == 1:
             self.mundial.campeon = self.clasificados_actuales[0]
             self.btn_siguiente_ronda.configure(text="Ver campeón")
-            
 
+    def mostrar_campeon_destacado(self, campeon_seleccion):
+
+        for componenetes in self.scroll_resultados.winfo_children():
+            componenetes.destroy()
+
+        self.mundial.generar_reporte()
+
+        tarjeta_oro = ctk.CTkFrame(self.scroll_resultados, fg_color="#d4af37", border_width=3)
+        tarjeta_oro.pack(pady=30, padx=20, fill="both", expand=True)
+
+        lbl_copa = ctk.CTkLabel(tarjeta_oro, text="🏆 ¡HABEMUS CAMPEÓN! 🏆", font=("Arial", 24, "bold"), text_color="#d4af37")
+        lbl_copa.pack(pady=20)
+
+        lbl_campeon = ctk.CTkLabel(tarjeta_oro, text=f"{campeon_seleccion.pais.nombre.upper()}", font=("Arial", 36, "bold"), text_color="white")
+        lbl_campeon.pack(pady=15)
+
+        self.btn_siguiente_ronda.configure(state="disabled", text="Torneo concluido")
 
 
     def imprimir_en_pantalla(self, texto):
