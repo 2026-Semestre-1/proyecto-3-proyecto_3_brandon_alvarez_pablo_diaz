@@ -8,6 +8,9 @@ class VentanaEstadisticas(ctk.CTkToplevel):
         self.title("Estadísticas / Rankings")
         self.geometry("700x500")
         self.resizable(False, False)
+        
+        self.attributes('-topmost', True)
+
 
         self.pestanas = ctk.CTkTabview(self)
         self.pestanas.pack(padx=20, pady=20, fill="both", expand=True)

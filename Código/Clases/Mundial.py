@@ -73,6 +73,8 @@ class Mundial:
 
     def crear_grupos(self, cantidad_grupos):
 
+        self.grupos = []
+
         total_selecciones = largoLista(self.selecciones)
 
         if total_selecciones < cantidad_grupos:
