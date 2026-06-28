@@ -83,7 +83,7 @@ class Fase:
                     penales_equipo1 = registro[1]
                     penales_equipo2 = registro[2]
 
-                    texto_partido += f"(Penales: {penales_equipo1} - {penales_equipo2})"
+                    texto_partido += f" (Penales: {penales_equipo1} - {penales_equipo2})"
 
             lista_textos += [texto_partido]
 

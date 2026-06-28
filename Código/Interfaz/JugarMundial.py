@@ -7,7 +7,7 @@ class VentanaJugarMundial(ctk.CtkFrame):
     def __init__(self, parent, mundial_instancia=False):
         super().__init__(parent)
 
-        self.mi_mundial = mundial_instancia
+        self.mundial = mundial_instancia
         self.clasificados_actuales = [] #para llevar el control de la ronda
 
         self.titulo = ctk.CTkLabel(self, text="TORNEO", font=("Arial", 20, "bold"))
@@ -30,16 +30,16 @@ class VentanaJugarMundial(ctk.CtkFrame):
         self.scroll_resultados.pack(padx=20, pady=15, fill="both", expand=True)
 
     def simular_fase_grupos(self):
-        if self.mi_mundial == None or self.mi_mundial.grupos == []:
+        if self.mundial == None or self.mundial.grupos == []:
             self.imprimir_en_pantalla("Error: no se ha configurado los grupos del Mundial aún\n")
             return
         
         self.imprimir_en_pantalla("Iniciando fase de grupos...")
-        exito = self.mi_mundial.jugar_fase_grupos()
+        exito = self.mundial.jugar_fase_grupos()
 
         if exito == True:
 
-            for grupo in self.mi_mundial.grupos:
+            for grupo in self.mundial.grupos:
                 texto_grupo = f"{grupo.nombre_grupo} - POSICIONES FINALES\n"
 
                 for fila in grupo.tabla:
@@ -50,16 +50,44 @@ class VentanaJugarMundial(ctk.CtkFrame):
 
 
             self.clasificados_actuales = []
-            for grupo in self.mi_mundial.grupos:
+            for grupo in self.mundial.grupos:
                 self.clasificados_actuales += grupo.obtener_clasificados()
 
             self.btn_grupos.configure(state="disabled")
             self.btn_siguiente_ronda.configure(state="normal")
             self.imprimir_en_pantalla("Fase de grupos finalizada. Clasificados listos para las eliminatorias\n\n")
 
+    def avanzar_ronda(self):
 
-    
+        cantidad_equipos = largoLista(self.clasificados_actuales)
 
+        #si hay uno, ya hay un campeon
+        if cantidad_equipos == 1:
+            #falta poner cosas
+            self
+
+        
+        nombre_fase = self.mundial.nombre_final(cantidad_equipos)
+
+        self.imprimir_en_pantalla("Simulación de: {nombre_fase}")
+
+        #se arma la fase de eliminatorias
+        fase_objeto = self.mundial.armar_fase_eliminatoria(nombre_fase, self.clasificados_actuales)
+
+        #se juega la fase y se recibe los ganadores
+        self.clasificados_actuales = self.mundial.jugar_fase_eliminatoria(fase_objeto)
+
+        textos_partidos = fase_objeto.mostrar_juegos()
+
+        for texto in textos_partidos:
+            self.imprimir_en_pantalla(texto + "\n")
+
+        self.imprimir_en_pantalla(f"Fin de {nombre_fase}. Avanzan {largoLista(self.clasificados_actuales)} selecciones\n\n")
+
+        if largoLista(self.clasificados_actuales) == 1:
+            self.mundial.campeon = self.clasificados_actuales[0]
+            self.btn_siguiente_ronda.configure(text="Ver campeón")
+            
 
 
 
