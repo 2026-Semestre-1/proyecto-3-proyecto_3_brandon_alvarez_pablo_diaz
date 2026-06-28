@@ -1,16 +1,3 @@
-import os
-import sys
-
-# 1. Obtenemos la ruta de la carpeta "Interfaz" donde está este archivo
-carpeta_interfaz = os.path.dirname(os.path.abspath(__file__))
-
-# 2. Subimos un nivel para obtener la ruta de la carpeta "Código"
-carpeta_codigo = os.path.dirname(carpeta_interfaz)
-
-# 3. Le decimos a Python: "¡Ey! También busque archivos para importar aquí"
-sys.path.append(carpeta_codigo)
-
-
 from Clases.Seleccion import Seleccion
 import customtkinter as ctk
 from Persistencia import *
@@ -98,7 +85,7 @@ class VentanaAdministracion(ctk.CTk):
         self.codigo_equipo = ctk.CTkEntry(pestana, placeholder_text="Ej: SEL-CRC", width=320)
         self.codigo_equipo.pack(pady=10)
 
-        # Rellenar el combo con los países que ya existen en el TXT
+        # Rellenar el combo con los países que ya existen en el .txt
         self.actualizar_combo_paises()
 
         btn_crear = ctk.CTkButton(pestana, text="Hacer Selección", command=self.crear_seleccion)
