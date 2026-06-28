@@ -52,10 +52,10 @@ class Fase:
         for partido in self.partidos:
             partido.simular()
 
-            if partido.goles_equipo1 == partido.goles_equipo2:
+            penales_equipo1 = 0
+            penales_equipo2 = 0
 
-                penales_equipo1 = 0
-                penales_equipo2 = 0
+            if partido.goles_equipo1 == partido.goles_equipo2:
 
                 while penales_equipo1 == penales_equipo2:
                     penales_equipo1 = random.randint(2, 5)
@@ -75,7 +75,12 @@ class Fase:
 
         for partido in self.partidos:
 
-            texto_partido = partido.mostrar_resultado()
+            datos_partido = partido.mostrar_resultado()
+
+            equipo1 = datos_partido["equipo_1"]
+            equipo2 = datos_partido["equipo_2"]
+
+            texto_partido = f" {equipo1.pais.nombre} {partido.goles_equipo1} VS {partido.goles_equipo2} {equipo2.pais.nombre}"
 
             for registro in self.penales:
                 if registro[0] == partido:  # es para buscar el partido exacto

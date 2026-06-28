@@ -1,8 +1,17 @@
+import os
+import sys
+
+carpeta_interfaz = os.path.dirname(os.path.abspath(__file__))
+carpeta_codigo = os.path.dirname(carpeta_interfaz)
+if carpeta_codigo not in sys.path:
+    sys.path.append(carpeta_codigo)
+
+
 import customtkinter as ctk
 from Persistencia import *
 from Clases.Mundial import Mundial
 
-class VentanaJugarMundial(ctk.CtkFrame):
+class VentanaJugarMundial(ctk.CTkFrame):
 
     def __init__(self, parent, mundial_instancia=False):
         super().__init__(parent)
@@ -67,7 +76,7 @@ class VentanaJugarMundial(ctk.CtkFrame):
         
         nombre_fase = self.mundial.nombre_final(cantidad_equipos)
 
-        self.imprimir_en_pantalla("Simulación de: {nombre_fase}")
+        self.imprimir_en_pantalla(f"Simulación de: {nombre_fase}")
 
         #se arma la fase de eliminatorias
         fase_objeto = self.mundial.armar_fase_eliminatoria(nombre_fase, self.clasificados_actuales)
@@ -110,3 +119,38 @@ class VentanaJugarMundial(ctk.CtkFrame):
         lbl.pack(fill="x", padx=10, anchor="w")
 
 
+if __name__ == "__main__":
+    from Clases.Pais import Pais
+    from Clases.Seleccion import Seleccion
+
+    # 1. Inicializamos entorno básico de prueba
+    app = ctk.CTk()
+    app.title("Prueba de Campo - Jugar Mundial")
+    app.geometry("780x580")
+
+    # 2. Creamos datos falsos simulando que vienen de la persistencia
+    mundial_test = Mundial("Mundial de Prueba", 2026)
+    
+    p1 = Pais("CRC", "Costa Rica", "América", 30)
+    p2 = Pais("GER", "Alemania", "Europa", 10)
+    p3 = Pais("BRA", "Brasil", "América", 5)
+    p4 = Pais("JPN", "Japón", "Asia", 15)
+
+    s1 = Seleccion("SEL-CRC", p1)
+    s2 = Seleccion("SEL-GER", p2)
+    s3 = Seleccion("SEL-BRA", p3)
+    s4 = Seleccion("SEL-JPN", p4)
+
+    mundial_test.registrar_seleccion(s1)
+    mundial_test.registrar_seleccion(s2)
+    mundial_test.registrar_seleccion(s3)
+    mundial_test.registrar_seleccion(s4)
+
+    # Ejecutamos el creador de grupos oficial para poblar el backend
+    mundial_test.crear_grupos(2)
+
+    # 3. Cargamos tu componente pasándole el mundial ya configurado
+    contenedor_juego = VentanaJugarMundial(app, mundial_instancia=mundial_test)
+    contenedor_juego.pack(fill="both", expand=True, padx=10, pady=10)
+
+    app.mainloop()
