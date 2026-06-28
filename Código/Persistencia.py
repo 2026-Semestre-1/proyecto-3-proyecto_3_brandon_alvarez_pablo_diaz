@@ -371,6 +371,43 @@ def guardar_seleccion(seleccion):
     archivo.close()
 
 
+# =================================== Funcion asignar_entrenador_seleccion =================================
+# Nombre: asignar_entrenador_seleccion
+# Entradas: codigo_equipo, nombre_entrenador, apellido_entrenador
+# Salidas: None
+# Restricciones:
+# ==============================================================================================
+def asignar_entrenador_seleccion(codigo_equipo, nombre_entrenador, apellido_entrenador):
+
+    try:
+        archivo = open("Código/Archivos_txt/selecciones.txt", "r")
+        lineas = archivo.readlines()
+        archivo.close()
+
+    except FileNotFoundError:
+        return
+
+    lineas_actualizadas = []
+
+    for linea in lineas:
+        partes = linea.strip().split("|")
+
+        if len(partes) >= 2 and partes[1] == codigo_equipo:
+
+            partes[2] = nombre_entrenador
+            partes[3] = apellido_entrenador
+
+            linea_actualizada = "|".join(partes) + "\n"
+            lineas_actualizadas += [linea_actualizada]
+
+        else:
+            lineas_actualizadas += [linea]
+
+    archivo = open("Código/Archivos_txt/selecciones.txt", "w")
+    archivo.writelines(lineas_actualizadas)
+    archivo.close()
+
+
 # =================================== Funcion cargar seleccion =================================
 # Nombre: cargar_seleccion
 # Entradas: ninguna.
@@ -405,6 +442,8 @@ def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
 
             if partes[2] != "None":
 
+                entrenador_encontrado = None
+
                 for entrenador in lista_entrenadores:
 
                     if (
@@ -416,7 +455,8 @@ def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
 
                         break
 
-                seleccion_uso.asignar_entrenador(entrenador_encontrado)
+                if entrenador_encontrado != None:
+                    seleccion_uso.asignar_entrenador(entrenador_encontrado)
 
             for jugador in lista_jugadores:
 

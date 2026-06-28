@@ -24,6 +24,9 @@ class VentanaPlantilla(ctk.CTkToplevel):
         self.registro_futbolista()
         self.pestana_listado()
 
+        # Actualizar los combos después de que todos los componentes estén creados
+        self.actualizar_combo_selecciones()
+
     def registro_entrenador(self):
 
         pestana_entrenador = self.pestanas.tab("Registrar Entrenador")
@@ -91,6 +94,9 @@ class VentanaPlantilla(ctk.CTkToplevel):
         )
         self.sistema_juego_entrenador.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Seleccione una selección:").pack(pady=(10, 0))
+        self.combo_seleccion_entrenador = ctk.CTkComboBox(scroll, values=[], width=300)
+        self.combo_seleccion_entrenador.pack(pady=(0, 5))
         btn_guardar = ctk.CTkButton(
             scroll,
             text="Guardar Entrenador",
@@ -115,6 +121,8 @@ class VentanaPlantilla(ctk.CTkToplevel):
 
         sistema_juego = self.sistema_juego_entrenador.get().strip()
 
+        codigo_equipo = self.combo_seleccion_entrenador.get().strip()
+
         if (
             nombre == ""
             or apellido == ""
@@ -132,7 +140,7 @@ class VentanaPlantilla(ctk.CTkToplevel):
         try:
             experiencia_anios = int(experiencia_anios)
 
-        except:
+        except ValueError:
             print("Error: La experiencia debe ser un número entero")
             return False
 
@@ -144,10 +152,15 @@ class VentanaPlantilla(ctk.CTkToplevel):
             licencia,
             experiencia_anios,
             sistema_juego,
+            codigo_equipo,
         )
         print(
             f"Éxito: {nombre} {apellido} guardado correctamente"
         )  # cambiar esto, solo es por probar
+
+        # Si se seleccionó una selección, actualizar el archivo de selecciones
+        if codigo_equipo != "" and codigo_equipo != "No hay selecciones":
+            asignar_entrenador_seleccion(codigo_equipo, nombre, apellido)
 
         # se borra las entradas para el siguiente registro
         self.nombre_entrenador.delete(0, "end")
@@ -163,6 +176,10 @@ class VentanaPlantilla(ctk.CTkToplevel):
         self.experiencia_anio_entrenador.delete(0, "end")
 
         self.sistema_juego_entrenador.delete(0, "end")
+
+        self.combo_seleccion_entrenador.set("")
+
+        self.actualizar_combo_selecciones()
 
     def registro_futbolista(self):
 
@@ -281,9 +298,15 @@ class VentanaPlantilla(ctk.CTkToplevel):
             self.combo_codigo_equipo.configure(values=nombres)
             self.combo_codigo_equipo.set(nombres[0])
 
+            self.combo_seleccion_entrenador.configure(values=nombres)
+            self.combo_seleccion_entrenador.set(nombres[0])
+
         else:
             self.combo_codigo_equipo.configure(values=["No hay selecciones"])
             self.combo_codigo_equipo.set("No hay selecciones")
+
+            self.combo_seleccion_entrenador.configure(values=["No hay selecciones"])
+            self.combo_seleccion_entrenador.set("No hay selecciones")
 
     def guardar_futbolista(self):
 
@@ -317,7 +340,7 @@ class VentanaPlantilla(ctk.CTkToplevel):
         try:
             dorsal = int(dorsal)
 
-        except:
+        except ValueError:
             print("Error: El dorsal debe ser un número entero")
             return False
 
@@ -380,7 +403,7 @@ class VentanaPlantilla(ctk.CTkToplevel):
 
         self.cargar_jugadores_lista()
 
-    def cargar_jugadores_lista(self):
+    def cargar_jugadores_lista(self, valor=None):
 
         for componentes in self.scroll_jugadores.winfo_children():
             componentes.destroy()
@@ -400,8 +423,15 @@ class VentanaPlantilla(ctk.CTkToplevel):
         ]
 
         if nombres_selecciones:
+
             self.combo_seleccion_listado.configure(values=nombres_selecciones)
-            self.combo_seleccion_listado.set(nombres_selecciones[0])
+
+            if valor != None and valor in nombres_selecciones:
+                self.combo_seleccion_listado.set(valor)
+
+            else:
+                self.combo_seleccion_listado.set(nombres_selecciones[0])
+
         else:
             self.combo_seleccion_listado.configure(values=["No hay selecciones"])
             self.combo_seleccion_listado.set("No hay selecciones")
