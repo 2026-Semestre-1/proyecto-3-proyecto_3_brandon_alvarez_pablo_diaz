@@ -137,16 +137,27 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
     archivo.close()
 
 
-# =================================== Funcion guardar_todos_paises =====================================
-# Nombre: guardar_todos_paises
-# Entradas: lista_paises.
+# =================================== Funcion modificar_pais =====================================
+# Nombre: modificar_pais
+# Entradas: lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente.
 # Salidas: None.
 # Restricciones:
 # ==============================================================================================
-def guardar_todos_paises(lista_paises):
+def modificar_pais(lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente):
+
+    for pais in lista_paises:
+
+        if pais.codigo_fifa == codigo_fifa:
+
+            pais.nombre = nuevo_nombre
+            pais.continente = nuevo_continente
+
+            break
 
     archivo = open("Código/Archivos_txt/paises.txt", "w")
+
     for pais in lista_paises:
+
         archivo.write(
             str(pais.codigo_fifa)
             + "|"
