@@ -1,9 +1,18 @@
+# ========================================== Librerias =============================================
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
 from Clases.Seleccion import Seleccion
 from Utilidades import *
 
+# ==================================================================================================
 
+
+# =================================== Funcion guardar pais =====================================
+# Nombre: guardar_pais
+# Entradas: codigo_fifa, nombre, continente, ranking_fifa.
+# Salidas: None.
+# Restricciones:
+# ==============================================================================================
 def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
 
     archivo = open("Código/Archivos_txt/paises.txt", "a")
@@ -20,6 +29,12 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
     archivo.close()
 
 
+# =================================== Funcion cargar pais ======================================
+# Nombre: cargar_pais
+# Entradas: ninguna.
+# Salidas: Lista de países cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
 def cargar_pais():
 
     lista = []
@@ -43,6 +58,12 @@ def cargar_pais():
     return lista
 
 
+# =================================== Funcion guardar Futbolista ======================================
+# Nombre: guardar_Futbolista
+# Entradas: nombre, apellido, fecha_nacimiento, nacionalidad, dorsal, posicion, total_tarjetas_amarillas, total_tarjetas_rojas, goles, asistencias, puntaje_individual, codigo_equipo.
+# Salidas: None.
+# Restricciones:
+# ==============================================================================================
 def guardar_Futbolista(
     nombre,
     apellido,
@@ -88,6 +109,12 @@ def guardar_Futbolista(
     archivo.close()
 
 
+# =================================== Funcion cargar futbolista ================================
+# Nombre: cargar_futbolista
+# Entradas: ninguna.
+# Salidas: Lista de futbolistas cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
 def cargar_futbolista():
 
     lista = []
@@ -131,6 +158,12 @@ def cargar_futbolista():
     return lista
 
 
+# =================================== Funcion guardar seleccion ================================
+# Nombre: guardar_seleccion
+# Entradas: seleccion.
+# Salidas: None.
+# Restricciones:
+# ==============================================================================================
 def guardar_seleccion(seleccion):
 
     if seleccion.entrenador != None:
@@ -155,6 +188,12 @@ def guardar_seleccion(seleccion):
     archivo.close()
 
 
+# =================================== Funcion cargar seleccion =================================
+# Nombre: cargar_seleccion
+# Entradas: ninguna.
+# Salidas: Lista de selecciones cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
 def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
 
     lista = []
@@ -207,6 +246,12 @@ def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
     return lista
 
 
+# =================================== Funcion guardar partidos grupo ===========================
+# Nombre: guardar_partidos_grupo
+# Entradas: grupo (objeto de tipo Grupo)
+# Salidas: Ninguna
+# Restricciones:
+# ==============================================================================================
 def guardar_partidos_grupo(grupo):
 
     archivo = open("Código/Archivos_txt/partidos.txt", "a")
@@ -231,6 +276,12 @@ def guardar_partidos_grupo(grupo):
     archivo.close()
 
 
+# =================================== Funcion guardar partidos fase ============================
+# Nombre: guardar_partidos_fase
+# Entradas: fase (objeto de tipo Fase)
+# Salidas: Ninguna
+# Restricciones:
+# ==============================================================================================
 def guardar_partidos_fase(fase):
 
     archivo = open("Código/Archivos_txt/partidos.txt", "a")
@@ -271,6 +322,12 @@ def guardar_partidos_fase(fase):
     archivo.close()
 
 
+# =================================== Funcion cargar partidos ==================================
+# Nombre: cargar_partidos
+# Entradas: ninguna.
+# Salidas: Lista de partidos cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
 def cargar_partidos():
 
     partidos = []
@@ -311,6 +368,12 @@ def cargar_partidos():
     return partidos
 
 
+# =================================== Funcion guardar ranking goleadores =======================
+# Nombre: guardar_ranking_goleadores
+# Entradas: lista_futbolistas (lista de objetos de tipo Futbolista)
+# Salidas: Ninguna
+# Restricciones:
+# ==============================================================================================
 def guardar_ranking_goleadores(lista_futbolistas):
 
     tamanno = largoLista(lista_futbolistas)
@@ -343,6 +406,12 @@ def guardar_ranking_goleadores(lista_futbolistas):
     archivo.close()
 
 
+# =================================== Funcion cargar ranking goleadores ========================
+# Nombre: cargar_ranking_goleadores
+# Entradas: ninguna.
+# Salidas: Lista de goleadores cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
 def cargar_ranking_goleadores():
     goleadores = []
 
@@ -368,6 +437,12 @@ def cargar_ranking_goleadores():
     return goleadores
 
 
+# =================================== Funcion guardar ranking selecciones ======================
+# Nombre: guardar_ranking_selecciones
+# Entradas: lista_selecciones (lista de listas [seleccion, puntos])
+# Salidas: Ninguna
+# Restricciones:
+# ==============================================================================================
 def guardar_ranking_selecciones(lista_selecciones):
 
     # [seleccion, puntos]
@@ -427,6 +502,12 @@ def guardar_ranking_selecciones(lista_selecciones):
     archivo.close()
 
 
+# =================================== Funcion cargar ranking selecciones =======================
+# Nombre: cargar_ranking_selecciones
+# Entradas: ninguna.
+# Salidas: Lista de selecciones cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
 def cargar_ranking_selecciones():
 
     selecciones = []

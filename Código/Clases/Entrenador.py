@@ -6,7 +6,7 @@ from Clases.Persona import Persona
 
 # ======================================= Clase Entrenador =========================================
 # Nombre: Entrenador
-# Entradas: Clase Persona,  nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios                              y sistema_juego.
+# Entradas: Clase Persona,  nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios y sistema_juego.
 # Salidas: nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios y sistema_juego.
 # Restricciones:
 # ==================================================================================================
@@ -44,7 +44,7 @@ class Entrenador(Persona):
 
     # ================================= Función actualizar datos =======================================
     # Nombre: actualizar_datos
-    # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevaLicencia,                                 nuevaExperiencia_anios y nuevoSistema_juego.
+    # Entradas: nuevoNombre, nuevoApellido, nuevaFecha_nacimiento, nuevaNacionalidad, nuevaLicencia, nuevaExperiencia_anios y nuevoSistema_juego.
     # Salidas: No retorna nada pero actualiza los datos del entrenador.
     # Restricciones:
     # ==================================================================================================
