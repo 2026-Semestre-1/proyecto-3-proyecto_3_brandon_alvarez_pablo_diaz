@@ -46,18 +46,16 @@ class VentanaConfiguracion(ctk.CTkToplevel):
             print("Error: cantidad mínima es de 2")  # esto se cambia
             return
 
-        mi_mundial = Mundial("Copa Mundial 2026", 2026)
-
         lista_paises = cargar_pais()
         lista_selecciones = cargar_seleccion(lista_paises, [], [])
 
         for seleccion in lista_selecciones:
-            mi_mundial.registrar_seleccion(seleccion)
+            self.mundial.registrar_seleccion(seleccion)
 
-        creado = mi_mundial.crear_grupos(cantidad_grupos)
+        creado = self.mundial.crear_grupos(cantidad_grupos)
 
         if creado == True:
-            self.mostrar_grupos(mi_mundial.grupos)
+            self.mostrar_grupos(self.mundial.grupos)
         else:
             print("Error: no se pudieron crear los grupos")
 
