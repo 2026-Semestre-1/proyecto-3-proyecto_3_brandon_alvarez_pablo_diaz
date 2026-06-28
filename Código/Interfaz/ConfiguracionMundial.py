@@ -69,9 +69,7 @@ class VentanaConfiguracion(ctk.CTkToplevel):
             tarjeta = ctk.CTkFrame(self.scroll_grupos)
             tarjeta.pack(pady=8, fill="x", padx=10)
 
-            lbl_grupo = ctk.CTkLabel(
-                tarjeta, text=str(grupo.nombre_grupo), font=("Arial", 20, "bold")
-            )  # hay que cambiar cosas aqui
+            lbl_grupo = ctk.CTkLabel(tarjeta, text=str(grupo.nombre_grupo), font=("Arial", 20, "bold"))  # hay que cambiar cosas aqui
             lbl_grupo.pack(anchor="w", padx=15, pady=6)
 
             texto_equipos = ""
@@ -82,7 +80,5 @@ class VentanaConfiguracion(ctk.CTkToplevel):
             if texto_equipos == "":
                 texto_equipos = "Sin selecciones asignadas\n"
 
-            lbl_equipo = ctk.CTkLabel(
-                tarjeta, text=texto_equipos, justify="left", font=("Arial", 20)
-            )
+            lbl_equipo = ctk.CTkLabel(tarjeta, text=texto_equipos, justify="left", font=("Arial", 20))
             lbl_equipo.pack(anchor="w", padx=20, pady=4)
