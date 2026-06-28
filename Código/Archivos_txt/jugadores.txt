@@ -1,0 +1,33 @@
+Alisson|Becker|02/10/1992|Brasileño|1|Portero|0|0|0|0|92|SEL-BRA
+Thiago|Silva|22/09/1984|Brasileño|3|Defensa|0|0|0|0|88|SEL-BRA
+Marquinhos|Santos|14/05/1994|Brasileño|4|Defensa|0|0|0|0|87|SEL-BRA
+Casemiro|Henrique|23/02/1992|Brasileño|5|Mediocampista|0|0|0|0|86|SEL-BRA
+Neymar|Junior|05/02/1992|Brasileño|10|Delantero|0|0|0|0|90|SEL-BRA
+Vinicius|Junior|12/07/2000|Brasileño|7|Delantero|0|0|0|0|91|SEL-BRA
+Rodrygo|Goes|09/01/2001|Brasileño|11|Delantero|0|0|0|0|85|SEL-BRA
+Raphinha|Belloli|14/12/1996|Brasileño|17|Mediocampista|0|0|0|0|84|SEL-BRA
+Lucas|Paqueta|27/08/1997|Brasileño|8|Mediocampista|0|0|0|0|86|SEL-BRA
+Danilo|Luiz|15/07/1991|Brasileño|2|Defensa|0|0|0|0|83|SEL-BRA
+Eder|Militao|18/01/1998|Brasileño|6|Defensa|0|0|0|0|85|SEL-BRA
+Manuel|Neuer|27/03/1986|Alemán|1|Portero|0|0|0|0|88|SEL-GER
+Antonio|Rudiger|03/03/1993|Alemán|2|Defensa|0|0|0|0|86|SEL-GER
+Joshua|Kimmich|08/02/1995|Alemán|6|Mediocampista|0|0|0|0|89|SEL-GER
+Leon|Goretzka|06/02/1995|Alemán|8|Mediocampista|0|0|0|0|85|SEL-GER
+Thomas|Muller|13/09/1989|Alemán|25|Delantero|0|0|0|0|84|SEL-GER
+Serge|Gnabry|14/07/1995|Alemán|10|Delantero|0|0|0|0|86|SEL-GER
+Kai|Havertz|11/06/1999|Alemán|7|Delantero|0|0|0|0|85|SEL-GER
+Leroy|Sane|11/01/1996|Alemán|11|Delantero|0|0|0|0|87|SEL-GER
+Niklas|Sule|03/09/1995|Alemán|5|Defensa|0|0|0|0|84|SEL-GER
+Robin|Gosens|05/07/1994|Alemán|3|Defensa|0|0|0|0|82|SEL-GER
+Ilkay|Gundogan|24/10/1990|Alemán|21|Mediocampista|0|0|0|0|87|SEL-GER
+Emiliano|Martinez|02/09/1992|Argentino|1|Portero|0|0|0|0|90|SEL-ARG
+Nahuel|Molina|06/04/1998|Argentino|26|Defensa|0|0|0|0|83|SEL-ARG
+Cristian|Romero|27/04/1998|Argentino|13|Defensa|0|0|0|0|86|SEL-ARG
+Nicolas|Otamendi|12/02/1988|Argentino|19|Defensa|0|0|0|0|84|SEL-ARG
+Rodrigo|De Paul|24/05/1994|Argentino|7|Mediocampista|0|0|0|0|87|SEL-ARG
+Enzo|Fernandez|17/01/2001|Argentino|24|Mediocampista|0|0|0|0|86|SEL-ARG
+Alexis|Mac Allister|24/12/1998|Argentino|20|Mediocampista|0|0|0|0|85|SEL-ARG
+Lionel|Messi|24/06/1987|Argentino|10|Delantero|0|0|0|0|98|SEL-ARG
+Lautaro|Martinez|22/08/1997|Argentino|22|Delantero|0|0|0|0|88|SEL-ARG
+Angel|Di Maria|14/02/1988|Argentino|11|Delantero|0|0|0|0|85|SEL-ARG
+Marcos|Acuna|28/10/1991|Argentino|8|Defensa|0|0|0|0|82|SEL-ARG
