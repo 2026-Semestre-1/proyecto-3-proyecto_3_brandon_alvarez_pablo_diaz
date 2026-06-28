@@ -422,17 +422,19 @@ class VentanaPlantilla(ctk.CTk):
 
         seleccion_elegida = self.combo_seleccion_listado.get()
 
-        seleccion_objeto = next(
-            (
-                seleccion
-                for seleccion in lista_selecciones
-                if seleccion.codigo_equipo == seleccion_elegida
-            ),
-            None,
-        )
+        seleccion_objeto = None
+
+        for seleccion in lista_selecciones:
+
+            if seleccion.codigo_equipo == seleccion_elegida:
+                seleccion_objeto = seleccion
+
+                break
 
         if seleccion_objeto:
+
             for jugador in seleccion_objeto.jugadores:
+
                 fila = ctk.CTkFrame(self.scroll_jugadores)
                 fila.pack(pady=5, fill="x", padx=5)
 
@@ -450,7 +452,61 @@ class VentanaPlantilla(ctk.CTk):
                         jugador_objeto
                     ),
                 )
-                btn_editar.pack(side="right", padx=10, pady=10)
+                btn_editar.pack(side="right", padx=5, pady=10)
+
+                btn_eliminar = ctk.CTkButton(
+                    fila,
+                    text="Eliminar",
+                    width=80,
+                    command=lambda jugador_objeto=jugador: self.ventana_eliminacion(
+                        jugador_objeto
+                    ),
+                )
+                btn_eliminar.pack(side="right", padx=10, pady=10)
+
+    def ventana_eliminacion(self, jugador_buscado):
+
+        ventana_eliminar = ctk.CTkToplevel(self)
+        ventana_eliminar.title(
+            f"Eliminar: {jugador_buscado.nombre} {jugador_buscado.apellido}"
+        )
+        ventana_eliminar.geometry("400x200")
+        ventana_eliminar.grab_set()  # bloquea la principal hasta que esta se cierre
+
+        ctk.CTkLabel(
+            ventana_eliminar,
+            text=f"¿Está seguro de eliminar a {jugador_buscado.nombre} {jugador_buscado.apellido}?",
+            font=("Arial", 14),
+            wraplength=350,
+        ).pack(pady=30)
+
+        def confirmar_eliminacion():
+
+            lista_jugadores = cargar_futbolista()
+
+            lista_jugadores = [
+                jugador
+                for jugador in lista_jugadores
+                if not (
+                    jugador.nombre == jugador_buscado.nombre
+                    and jugador.apellido == jugador_buscado.apellido
+                )
+            ]
+
+            modificar_futbolistas(lista_jugadores)
+
+            self.cargar_jugadores_lista()
+            ventana_eliminar.destroy()
+
+        btn_confirmar = ctk.CTkButton(
+            ventana_eliminar, text="Confirmar", command=confirmar_eliminacion
+        )
+        btn_confirmar.pack(pady=10)
+
+        btn_cancelar = ctk.CTkButton(
+            ventana_eliminar, text="Cancelar", command=ventana_eliminar.destroy
+        )
+        btn_cancelar.pack(pady=10)
 
     def ventana_edicion(self, jugador_buscado):
 
