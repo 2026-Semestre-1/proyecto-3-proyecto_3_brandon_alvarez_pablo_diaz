@@ -682,17 +682,12 @@ def guardar_ranking_selecciones(lista_selecciones):
 
             seleccion_actual = lista_selecciones[j][0]
             puntos_actual = lista_selecciones[j][1]
-            diferencia_goles_actual = (
-                seleccion_actual.total_goles_favor - seleccion_actual.total_goles_contra
-            )
+            diferencia_goles_actual = (seleccion_actual.total_goles_favor - seleccion_actual.total_goles_contra)
 
             # datos de la siguiente seleccion
             seleccion_siguiente = lista_selecciones[j + 1][0]
             puntos_siguiente = lista_selecciones[j + 1][1]
-            diferencia_goles_siguiente = (
-                seleccion_siguiente.total_goles_favor
-                - seleccion_siguiente.total_goles_contra
-            )
+            diferencia_goles_siguiente = (seleccion_siguiente.total_goles_favor - seleccion_siguiente.total_goles_contra)
 
             # bandera
             intercambiar = False
@@ -754,12 +749,7 @@ def cargar_ranking_selecciones():
             diferencia_goles = int(partes[2])
             fase_alcanzada = partes[3]
 
-            datos_seleccion = [
-                nombre_seleccion,
-                puntos,
-                diferencia_goles,
-                fase_alcanzada,
-            ]
+            datos_seleccion = [nombre_seleccion, puntos, diferencia_goles, fase_alcanzada]
 
             selecciones += [datos_seleccion]
 
