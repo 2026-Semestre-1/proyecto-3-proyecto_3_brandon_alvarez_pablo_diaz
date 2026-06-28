@@ -67,9 +67,9 @@ class Fase:
             tarjetas_rojas_equipo1 = random.randint(0, 11)
             tarjetas_rojas_equipo2 = random.randint(0, 11)
 
-            partido.equipo_1.registrar_resultado(partido.goles_equipo1, partido.goles_equipo1, tarjetas_amarillas_equipo1, tarjetas_rojas_equipo1)
+            partido.equipo_1.registrar_resultado(partido.goles_equipo1, partido.goles_equipo2, tarjetas_amarillas_equipo1, tarjetas_rojas_equipo1)
 
-            partido.equipo_2.registrar_resultado(partido.goles_equipo2, partido.goles_equipo2, tarjetas_amarillas_equipo2, tarjetas_rojas_equipo2)
+            partido.equipo_2.registrar_resultado(partido.goles_equipo2, partido.goles_equipo1, tarjetas_amarillas_equipo2, tarjetas_rojas_equipo2)
 
     # ================================= Función mostrar juegos =========================================
     # Nombre: mostrar_juegos
