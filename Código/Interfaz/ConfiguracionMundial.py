@@ -6,6 +6,7 @@ from Clases.Mundial import Mundial
 class VentanaConfiguracion(ctk.CTkToplevel):
     def __init__(self, parent, mundial_instancia):
         super().__init__(parent)
+        self.attributes('-topmost', True)
         self.mundial = mundial_instancia
 
         self.titulo = ctk.CTkLabel(

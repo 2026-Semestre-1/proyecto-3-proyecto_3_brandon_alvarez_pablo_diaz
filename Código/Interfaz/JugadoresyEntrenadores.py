@@ -10,6 +10,7 @@ class VentanaPlantilla(ctk.CTkToplevel):
         self.title("Administración de Jugadores y Entrenadores")
         self.geometry("700x500")
         self.resizable(False, False)
+        self.attributes('-topmost', True)
 
         # se crea la ventana con pestañas
         self.pestanas = ctk.CTkTabview(self)
