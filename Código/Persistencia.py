@@ -711,6 +711,9 @@ def guardar_ranking_selecciones(lista_selecciones):
         puntos = dato[1]
         diferencia_goles = seleccion.total_goles_favor - seleccion.total_goles_contra
 
+        if diferencia_goles < 0:
+            diferencia_goles *= -1
+
         linea = (
             str(seleccion.pais.nombre)
             + "|"
