@@ -17,12 +17,12 @@ import customtkinter as ctk
 import random
 
 
-class VentanaAdministracionJugadoresyEntrenadores(ctk.CTk):
+class VentanaPlantilla(ctk.CTk):
     def __init__(self):
         super().__init__()
 
         self.title("Administración de Jugadores y Entrenadores")
-        self.geometry("700x700")
+        self.geometry("700x500")
         self.resizable(False, False)
 
         # se crea la ventana con pestañas
@@ -42,62 +42,71 @@ class VentanaAdministracionJugadoresyEntrenadores(ctk.CTk):
 
         pestana_entrenador = self.pestanas.tab("Registrar Entrenador")
 
+        scroll = ctk.CTkScrollableFrame(pestana_entrenador)
+        scroll.pack(fill="both", expand=True, padx=10, pady=10)
+
         # titulo de la sección
         titulo = ctk.CTkLabel(
-            pestana_entrenador,
+            scroll,
             text="Registrar Nuevo Entrenador",
             font=("Arial", 18, "bold"),
         )
         titulo.pack(pady=20)
 
         # campos del formulario
-        self.nombre_entrenador = ctk.CTkEntry(
-            pestana_entrenador, placeholder_text="Nombre del entrenador", width=320
-        )
-        self.nombre_entrenador.pack(pady=20)
 
-        self.apellido_entrenador = ctk.CTkEntry(
-            pestana_entrenador, placeholder_text="Apellido del entrenador.", width=320
-        )
-        self.apellido_entrenador.pack(pady=20)
+        ctk.CTkLabel(scroll, text="Nombre:").pack(pady=(10, 0))
+        self.nombre_entrenador = ctk.CTkEntry(scroll, placeholder_text=" ", width=320)
+        self.nombre_entrenador.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Apellido:").pack(pady=(10, 0))
+        self.apellido_entrenador = ctk.CTkEntry(scroll, placeholder_text=" ", width=320)
+        self.apellido_entrenador.pack(pady=(0, 5))
+
+        ctk.CTkLabel(scroll, text="Fecha de nacimiento en formato DD/MM/AAAA:").pack(
+            pady=(10, 0)
+        )
         self.fecha_nacimiento_entrenador = ctk.CTkEntry(
-            pestana_entrenador,
-            placeholder_text="Fecha de nacimiento en formato DD/MM/AAAA.",
+            scroll,
+            placeholder_text=" ",
             width=320,
         )
-        self.fecha_nacimiento_entrenador.pack(pady=20)
+        self.fecha_nacimiento_entrenador.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Nacionalidad:").pack(pady=(10, 0))
         self.nacionalidad_entrenador = ctk.CTkEntry(
-            pestana_entrenador,
-            placeholder_text="Nacionalidad del entrenador.",
+            scroll,
+            placeholder_text=" ",
             width=320,
         )
-        self.nacionalidad_entrenador.pack(pady=20)
+        self.nacionalidad_entrenador.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Licencia:").pack(pady=(10, 0))
         self.licencia_entrenador = ctk.CTkEntry(
-            pestana_entrenador,
-            placeholder_text="Tipo de licencia de entrenador (ej. Pro, UEFA A)",
+            scroll,
+            placeholder_text="Ejemplo: Pro, UEFA A",
             width=320,
         )
-        self.licencia_entrenador.pack(pady=20)
+        self.licencia_entrenador.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Años de experiencia:").pack(pady=(10, 0))
         self.experiencia_anio_entrenador = ctk.CTkEntry(
-            pestana_entrenador,
-            placeholder_text="Experencia en años del entrenador.",
+            scroll,
+            placeholder_text="Ejemplo: 10",
             width=320,
         )
-        self.experiencia_anio_entrenador.pack(pady=20)
+        self.experiencia_anio_entrenador.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Sistema táctico preferido:").pack(pady=(10, 0))
         self.sistema_juego_entrenador = ctk.CTkEntry(
-            pestana_entrenador,
-            placeholder_text="Sistema táctico preferido (ej. 4-3-3, 4-4-2).",
+            scroll,
+            placeholder_text="Ejemplo: 4-3-3, 4-4-2",
             width=320,
         )
-        self.sistema_juego_entrenador.pack(pady=20)
+        self.sistema_juego_entrenador.pack(pady=(0, 5))
 
         btn_guardar = ctk.CTkButton(
-            pestana_entrenador,
+            scroll,
             text="Guardar Entrenador",
             command=self.guardar_entrenador,
             fg_color="green",
@@ -173,71 +182,76 @@ class VentanaAdministracionJugadoresyEntrenadores(ctk.CTk):
 
         pestana_futbolista = self.pestanas.tab("Registrar Futbolista")
 
+        scroll = ctk.CTkScrollableFrame(pestana_futbolista)
+        scroll.pack(fill="both", expand=True, padx=10, pady=10)
+
         # titulo de la sección
         titulo = ctk.CTkLabel(
-            pestana_futbolista,
+            scroll,
             text="Registrar Nuevo Futbolista",
             font=("Arial", 18, "bold"),
         )
         titulo.pack(pady=20)
 
         # campos del formulario
-        self.nombre_futbolista = ctk.CTkEntry(
-            pestana_futbolista, placeholder_text="Nombre del futbolista", width=320
-        )
-        self.nombre_futbolista.pack(pady=20)
+        ctk.CTkLabel(scroll, text="Nombre:").pack(pady=(10, 0))
+        self.nombre_futbolista = ctk.CTkEntry(scroll, placeholder_text=" ", width=320)
+        self.nombre_futbolista.pack(pady=(0, 5))
 
-        self.apellido_futbolista = ctk.CTkEntry(
-            pestana_futbolista, placeholder_text="Apellido del futbolista", width=320
-        )
-        self.apellido_futbolista.pack(pady=20)
+        ctk.CTkLabel(scroll, text="Apellido:").pack(pady=(10, 0))
+        self.apellido_futbolista = ctk.CTkEntry(scroll, placeholder_text=" ", width=320)
+        self.apellido_futbolista.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Fecha de Nacimiento en formato DD/MM/AAAA:").pack(
+            pady=(10, 0)
+        )
         self.fecha_nacimiento_futbolista = ctk.CTkEntry(
-            pestana_futbolista,
-            placeholder_text="Fecha de nacimiento en formato DD/MM/AAAA.",
+            scroll,
+            placeholder_text=" ",
             width=320,
         )
-        self.fecha_nacimiento_futbolista.pack(pady=20)
+        self.fecha_nacimiento_futbolista.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Nacionalidad:").pack(pady=(10, 0))
         self.nacionalidad_futbolista = ctk.CTkEntry(
-            pestana_futbolista,
-            placeholder_text="Nacionalidad del futbolista.",
+            scroll,
+            placeholder_text=" ",
             width=320,
         )
-        self.nacionalidad_futbolista.pack(pady=20)
+        self.nacionalidad_futbolista.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Dorsal:").pack(pady=(10, 0))
         self.dorsal_futbolista = ctk.CTkEntry(
-            pestana_futbolista,
-            placeholder_text="Dorsal del futbolista (ej. 10, 7, 1).",
+            scroll,
+            placeholder_text="Ejemplo: 10, 7, 1",
             width=320,
         )
-        self.dorsal_futbolista.pack(pady=20)
+        self.dorsal_futbolista.pack(pady=(0, 5))
 
+        ctk.CTkLabel(scroll, text="Posición:").pack(pady=(10, 0))
         self.posicion_futbolista = ctk.CTkEntry(
-            pestana_futbolista,
+            scroll,
             placeholder_text="Posición del futbolista (ej. Delantero, Medio, Defensa).",
             width=320,
         )
-        self.posicion_futbolista.pack(pady=20)
+        self.posicion_futbolista.pack(pady=(0, 5))
 
         # Menu desplegable (ComboBox) que contendrá los países del TXT
-        ctk.CTkLabel(pestana_futbolista, text="Seleccione un equipo de la lista:").pack(
-            pady=2
+        ctk.CTkLabel(scroll, text="Seleccione un equipo de la lista:").pack(
+            pady=(10, 0)
         )
-        self.combo_codigo_equipo = ctk.CTkComboBox(
-            pestana_futbolista, values=[], width=300
-        )
-        self.combo_codigo_equipo.pack(pady=10)
+        self.combo_codigo_equipo = ctk.CTkComboBox(scroll, values=[], width=300)
+        self.combo_codigo_equipo.pack(pady=(0, 5))
 
         label_estadisticas = ctk.CTkLabel(
-            pestana_futbolista,
-            text="Las estadísticas aleatorias se generarán automáticamente.",
+            scroll,
+            text="Las estadísticas se generarán automáticamente.",
             fg_color="transparent",
         )
         label_estadisticas.pack(pady=20)
 
         btn_guardar = ctk.CTkButton(
-            pestana_futbolista,
+            scroll,
             text="Guardar futbolista",
             command=self.guardar_futbolista,
             fg_color="green",
@@ -351,3 +365,11 @@ class VentanaAdministracionJugadoresyEntrenadores(ctk.CTk):
         self.posicion_futbolista.delete(0, "end")
 
         self.actualizar_combo_selecciones()
+
+    def pestana_listado(self):
+        pass
+
+
+if __name__ == "__main__":
+    app = VentanaPlantilla()
+    app.mainloop()
