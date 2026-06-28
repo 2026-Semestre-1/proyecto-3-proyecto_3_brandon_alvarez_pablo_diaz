@@ -30,7 +30,7 @@ class Pais:
     # Salidas: True si los datos del país fueron actualizados con éxito.
     # Restricciones:
     # ==============================================================================================
-    def actualizar_datos(
+    def modificar_pais(
         self, nuevoCodigo_fifa, nuevoNombre, nuevoContinente, nuevoRanking_fifa
     ):
 
@@ -46,7 +46,7 @@ class Pais:
         if not isinstance(nuevoRanking_fifa, int):
             return "El ranking de la fifa debe de ser un número entero."
 
-        self.codigo = nuevoCodigo_fifa
+        self.codigo_fifa = nuevoCodigo_fifa
         self.nombre = nuevoNombre
         self.continente = nuevoContinente
         self.ranking_fifa = nuevoRanking_fifa
@@ -61,7 +61,7 @@ class Pais:
     # ==============================================================================================
     def mostrar_datos(self):
         return {
-            "codigo_fifa": self.codigo,
+            "codigo_fifa": self.codigo_fifa,
             "nombre": self.nombre,
             "continente": self.continente,
             "ranking_fifa": self.ranking_fifa,

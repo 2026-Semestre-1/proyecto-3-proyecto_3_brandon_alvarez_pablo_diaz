@@ -2,9 +2,117 @@
 from Clases.Pais import Pais
 from Clases.Futbolista import Futbolista
 from Clases.Seleccion import Seleccion
+from Clases.Entrenador import Entrenador
 from Utilidades import *
 
 # ==================================================================================================
+
+
+# =================================== Funcion guardar entrenador ===================================
+# Nombre: guardar_entrenador
+# Entradas: nombre, apellido, fecha_nacimiento, nacionalidad, licencia, experiencia_anios, sistema_juego, codigo_equipo.
+# Salidas: None.
+# Restricciones:
+# ==============================================================================================
+def guardar_entrenador(
+    nombre,
+    apellido,
+    fecha_nacimiento,
+    nacionalidad,
+    licencia,
+    experiencia_anios,
+    sistema_juego,
+    codigo_equipo,
+):
+
+    archivo = open("Código/Archivos_txt/entrenadores.txt", "a")
+    archivo.write(
+        str(nombre)
+        + "|"
+        + str(apellido)
+        + "|"
+        + str(fecha_nacimiento)
+        + "|"
+        + str(nacionalidad)
+        + "|"
+        + str(licencia)
+        + "|"
+        + str(experiencia_anios)
+        + "|"
+        + str(sistema_juego)
+        + "|"
+        + str(codigo_equipo)
+        + "\n"
+    )
+    archivo.close()
+
+
+# =================================== Funcion guardar_todos_entrenadores =====================================
+# Nombre: guardar_todos_entrenadores
+# Entradas: lista_entrenadores.
+# Salidas: None.
+# Restricciones:
+# ==============================================================================================
+def guardar_todos_entrenadores(lista_entrenadores):
+
+    archivo = open("Código/Archivos_txt/entrenadores.txt", "w")
+    for entrenador in lista_entrenadores:
+        archivo.write(
+            str(entrenador.nombre)
+            + "|"
+            + str(entrenador.apellido)
+            + "|"
+            + str(entrenador.fecha_nacimiento)
+            + "|"
+            + str(entrenador.nacionalidad)
+            + "|"
+            + str(entrenador.licencia)
+            + "|"
+            + str(entrenador.experiencia_anios)
+            + "|"
+            + str(entrenador.sistema_juego)
+            + "|"
+            + str(entrenador.codigo_equipo)
+            + "\n"
+        )
+    archivo.close()
+
+
+# =================================== Funcion cargar entrenadores ======================================
+# Nombre: cargar_entrenadores
+# Entradas: ninguna.
+# Salidas: Lista de entrenadores cargada desde el archivo.
+# Restricciones:
+# ==============================================================================================
+def cargar_entrenadores():
+
+    lista = []
+
+    try:
+
+        archivo = open("Código/Archivos_txt/entrenadores.txt", "r")
+
+        for linea in archivo:
+            partes = linea.strip().split("|")
+
+            partes[5] = int(partes[5])
+
+            entrenador = Entrenador(
+                partes[0],
+                partes[1],
+                partes[2],
+                partes[3],
+                partes[4],
+                partes[5],
+                partes[6],
+            )
+
+        archivo.close()
+
+    except FileNotFoundError:
+        pass  # si el archivo no existe, arranca vacío
+
+    return lista
 
 
 # =================================== Funcion guardar pais =====================================
@@ -36,6 +144,7 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
 # Restricciones:
 # ==============================================================================================
 def guardar_todos_paises(lista_paises):
+
     archivo = open("Código/Archivos_txt/paises.txt", "w")
     for pais in lista_paises:
         archivo.write(
@@ -128,6 +237,45 @@ def guardar_Futbolista(
         + str(codigo_equipo)
         + "\n"
     )
+    archivo.close()
+
+
+# =================================== Funcion guardar_todos_Futbolista =====================================
+# Nombre: guardar_todos_Futbolista
+# Entradas: lista_futbolistas.
+# Salidas: None.
+# Restricciones:
+# ==============================================================================================
+def guardar_todos_Futbolista(lista_futbolistas):
+
+    archivo = open("Código/Archivos_txt/jugadores.txt", "w")
+    for futbolista in lista_futbolistas:
+        archivo.write(
+            str(futbolista.nombre)
+            + "|"
+            + str(futbolista.apellido)
+            + "|"
+            + str(futbolista.fecha_nacimiento)
+            + "|"
+            + str(futbolista.nacionalidad)
+            + "|"
+            + str(futbolista.dorsal)
+            + "|"
+            + str(futbolista.posicion)
+            + "|"
+            + str(futbolista.total_tarjetas_amarillas)
+            + "|"
+            + str(futbolista.total_tarjetas_rojas)
+            + "|"
+            + str(futbolista.goles)
+            + "|"
+            + str(futbolista.asistencias)
+            + "|"
+            + str(futbolista.puntaje_individual)
+            + "|"
+            + str(futbolista.codigo_equipo)
+            + "\n"
+        )
     archivo.close()
 
 
