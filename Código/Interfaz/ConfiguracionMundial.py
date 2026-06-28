@@ -42,7 +42,12 @@ class VentanaConfiguracion(ctk.CTkToplevel):
             print("Error: Ingrese un número")  # esto se cambia
             return
 
-        cantidad_grupos = int(entrada)
+        try:
+            cantidad_grupos = int(entrada)
+        except ValueError:
+            print("Error: Ingrese un número válido")
+            return
+
         if cantidad_grupos < 2:
             print("Error: cantidad mínima es de 2")  # esto se cambia
             return
