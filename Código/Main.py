@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from Clases.Mundial import Mundial
+from Persistencia import *
 from Interfaz.ConfiguracionMundial import VentanaConfiguracion
 from Interfaz.Estadisticas import VentanaEstadisticas
 from Interfaz.JugadoresyEntrenadores import VentanaPlantilla
@@ -8,6 +9,14 @@ from Interfaz.PaisesYSelecciones import VentanaAdministracion
 
 # instancia compartida
 mundial = Mundial("Mundial FIFA 2026", 2026)
+
+lista_paises = cargar_pais()
+lista_entrenadores = cargar_entrenadores()
+lista_jugadores = cargar_futbolista()
+lista_selecciones = cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores)
+
+for seleccion in lista_selecciones:
+    mundial.registrar_seleccion(seleccion)
 
 
 def abrir_paises():
