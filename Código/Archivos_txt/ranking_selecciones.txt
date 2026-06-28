@@ -1,4 +1,4 @@
-Francia|3|0|Semifinal
-Brasil|3|0|Final
-Costa Rica|0|0|Final
-Argentina|0|0|Semifinal
+Costa Rica|3|1|Final
+Argentina|3|0|Final
+Francia|0|0|Semifinal
+Brasil|0|1|Semifinal
