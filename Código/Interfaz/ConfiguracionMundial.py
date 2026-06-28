@@ -50,6 +50,19 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         lista_paises = cargar_pais()
         lista_selecciones = cargar_seleccion(lista_paises, [], [])
 
+        if largoLista(lista_selecciones) < 8:
+            print(f"Error: Se requieren al menos 8 selecciones registradas para jugar el Mundial. "
+                    f"Actuales: {largoLista(lista_selecciones)}")
+            return
+
+        if (largoLista(lista_selecciones) // cantidad_grupos):
+            print(f"Error: Distribución inválida. Con {largoLista(lista_selecciones)} selecciones y "
+                  f"{cantidad_grupos} grupos, quedarían menos de 4 equipos por grupo.\n"
+                  f"¡Reduzca la cantidad de grupos o registre más selecciones!")
+            return
+
+        self.mundial.selecciones = []
+
         for seleccion in lista_selecciones:
             self.mundial.registrar_seleccion(seleccion)
 
