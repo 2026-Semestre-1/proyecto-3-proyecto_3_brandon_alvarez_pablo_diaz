@@ -62,6 +62,15 @@ class Fase:
 
             self.penales += [[partido, penales_equipo1, penales_equipo2]]
 
+            tarjetas_amarillas_equipo1 = random.randint(0, 22)
+            tarjetas_amarillas_equipo2 = random.randint(0, 22)
+            tarjetas_rojas_equipo1 = random.randint(0, 11)
+            tarjetas_rojas_equipo2 = random.randint(0, 11)
+
+            partido.equipo_1.registrar_resultado(partido.goles_equipo1, partido.goles_equipo1, tarjetas_amarillas_equipo1, tarjetas_rojas_equipo1)
+
+            partido.equipo_2.registrar_resultado(partido.goles_equipo2, partido.goles_equipo2, tarjetas_amarillas_equipo2, tarjetas_rojas_equipo2)
+
     # ================================= Función mostrar juegos =========================================
     # Nombre: mostrar_juegos
     # Entradas: ninguna
@@ -114,9 +123,7 @@ class Fase:
                         penales_equipo1 = registro[1]
                         penales_equipo2 = registro[2]
 
-                        if (
-                            penales_equipo1 > penales_equipo2
-                        ):  # se define el ganador de los empates
+                        if (penales_equipo1 > penales_equipo2):  # se define el ganador de los empates
                             lista_ganadores += [partido.equipo_1]
                         else:
                             lista_ganadores += [partido.equipo_2]
