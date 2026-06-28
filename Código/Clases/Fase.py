@@ -16,8 +16,7 @@ class Fase:
     def __init__(self, nombre_fase):
 
         if not isinstance(nombre_fase, str):
-            print("Error: el nombre de la fase no es válida")
-            return
+            raise TypeError(f"Error crítico: El nombre de la fase debe ser un string. Llegó: {type(nombre_fase)}")
 
         self.nombre_fase = nombre_fase
         self.partidos = []

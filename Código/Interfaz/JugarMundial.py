@@ -73,6 +73,7 @@ class VentanaJugarMundial(ctk.CTkFrame):
         #si hay uno, ya hay un campeon
         if cantidad_equipos == 1:
             self.mostrar_campeon_destacado(self.clasificados_actuales[0])
+            return
         
         nombre_fase = self.mundial.nombre_final(cantidad_equipos)
 
