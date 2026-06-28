@@ -76,9 +76,7 @@ class Mundial:
         total_selecciones = largoLista(self.selecciones)
 
         if total_selecciones < cantidad_grupos:
-            print(
-                f"Error: No se puede crear grupos con la cantidad actual de selecciones. \nSelecciones totales: {total_selecciones}"
-            )
+            print( f"Error: No se puede crear grupos con la cantidad actual de selecciones. \nSelecciones totales: {total_selecciones}")
             return False
 
         indice = 0

@@ -74,9 +74,8 @@ class Grupo:
         if largo_seleccion(self.equipos) < 4:
             self.equipos += [seleccion]
         else:
-            print(
-                f"No se puede agregar a {seleccion.nombre}. El {self.nombre_grupo} ya está lleno."
-            )
+            print(f"No se puede agregar a {seleccion.pais.nombre}. El {self.nombre_grupo} ya está lleno.")
+            return
 
     # ================================= Función jugar partidos =========================================
     # Nombre: jugar_partidos
