@@ -143,7 +143,9 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
 # Salidas: None.
 # Restricciones:
 # ==============================================================================================
-def modificar_pais(lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente, nuevo_ranking_fifa):
+def modificar_pais(
+    lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente, nuevo_ranking_fifa
+):
 
     for pais in lista_paises:
 
@@ -386,6 +388,8 @@ def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
         for linea in archivo:
             partes = linea.strip().split("|")
 
+            pais_encontrado = None
+
             for pais in lista_paises:
 
                 if pais.codigo_fifa == partes[0]:
@@ -393,6 +397,9 @@ def cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores):
                     pais_encontrado = pais
 
                     break
+
+            if pais_encontrado == None:
+                continue
 
             seleccion_uso = Seleccion(partes[1], pais_encontrado)
 

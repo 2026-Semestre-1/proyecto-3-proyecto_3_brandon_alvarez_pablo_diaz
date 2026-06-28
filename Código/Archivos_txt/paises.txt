@@ -1,3 +1,0 @@
-CRC|Costa Rica|América|50
-ARG|Argentina|América|80
-FRA|Francia|Europa|12
