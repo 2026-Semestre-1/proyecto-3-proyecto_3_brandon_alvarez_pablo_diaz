@@ -57,7 +57,11 @@ class VentanaJugarMundial(ctk.CTkToplevel):
 
                 for fila in grupo.tabla:
                     # fila[0] = nombre de la seleccion, fila[1] = puntos
-                    texto_grupo += f" - {fila[0]} : {fila[1]} Pts\n"
+                    seleccion_objeto = fila[0]
+
+                    nombre_pais = seleccion_objeto.pais.nombre
+                
+                    texto_grupo += f" - {nombre_pais} : {fila[1]} Pts\n"
 
                 self.imprimir_en_pantalla(texto_grupo + "\n")
 
@@ -144,40 +148,3 @@ class VentanaJugarMundial(ctk.CTkToplevel):
             anchor="w",
         )
         lbl.pack(fill="x", padx=10, anchor="w")
-
-
-if __name__ == "__main__":
-    from Clases.Pais import Pais
-    from Clases.Seleccion import Seleccion
-
-    # 1. Inicializamos entorno básico de prueba
-    app = ctk.CTk()
-    app.title("Prueba de Campo - Jugar Mundial")
-    app.geometry("780x580")
-
-    # 2. Creamos datos falsos simulando que vienen de la persistencia
-    mundial_test = Mundial("Mundial de Prueba", 2026)
-
-    p1 = Pais("CRC", "Costa Rica", "América", 30)
-    p2 = Pais("GER", "Alemania", "Europa", 10)
-    p3 = Pais("BRA", "Brasil", "América", 5)
-    p4 = Pais("JPN", "Japón", "Asia", 15)
-
-    s1 = Seleccion("SEL-CRC", p1)
-    s2 = Seleccion("SEL-GER", p2)
-    s3 = Seleccion("SEL-BRA", p3)
-    s4 = Seleccion("SEL-JPN", p4)
-
-    mundial_test.registrar_seleccion(s1)
-    mundial_test.registrar_seleccion(s2)
-    mundial_test.registrar_seleccion(s3)
-    mundial_test.registrar_seleccion(s4)
-
-    # Ejecutamos el creador de grupos oficial para poblar el backend
-    mundial_test.crear_grupos(2)
-
-    # 3. Cargamos tu componente pasándole el mundial ya configurado
-    contenedor_juego = VentanaJugarMundial(app, mundial_instancia=mundial_test)
-    contenedor_juego.pack(fill="both", expand=True, padx=10, pady=10)
-
-    app.mainloop()

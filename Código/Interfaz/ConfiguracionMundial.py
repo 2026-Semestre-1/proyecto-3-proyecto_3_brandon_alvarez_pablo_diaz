@@ -75,7 +75,7 @@ class VentanaConfiguracion(ctk.CTkToplevel):
             texto_equipos = ""
 
             for seleccion in grupo.equipos:
-                texto_equipos += f"{seleccion.pais.nombre} ({seleccion.codigo_equipo})"
+                texto_equipos += f"{seleccion.pais.nombre} ({seleccion.codigo_equipo})\n"
 
             if texto_equipos == "":
                 texto_equipos = "Sin selecciones asignadas\n"
