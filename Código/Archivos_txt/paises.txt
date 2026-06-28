@@ -1,3 +1,4 @@
-CRC|Costa Rica|CONCACAF|41
-ARG|Argentina|CONMEBOL|1
-BRA|Brasil|CONMEBOL|5
+CRC|Costa Rica|America|25
+BRA|Brasil|America|62
+FRA|Francia|Europa|40
+ARG|Argentina|America|60
