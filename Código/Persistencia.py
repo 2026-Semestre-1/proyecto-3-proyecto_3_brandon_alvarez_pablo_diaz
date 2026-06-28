@@ -682,6 +682,8 @@ def guardar_ranking_selecciones(lista_selecciones):
             + str(puntos)
             + "|"
             + str(diferencia_goles)
+            + "|"
+            + str(seleccion.fase_alcanzada)
             + "\n"
         )
 
@@ -710,8 +712,14 @@ def cargar_ranking_selecciones():
             nombre_seleccion = partes[0]
             puntos = int(partes[1])
             diferencia_goles = int(partes[2])
+            fase_alcanzada = partes[3]
 
-            datos_seleccion = [nombre_seleccion, puntos, diferencia_goles]
+            datos_seleccion = [
+                nombre_seleccion,
+                puntos,
+                diferencia_goles,
+                fase_alcanzada,
+            ]
 
             selecciones += [datos_seleccion]
 

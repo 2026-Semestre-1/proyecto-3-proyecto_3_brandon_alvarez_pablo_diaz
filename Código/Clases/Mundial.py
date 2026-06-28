@@ -140,6 +140,9 @@ class Mundial:
 
             fase.registrar_juego(clasificados[indice], clasificados[indice + 1])
 
+            for equipo in clasificados:
+                equipo.fase_alcanzada = nombre_fase
+
             indice += 2
 
         self.fases += [fase]

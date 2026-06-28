@@ -27,6 +27,7 @@ class Seleccion:
         self.total_tarjetas_amarillas = 0
         self.total_tarjetas_rojas = 0
         self.fuerza_equipo = 0
+        self.fase_alcanzada = "Fase de Grupos"
 
     # =================================== Funcion mostrar datos ==================================
     # Nombre: mostrar_datos
@@ -56,6 +57,7 @@ class Seleccion:
             "total_tarjetas_amarillas": self.total_tarjetas_amarillas,
             "total_tarjetas_rojas": self.total_tarjetas_rojas,
             "fuerza_equipo": self.fuerza_equipo,
+            "fase_alcanzada": self.fase_alcanzada,
         }
 
     # =================================== Funcion agregar jugador ==================================
