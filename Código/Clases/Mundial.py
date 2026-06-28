@@ -136,7 +136,7 @@ class Mundial:
 
         fase = Fase(nombre_fase)
 
-        while indice < largo_clasificados:
+        while indice < largo_clasificados - 1:
 
             fase.registrar_juego(clasificados[indice], clasificados[indice + 1])
 
