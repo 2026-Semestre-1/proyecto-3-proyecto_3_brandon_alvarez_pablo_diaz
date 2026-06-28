@@ -1,3 +1,16 @@
+import os
+import sys
+
+# 1. Obtenemos la ruta de la carpeta "Interfaz" donde está este archivo
+carpeta_interfaz = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Subimos un nivel para obtener la ruta de la carpeta "Código"
+carpeta_codigo = os.path.dirname(carpeta_interfaz)
+
+# 3. Le decimos a Python: "¡Ey! También busque archivos para importar aquí"
+sys.path.append(carpeta_codigo)
+
+
 from Clases.Seleccion import Seleccion
 import customtkinter as ctk
 from Persistencia import *
@@ -21,6 +34,7 @@ class VentanaAdministracion(ctk.CTk):
         #configurar cada pestaña
         self.registro_pais()
         self.registro_seleccion()
+        self.pestana_listado()
 
     def registro_pais(self):
 
@@ -51,8 +65,6 @@ class VentanaAdministracion(ctk.CTk):
         nombre_pais = self.nombre_pais.get().strip()
         continente = self.continente_pais.get().strip()
         ranking_fifa = self.ranking_fifa.get().strip()
-
-        print(f"DEBUG INTERFAZ -> Código: '{codigo_fifa}', Nombre: '{nombre_pais}', Continente: '{continente}', Rank: '{ranking_fifa}'")
 
         if codigo_fifa == "" or nombre_pais == "" or continente == "" or ranking_fifa == "":
             print("Error: Todos los campos son obligatorios") # Reemplazar luego por un modal de alerta
@@ -139,7 +151,80 @@ class VentanaAdministracion(ctk.CTk):
             print(f"Éxito: {nueva_seleccion.pais.nombre} ahora es una Selección Oficial")
 
             self.codigo_equipo.delete(0, "end")
+
     
+    def pestana_listado(self):
+        
+        pestana = self.pestanas.tab("Listado de Registros")
+
+        titulo = ctk.CTkLabel(pestana, text="Países Registrados", font=("Arial", 18, "bold"))
+        titulo.pack(pady=15)
+
+        self.scroll_lista = ctk.CTkScrollableFrame(pestana, width=60, height=100)
+        self.scroll_lista.pack(pady=10, fill="both", expand=True)
+
+        btn_actualizar = ctk.CTkButton(pestana, text="Actualizar lista", command=self.cargar_paises_lista)
+        btn_actualizar.pack(pady=10)
+
+        self.cargar_paises_lista()
+
+    
+    def cargar_paises_lista(self):
+
+        for componentes in self.scroll_lista.winfo_children():
+            componentes.destroy()
+
+        lista_paises = cargar_pais()
+
+        for pais in lista_paises:
+
+            fila = ctk.CTkFrame(self.scroll_lista)
+            fila.pack(pady=5, fill="x", padx=5)
+
+            informacion = f"{pais.codigo_fifa} | {pais.nombre} | {pais.continente} | {pais.ranking_fifa}"
+            lbl_informacion = ctk.CTkLabel(fila, text=informacion, font=("Arial", 14))
+            lbl_informacion.pack(side="left", padx=10, pady=10)
+
+            btn_editar = ctk.CTkButton(fila, text="Editar", width=80, command=lambda pais_objeto=pais: self.ventana_edicion(pais_objeto))
+            btn_editar.pack(side="right", padx=10, pady=10)
+
+    def ventana_edicion(self, pais_buscado):
+
+        ventana_editar = ctk.CTkToplevel(self)
+        ventana_editar.title(f"Modificar: {pais_buscado.nombre}")
+        ventana_editar.geometry("400x400")
+        ventana_editar.grab_set() #bloquea la principal hasta que esta se cierre
+
+        ctk.CTkLabel(ventana_editar, text=f"Editando: {pais_buscado.codigo_fifa}", font=("Arial", 16, "bold")).pack(pady=15)
+
+        nuevo_nombre = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_nombre.insert(0, pais_buscado.nombre)
+        nuevo_nombre.pack(pady=10)
+
+        nuevo_continente = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_continente.insert(0, pais_buscado.continente)
+        nuevo_continente.pack(pady=10)
+
+        nuevo_ranking = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_ranking.insert(0, str(pais_buscado.ranking_fifa))
+        nuevo_ranking.pack(pady=10)
+
+        def guardar_cambios():
+
+            lista_paises = cargar_pais()
+
+            for pais in lista_paises:
+                if pais.codigo_fifa == pais_buscado.codigo_fifa:
+                    pais.nombre = nuevo_nombre.get().strip()
+                    pais.continente = nuevo_continente.get().strip()
+                    pais.ranking_fifa = int(nuevo_ranking.get().strip())
+
+            self.cargar_paises_lista()
+            self.actualizar_combo_paises()
+            ventana_editar.destroy()
+
+        btn_confirmar = ctk.CTkButton(ventana_editar, text="Guardar cambios", command=guardar_cambios)
+        btn_confirmar.pack(pady=20)
 
 if __name__ == "__main__":
     app = VentanaAdministracion()
