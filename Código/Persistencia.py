@@ -47,13 +47,13 @@ def guardar_entrenador(
     archivo.close()
 
 
-# =================================== Funcion guardar_todos_entrenadores =====================================
-# Nombre: guardar_todos_entrenadores
+# =================================== Funcion modificar_entrenadores =====================================
+# Nombre: modificar_entrenadores
 # Entradas: lista_entrenadores.
 # Salidas: None.
 # Restricciones:
 # ==============================================================================================
-def guardar_todos_entrenadores(lista_entrenadores):
+def modificar_entrenadores(lista_entrenadores):
 
     archivo = open("Código/Archivos_txt/entrenadores.txt", "w")
     for entrenador in lista_entrenadores:
@@ -139,11 +139,13 @@ def guardar_pais(codigo_fifa, nombre, continente, ranking_fifa):
 
 # =================================== Funcion modificar_pais =====================================
 # Nombre: modificar_pais
-# Entradas: lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente.
+# Entradas: lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente, nuevo_ranking_fifa.
 # Salidas: None.
 # Restricciones:
 # ==============================================================================================
-def modificar_pais(lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente):
+def modificar_pais(
+    lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente, nuevo_ranking_fifa
+):
 
     for pais in lista_paises:
 
@@ -151,7 +153,7 @@ def modificar_pais(lista_paises, codigo_fifa, nuevo_nombre, nuevo_continente):
 
             pais.nombre = nuevo_nombre
             pais.continente = nuevo_continente
-
+            pais.ranking_fifa = nuevo_ranking_fifa
             break
 
     archivo = open("Código/Archivos_txt/paises.txt", "w")
@@ -251,13 +253,13 @@ def guardar_Futbolista(
     archivo.close()
 
 
-# =================================== Funcion guardar_todos_Futbolista =====================================
-# Nombre: guardar_todos_Futbolista
+# =================================== Funcion modificar_futbolistas =====================================
+# Nombre: modificar_futbolistas
 # Entradas: lista_futbolistas.
 # Salidas: None.
 # Restricciones:
 # ==============================================================================================
-def guardar_todos_Futbolista(lista_futbolistas):
+def modificar_futbolistas(lista_futbolistas):
 
     archivo = open("Código/Archivos_txt/jugadores.txt", "w")
     for futbolista in lista_futbolistas:
