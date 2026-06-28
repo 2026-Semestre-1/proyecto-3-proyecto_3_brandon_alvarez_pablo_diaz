@@ -84,6 +84,13 @@ ventana.title("🏆 Copa Mundial 🏆")
 ventana.geometry("700x500")
 ventana.resizable(False, False)
 
+# titulo de la sección
+titulo = ctk.CTkLabel(
+    ventana, text="Bienvenido a la Copa Mundial", font=("Arial", 18, "bold")
+)
+titulo.pack(pady=20)
+
+
 # =================================== Botones de la ventana principal ==========================
 
 btn_paises = ctk.CTkButton(
