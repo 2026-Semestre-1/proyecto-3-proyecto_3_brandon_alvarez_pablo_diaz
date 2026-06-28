@@ -1,21 +1,8 @@
-import os
-import sys
-
-# 1. Obtenemos la ruta de la carpeta "Interfaz" donde está este archivo
-carpeta_interfaz = os.path.dirname(os.path.abspath(__file__))
-
-# 2. Subimos un nivel para obtener la ruta de la carpeta "Código"
-carpeta_codigo = os.path.dirname(carpeta_interfaz)
-
-# 3. Le decimos a Python: "¡Ey! También busque archivos para importar aquí"
-sys.path.append(carpeta_codigo)
-
-
 from Persistencia import *
 import customtkinter as ctk
 
 
-class VentanaEstadisticas(ctk.CTk):
+class VentanaEstadisticas(ctk.CTkToplevel):
     def __init__(self):
         super().__init__()
         self.title("Estadísticas / Rankings")

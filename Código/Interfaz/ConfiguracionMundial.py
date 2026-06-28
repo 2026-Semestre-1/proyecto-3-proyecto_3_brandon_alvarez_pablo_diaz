@@ -2,24 +2,33 @@ import customtkinter as ctk
 from Persistencia import *
 from Clases.Mundial import Mundial
 
-class VentanaConfiguracion(ctk.CTkFrame):
 
-    def __init__(self, parent):
-        super().__init__(parent) #para que sea acoplable
+class VentanaConfiguracion(ctk.CTkToplevel):
+    def __init__(self, parent, mundial_instancia):
+        super().__init__(parent)
+        self.mundial = mundial_instancia
 
-        self.titulo = ctk.CTkLabel(self, text="Configurar Grupos del Torneo", font=("Arial", 20, "bold"))
+        self.titulo = ctk.CTkLabel(
+            self, text="Configurar Grupos del Torneo", font=("Arial", 20, "bold")
+        )
         self.titulo.pack(pady=15)
 
         self.controles = ctk.CTkFrame(self)
         self.controles.pack(pady=10, fill="x", padx=20)
 
-        self.lbl_controles = ctk.CTkLabel(self.controles, text="Cantidad de Grupo (Mínimo 2)", font=("Arial", 13))
+        self.lbl_controles = ctk.CTkLabel(
+            self.controles, text="Cantidad de Grupo (Mínimo 2)", font=("Arial", 13)
+        )
         self.lbl_controles.pack(side="left", padx=15, pady=10)
 
-        self.cantidad_grupos = ctk.CTkEntry(self.controles, placeholder_text="Ej: 4", width=100)
+        self.cantidad_grupos = ctk.CTkEntry(
+            self.controles, placeholder_text="Ej: 4", width=100
+        )
         self.cantidad_grupos.pack(side="left", padx=10, pady=10)
 
-        self.btn_generar = ctk.CTkButton(self.controles, text="Distribuir equipos", command=self.generar_grupos) #luego se pone bello
+        self.btn_generar = ctk.CTkButton(
+            self.controles, text="Distribuir equipos", command=self.generar_grupos
+        )  # luego se pone bello
         self.btn_generar.pack(side="right", padx=15, pady=10)
 
         self.scroll_grupos = ctk.CTkScrollableFrame(self, width=700, height=350)
@@ -29,14 +38,14 @@ class VentanaConfiguracion(ctk.CTkFrame):
         entrada = self.cantidad_grupos.get().strip()
 
         if entrada == "":
-            print("Error: Ingrese un número") #esto se cambia
+            print("Error: Ingrese un número")  # esto se cambia
             return
-        
+
         cantidad_grupos = int(entrada)
         if cantidad_grupos < 2:
-            print("Error: cantidad mínima es de 2") #esto se cambia
+            print("Error: cantidad mínima es de 2")  # esto se cambia
             return
-        
+
         mi_mundial = Mundial("Copa Mundial 2026", 2026)
 
         lista_paises = cargar_pais()
@@ -62,7 +71,9 @@ class VentanaConfiguracion(ctk.CTkFrame):
             tarjeta = ctk.CTkFrame(self.scroll_grupos)
             tarjeta.pack(pady=8, fill="x", padx=10)
 
-            lbl_grupo = ctk.CTkLabel(tarjeta, text=str(grupo.nombre_grupo), font=("Arial", 20, "bold")) #hay que cambiar cosas aqui
+            lbl_grupo = ctk.CTkLabel(
+                tarjeta, text=str(grupo.nombre_grupo), font=("Arial", 20, "bold")
+            )  # hay que cambiar cosas aqui
             lbl_grupo.pack(anchor="w", padx=15, pady=6)
 
             texto_equipos = ""
@@ -73,5 +84,7 @@ class VentanaConfiguracion(ctk.CTkFrame):
             if texto_equipos == "":
                 texto_equipos = "Sin selecciones asignadas\n"
 
-            lbl_equipo = ctk.CTkLabel(tarjeta, text=texto_equipos, justify="left", font=("Arial", 20))
+            lbl_equipo = ctk.CTkLabel(
+                tarjeta, text=texto_equipos, justify="left", font=("Arial", 20)
+            )
             lbl_equipo.pack(anchor="w", padx=20, pady=4)

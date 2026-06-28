@@ -1,117 +1,87 @@
-from tkinter import *
-from Clases.Entrenador import Entrenador
-from Clases.Fase import Fase
-from Clases.Futbolista import Futbolista
-from Clases.Grupo import Grupo
+import customtkinter as ctk
 from Clases.Mundial import Mundial
-from Clases.Pais import Pais
-from Clases.Partido import Partido
-from Clases.Seleccion import Seleccion
-from Utilidades import largoLista
-from Persistencia import *
-from tkinter import simpledialog, messagebox
-from tkinter import ttk
+from Interfaz.ConfiguracionMundial import VentanaConfiguracion
+from Interfaz.Estadisticas import VentanaEstadisticas
+from Interfaz.JugadoresyEntrenadores import VentanaPlantilla
+from Interfaz.JugarMundial import VentanaJugarMundial
+from Interfaz.PaisesYSelecciones import VentanaAdministracion
 
-lista_paises = []
-lista_selecciones = []
-lista_jugadores = []
+# instancia compartida
+mundial = Mundial("Mundial FIFA 2026", 2026)
 
-# =================================== Ventana Principal ============================================
-ventana = Tk()
-ventana.title("Copa Mundial FIFA 2026")
 
-# Definir tamaño
-ventana.geometry("800x550")
+def abrir_paises():
+    VentanaAdministracion()
+
+
+def abrir_plantilla():
+    VentanaPlantilla()
+
+
+def abrir_configuracion():
+    VentanaConfiguracion(ventana, mundial)
+
+
+def abrir_jugar():
+    VentanaJugarMundial(ventana, mundial)
+
+
+def abrir_estadisticas():
+    VentanaEstadisticas()
+
+
+ventana = ctk.CTk()
+ventana.title("🏆 Copa Mundial 🏆")
+ventana.geometry("700x500")
 ventana.resizable(False, False)
-ventana.update_idletasks()
 
-# Colocar fondo
-fondo_label = Label(ventana, bg="#2d2d2d")
-fondo_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-# Estilo de los botones
-style = ttk.Style()
-style.theme_use("clam")  # permite personalización de colores
-
-# Estilo general para todos los botones del menú
-style.configure(
-    "Menu.TButton",
-    font=("Verdana", 8, "bold"),
-    background="#5D648C",
-    foreground="white",
-    padding=8,
-    borderwidth=0,
-)
-
-# Efectos de hover y click
-style.map(
-    "Menu.TButton", background=[("active", "#433859")], foreground=[("active", "white")]
-)
-
-# ============================ Botones de la ventana Principal =====================================
-
-# Posición X fija para centrar horizontalmente
-pos_x = 250
-
-# -------- Fila 1 --------
-Button_paises = ttk.Button(
+btn_paises = ctk.CTkButton(
     ventana,
-    text="Administrar Países y Selecciones",
-    command="",
-    style="Menu.TButton",
+    text="Administrar Países y Selecciones.",
+    command=abrir_paises,
+    fg_color="green",
 )
-Button_paises.place(x=pos_x, y=87, width=325, height=50)
-Button_paises.configure(cursor="hand2")
+btn_paises.pack(pady=20)
 
-# -------- Fila 2 --------
-Button_jugadores = ttk.Button(
+btn_plantilla = ctk.CTkButton(
     ventana,
-    text="Administrar Entrenadores y Jugadores",
-    command="",
-    style="Menu.TButton",
+    text="Administrar Entrenadores y Jugadores.",
+    command=abrir_plantilla,
+    fg_color="green",
 )
-Button_jugadores.place(x=pos_x, y=152, width=325, height=50)
-Button_jugadores.configure(cursor="hand2")
+btn_plantilla.pack(pady=20)
 
-# -------- Fila 3 --------
-Button_configurar = ttk.Button(
+btn_configuracion = ctk.CTkButton(
     ventana,
-    text="Configurar Mundial",
-    command="",
-    style="Menu.TButton",
+    text="Configurar Mundial (grupos).",
+    command=abrir_configuracion,
+    fg_color="green",
 )
-Button_configurar.place(x=pos_x, y=217, width=325, height=50)
-Button_configurar.configure(cursor="hand2")
+btn_configuracion.pack(pady=20)
 
-# -------- Fila 4 --------
-Button_jugar = ttk.Button(
+btn_jugar = ctk.CTkButton(
     ventana,
-    text="Jugar Mundial",
-    command="",
-    style="Menu.TButton",
+    text="Jugar Mundial.",
+    command=abrir_jugar,
+    fg_color="green",
 )
-Button_jugar.place(x=pos_x, y=282, width=325, height=50)
-Button_jugar.configure(cursor="hand2")
+btn_jugar.pack(pady=20)
 
-# -------- Fila 5 --------
-Button_estadisticas = ttk.Button(
+btn_estadisticas = ctk.CTkButton(
     ventana,
-    text="Ver Estadísticas / Rankings",
-    command="",
-    style="Menu.TButton",
+    text="Ver Estadísticas / Rankings.",
+    command=abrir_estadisticas,
+    fg_color="green",
 )
-Button_estadisticas.place(x=pos_x, y=347, width=325, height=50)
-Button_estadisticas.configure(cursor="hand2")
+btn_estadisticas.pack(pady=20)
 
-# -------- Fila 6 --------
-Button_salir = ttk.Button(
+btn_salir = ctk.CTkButton(
     ventana,
     text="Salir del sistema",
-    command=ventana.destroy,  # Cierra la ventana
-    style="Menu.TButton",
+    command=ventana.destroy,
+    fg_color="green",
 )
-Button_salir.place(x=pos_x, y=412, width=325, height=50)
-Button_salir.configure(cursor="hand2")
+btn_salir.pack(pady=20)
+
 
 ventana.mainloop()
-# ==================================================================================================
