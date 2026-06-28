@@ -80,7 +80,7 @@ class VentanaAdministracion(ctk.CTk):
         self.ranking_fifa.delete(0, "end")
 
         #refrescar los componentes que dependen de los paises
-        #self.actualizar_paises()
+        self.actualizar_combo_paises()
 
 
     def registro_seleccion(self):
