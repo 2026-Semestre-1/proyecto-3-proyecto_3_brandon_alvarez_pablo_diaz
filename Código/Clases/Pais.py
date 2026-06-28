@@ -13,7 +13,7 @@ class Pais:
         if not isinstance(ranking_fifa, int):
             raise TypeError("El ranking de la fifa debe de ser un número entero.")
 
-        self.codigo = codigo_fifa
+        self.codigo_fifa = codigo_fifa
         self.nombre = nombre
         self.continente = continente
         self.ranking_fifa = ranking_fifa

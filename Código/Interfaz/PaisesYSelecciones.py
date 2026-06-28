@@ -1,5 +1,6 @@
+from Clases.Seleccion import Seleccion
 import customtkinter as ctk
-from Persistencia import cargar_pais, guardar_pais
+from Persistencia import *
 
 class VentanaAdministracion(ctk.CTk):
     def __init__(self):
@@ -19,6 +20,7 @@ class VentanaAdministracion(ctk.CTk):
 
         #configurar cada pestaña
         self.registro_pais()
+        self.registro_seleccion()
 
     def registro_pais(self):
 
@@ -64,7 +66,80 @@ class VentanaAdministracion(ctk.CTk):
         self.nombre_pais.delete(0, "end")
         self.continente_pais.delete(0, "end")
         self.ranking_fifa.delete(0, "end")
+
+        #refrescar los componentes que dependen de los paises
+        #self.actualizar_paises()
+
+
+    def registro_seleccion(self):
+        pestana = self.pestanas.tab("Registrar Selección")
+
+        titulo = ctk.CTkLabel(pestana, text="Asociar Selección a un País", font=("Arial", 18, "bold"))
+        titulo.pack(pady=15)
+
+        # Menu desplegable (ComboBox) que contendrá los países del TXT
+        ctk.CTkLabel(pestana, text="Seleccione un país de la lista:").pack(pady=2)
+        self.combo_paises = ctk.CTkComboBox(pestana, values=[], width=300)
+        self.combo_paises.pack(pady=10)
+
+        ctk.CTkLabel(pestana, text="Digite el código de la selección:").pack(pady=2)
+        self.codigo_equipo = ctk.CTkEntry(pestana, placeholder_text="Ej: SEL-CRC", width=320)
+        self.codigo_equipo.pack(pady=10)
+
+        # Rellenar el combo con los países que ya existen en el TXT
+        self.actualizar_combo_paises()
+
+        btn_crear = ctk.CTkButton(pestana, text="Hacer Selección", command=self.crear_seleccion)
+        btn_crear.pack(pady=20)
+
+    def actualizar_combo_paises(self):
+        # Se jala los países
+        lista_paises = cargar_pais()
         
+        nombres_paises = []
+        for pais in lista_paises:
+            # Creamos un string descriptivo para mostrar en el menú
+            nombres_paises += [pais.nombre]
+        
+        # Actualizamos las opciones del componente gráfico
+        if nombres_paises != []:
+            self.combo_paises.configure(values=nombres_paises)
+            self.combo_paises.set(nombres_paises[0])
+        else:
+            self.combo_paises.configure(values=["No hay países registrados"])
+            self.combo_paises.set("No hay países registrados")
+
+    def crear_seleccion(self):
+
+        nombre_pais = self.combo_paises.get()
+        codigo_equipo = self.codigo_equipo.get().strip()
+
+        if nombre_pais == "No hay países registrados" or codigo_equipo == "":
+            print("Error: Debe seleccionar un país y asignar un código de equipo.") #esto se cambia también
+            return
+        
+        print(nombre_pais)
+        print(codigo_equipo)
+
+        # se jala los países
+        lista_paises = cargar_pais()
+        pais_encontrado = None
+        
+        for pais in lista_paises:
+            if pais.nombre == nombre_pais:
+                pais_encontrado = pais
+                break
+        
+        if pais_encontrado != None:
+
+            nueva_seleccion = Seleccion(codigo_equipo, pais_encontrado)
+
+            guardar_seleccion(nueva_seleccion)
+
+            print(f"Éxito: {nueva_seleccion.pais.nombre} ahora es una Selección Oficial")
+
+            self.codigo_equipo.delete(0, "end")
+    
 
 if __name__ == "__main__":
     app = VentanaAdministracion()
