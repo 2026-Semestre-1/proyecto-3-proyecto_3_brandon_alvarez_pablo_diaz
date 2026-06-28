@@ -335,6 +335,10 @@ class VentanaPlantilla(ctk.CTk):
             print("Error: El dorsal debe ser un número entero")
             return False
 
+        if codigo_equipo == "No hay selecciones":
+            print("Error: Debe haber al menos una selección registrada")
+            return False
+
         # Generar estadísticas aleatorias
         total_tarjetas_amarillas = 0
         total_tarjetas_rojas = 0
@@ -367,7 +371,141 @@ class VentanaPlantilla(ctk.CTk):
         self.actualizar_combo_selecciones()
 
     def pestana_listado(self):
-        pass
+        pestana = self.pestanas.tab("Listado de Jugadores")
+
+        # ComboBox para elegir selección
+        ctk.CTkLabel(pestana, text="Seleccione una selección:").pack(pady=(10, 0))
+        self.combo_seleccion_listado = ctk.CTkComboBox(
+            pestana,
+            values=[],
+            width=300,
+            command=self.cargar_jugadores_lista,
+        )
+        self.combo_seleccion_listado.pack(pady=(0, 5))
+
+        # ScrollableFrame para mostrar jugadores
+        self.scroll_jugadores = ctk.CTkScrollableFrame(pestana)
+        self.scroll_jugadores.pack(fill="both", expand=True, padx=10, pady=10)
+
+        # Botón refrescar
+        ctk.CTkButton(
+            pestana, text="Refrescar", command=self.cargar_jugadores_lista
+        ).pack(pady=5)
+
+        self.cargar_jugadores_lista()
+
+    def cargar_jugadores_lista(self):
+
+        for componentes in self.scroll_jugadores.winfo_children():
+            componentes.destroy()
+
+        lista_paises = cargar_pais()
+
+        lista_entrenadores = cargar_entrenadores()
+
+        lista_jugadores = cargar_futbolista()
+
+        lista_selecciones = cargar_seleccion(
+            lista_paises, lista_entrenadores, lista_jugadores
+        )
+
+        nombres_selecciones = [
+            seleccion.codigo_equipo for seleccion in lista_selecciones
+        ]
+
+        if nombres_selecciones:
+            self.combo_seleccion_listado.configure(values=nombres_selecciones)
+            self.combo_seleccion_listado.set(nombres_selecciones[0])
+        else:
+            self.combo_seleccion_listado.configure(values=["No hay selecciones"])
+            self.combo_seleccion_listado.set("No hay selecciones")
+
+        seleccion_elegida = self.combo_seleccion_listado.get()
+
+        seleccion_objeto = next(
+            (
+                seleccion
+                for seleccion in lista_selecciones
+                if seleccion.codigo_equipo == seleccion_elegida
+            ),
+            None,
+        )
+
+        if seleccion_objeto:
+            for jugador in seleccion_objeto.jugadores:
+                fila = ctk.CTkFrame(self.scroll_jugadores)
+                fila.pack(pady=5, fill="x", padx=5)
+
+                informacion = f"{jugador.nombre} {jugador.apellido} | Dorsal: {jugador.dorsal} | Posición: {jugador.posicion}"
+                lbl_informacion = ctk.CTkLabel(
+                    fila, text=informacion, font=("Arial", 14)
+                )
+                lbl_informacion.pack(side="left", padx=10, pady=10)
+
+                btn_editar = ctk.CTkButton(
+                    fila,
+                    text="Editar",
+                    width=80,
+                    command=lambda jugador_objeto=jugador: self.ventana_edicion(
+                        jugador_objeto
+                    ),
+                )
+                btn_editar.pack(side="right", padx=10, pady=10)
+
+    def ventana_edicion(self, jugador_buscado):
+
+        ventana_editar = ctk.CTkToplevel(self)
+        ventana_editar.title(
+            f"Modificar: {jugador_buscado.nombre} {jugador_buscado.apellido}"
+        )
+        ventana_editar.geometry("400x400")
+        ventana_editar.grab_set()  # bloquea la principal hasta que esta se cierre
+
+        ctk.CTkLabel(
+            ventana_editar,
+            text=f"Editando: {jugador_buscado.nombre} {jugador_buscado.apellido}",
+            font=("Arial", 16, "bold"),
+        ).pack(pady=15)
+
+        nuevo_nombre = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_nombre.insert(0, jugador_buscado.nombre)
+        nuevo_nombre.pack(pady=10)
+
+        nuevo_apellido = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_apellido.insert(0, jugador_buscado.apellido)
+        nuevo_apellido.pack(pady=10)
+
+        nuevo_dorsal = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_dorsal.insert(0, str(jugador_buscado.dorsal))
+        nuevo_dorsal.pack(pady=10)
+
+        nuevo_posicion = ctk.CTkEntry(ventana_editar, width=250)
+        nuevo_posicion.insert(0, jugador_buscado.posicion)
+        nuevo_posicion.pack(pady=10)
+
+        def guardar_cambios():
+
+            lista_jugadores = cargar_futbolista()
+
+            for jugador in lista_jugadores:
+                if (
+                    jugador.nombre == jugador_buscado.nombre
+                    and jugador.apellido == jugador_buscado.apellido
+                ):
+                    jugador.nombre = nuevo_nombre.get().strip()
+                    jugador.apellido = nuevo_apellido.get().strip()
+                    jugador.dorsal = int(nuevo_dorsal.get().strip())
+                    jugador.posicion = nuevo_posicion.get().strip()
+
+            modificar_futbolistas(lista_jugadores)
+
+            self.cargar_jugadores_lista()
+            ventana_editar.destroy()
+
+        btn_confirmar = ctk.CTkButton(
+            ventana_editar, text="Guardar cambios", command=guardar_cambios
+        )
+        btn_confirmar.pack(pady=20)
 
 
 if __name__ == "__main__":
