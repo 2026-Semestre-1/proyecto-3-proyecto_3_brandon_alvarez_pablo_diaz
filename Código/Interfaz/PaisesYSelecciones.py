@@ -1,4 +1,5 @@
 # ========================================== Librerias =============================================
+import tkinter as tk
 from Clases.Seleccion import Seleccion
 import customtkinter as ctk
 from Persistencia import *
@@ -43,35 +44,23 @@ class VentanaAdministracion(ctk.CTkToplevel):
         pestana = self.pestanas.tab("Registrar País")
 
         # titulo de la sección
-        titulo = ctk.CTkLabel(
-            pestana, text="Registrar Nuevo País", font=("Arial", 18, "bold")
-        )
+        titulo = ctk.CTkLabel(pestana, text="Registrar Nuevo País", font=("Arial", 18, "bold"))
         titulo.pack(pady=20)
 
         # campos del formulario
-        self.codigo_fifa = ctk.CTkEntry(
-            pestana, placeholder_text="Codigo FIFA (Ej. CRC)", width=320
-        )
+        self.codigo_fifa = ctk.CTkEntry(pestana, placeholder_text="Codigo FIFA (Ej. CRC)", width=320)
         self.codigo_fifa.pack(pady=20)
 
-        self.nombre_pais = ctk.CTkEntry(
-            pestana, placeholder_text="Nombre del país", width=320
-        )
+        self.nombre_pais = ctk.CTkEntry(pestana, placeholder_text="Nombre del país", width=320)
         self.nombre_pais.pack(pady=20)
 
-        self.continente_pais = ctk.CTkEntry(
-            pestana, placeholder_text="Continente del país", width=320
-        )
+        self.continente_pais = ctk.CTkEntry(pestana, placeholder_text="Continente del país", width=320)
         self.continente_pais.pack(pady=20)
 
-        self.ranking_fifa = ctk.CTkEntry(
-            pestana, placeholder_text="Ranking FIFA (Número)", width=320
-        )
+        self.ranking_fifa = ctk.CTkEntry(pestana, placeholder_text="Ranking FIFA (Número)", width=320)
         self.ranking_fifa.pack(pady=20)
 
-        btn_guardar = ctk.CTkButton(
-            pestana, text="Guardar país", command=self.guardar_pais, fg_color="green"
-        )
+        btn_guardar = ctk.CTkButton(pestana, text="Guardar país", command=self.guardar_pais, fg_color="green")
         btn_guardar.pack(pady=20)
 
     # =================================== Funcion guardar pais =====================================
@@ -86,21 +75,25 @@ class VentanaAdministracion(ctk.CTkToplevel):
         continente = self.continente_pais.get().strip()
         ranking_fifa = self.ranking_fifa.get().strip()
 
-        if (
-            codigo_fifa == ""
-            or nombre_pais == ""
-            or continente == ""
-            or ranking_fifa == ""
-        ):
-            print(
-                "Error: Todos los campos son obligatorios"
-            )  # Reemplazar luego por un modal de alerta
+        if (codigo_fifa == "" or nombre_pais == "" or continente == "" or ranking_fifa == ""):
+            tk.messagebox.showerror("Datos inválidos", "Error: Todos los campos son obligatorios")
+            return
+        
+        if not (isinstance(codigo_fifa, str) and isinstance(nombre_pais, str) and isinstance(continente, str)):
+            tk.messagebox.showerror("Datos Inválidos", "Error: El nombre y el continente deben ser texto válido")
+            return
+        
+        try:
+            ranking_fifa_entero = int(ranking_fifa)
+            if ranking_fifa_entero < 0:
+                tk.messagebox.showerror("Ranking Erróneo", "Error: El ranking FIFA debe ser un número positivo mayor a 0")
+                return
+        except Exception:
+            tk.messagebox.showerror("Tipo de Dato Erróneo", "Error: El ranking debe ser un número entero válido (sin letras ni puntos)")
             return
 
         guardar_pais(codigo_fifa, nombre_pais, continente, int(ranking_fifa))
-        print(
-            f"Éxito: {nombre_pais} guardado correctamente"
-        )  # cambiar esto, solo es por probar
+        tk.messagebox.showinfo("Notificación", f"Éxito: {nombre_pais} guardado correctamente")  
 
         # se borra las entradas para el siguiente registro
         self.codigo_fifa.delete(0, "end")
@@ -120,28 +113,22 @@ class VentanaAdministracion(ctk.CTkToplevel):
     def registro_seleccion(self):
         pestana = self.pestanas.tab("Registrar Selección")
 
-        titulo = ctk.CTkLabel(
-            pestana, text="Asociar Selección a un País", font=("Arial", 18, "bold")
-        )
+        titulo = ctk.CTkLabel(pestana, text="Asociar Selección a un País", font=("Arial", 18, "bold"))
         titulo.pack(pady=15)
 
-        # Menu desplegable (ComboBox) que contendrá los países del TXT
+        # menu desplegable que contendrá los países del txf
         ctk.CTkLabel(pestana, text="Seleccione un país de la lista:").pack(pady=2)
         self.combo_paises = ctk.CTkComboBox(pestana, values=[], width=300)
         self.combo_paises.pack(pady=10)
 
         ctk.CTkLabel(pestana, text="Digite el código de la selección:").pack(pady=2)
-        self.codigo_equipo = ctk.CTkEntry(
-            pestana, placeholder_text="Ej: SEL-CRC", width=320
-        )
+        self.codigo_equipo = ctk.CTkEntry(pestana, placeholder_text="Ej: SEL-CRC", width=320)
         self.codigo_equipo.pack(pady=10)
 
         # Rellenar el combo con los países que ya existen en el .txt
         self.actualizar_combo_paises()
 
-        btn_crear = ctk.CTkButton(
-            pestana, text="Hacer Selección", command=self.crear_seleccion
-        )
+        btn_crear = ctk.CTkButton(pestana, text="Hacer Selección", command=self.crear_seleccion)
         btn_crear.pack(pady=20)
 
     # =================================== Funcion actualizar combo paises ==========================
@@ -179,9 +166,7 @@ class VentanaAdministracion(ctk.CTkToplevel):
         codigo_equipo = self.codigo_equipo.get().strip()
 
         if nombre_pais == "No hay países registrados" or codigo_equipo == "":
-            print(
-                "Error: Debe seleccionar un país y asignar un código de equipo."
-            )  # esto se cambia también
+            tk.messagebox.showerror("Datos faltantes", "Error: Debe seleccionar un país y asignar un código de equipo")
             return
 
         print(nombre_pais)
@@ -197,14 +182,20 @@ class VentanaAdministracion(ctk.CTkToplevel):
                 break
 
         if pais_encontrado != None:
+            
+            lista_selecciones = cargar_seleccion(lista_paises, [], [])
+
+            for seleccion in lista_selecciones:
+                if seleccion.pais.nombre == nombre_pais:
+                    tk.messagebox.showerror("País Duplicado", f"Error: {nombre_pais} ya está registrado como una Selección Oficial\n"
+                        f"Cada país solo puede tener una única selección en el torneo")
+                    return
 
             nueva_seleccion = Seleccion(codigo_equipo, pais_encontrado)
 
             guardar_seleccion(nueva_seleccion)
 
-            print(
-                f"Éxito: {nueva_seleccion.pais.nombre} ahora es una Selección Oficial"
-            )
+            tk.messagebox.showinfo("Dato ingresado", f"Éxito: {nueva_seleccion.pais.nombre} ahora es una Selección Oficial")
 
             self.codigo_equipo.delete(0, "end")
 
@@ -255,12 +246,7 @@ class VentanaAdministracion(ctk.CTkToplevel):
             lbl_informacion = ctk.CTkLabel(fila, text=informacion, font=("Arial", 14))
             lbl_informacion.pack(side="left", padx=10, pady=10)
 
-            btn_editar = ctk.CTkButton(
-                fila,
-                text="Editar",
-                width=80,
-                command=lambda pais_objeto=pais: self.ventana_edicion(pais_objeto),
-            )
+            btn_editar = ctk.CTkButton(fila,text="Editar",width=80, command=lambda pais_objeto=pais: self.ventana_edicion(pais_objeto))
             btn_editar.pack(side="right", padx=10, pady=10)
 
     # =================================== Funcion ventana de edicion ===============================
@@ -272,15 +258,12 @@ class VentanaAdministracion(ctk.CTkToplevel):
     def ventana_edicion(self, pais_buscado):
 
         ventana_editar = ctk.CTkToplevel(self)
+        ventana_editar.attributes('-topmost', True)
         ventana_editar.title(f"Modificar: {pais_buscado.nombre}")
         ventana_editar.geometry("400x400")
         ventana_editar.grab_set()  # bloquea la principal hasta que esta se cierre
 
-        ctk.CTkLabel(
-            ventana_editar,
-            text=f"Editando: {pais_buscado.codigo_fifa}",
-            font=("Arial", 16, "bold"),
-        ).pack(pady=15)
+        ctk.CTkLabel(ventana_editar,text=f"Editando: {pais_buscado.codigo_fifa}",font=("Arial", 16, "bold"),).pack(pady=15)
 
         nuevo_nombre = ctk.CTkEntry(ventana_editar, width=250)
         nuevo_nombre.insert(0, pais_buscado.nombre)
@@ -296,27 +279,46 @@ class VentanaAdministracion(ctk.CTkToplevel):
 
         def guardar_cambios():
 
+            nuevo_nombre_obtenido = nuevo_nombre.get().strip()
+            nuevo_continente_obtenido = nuevo_continente.get().strip()
+            nuevo_ranking_obtenido = nuevo_ranking.get().strip()
+
+            if nuevo_nombre_obtenido == "" or nuevo_continente_obtenido or nuevo_ranking_obtenido == "":
+                tk.messagebox.showerror("Campos Vacíos", "Error: Todos los campos son obligatorios para modificar el país")
+                return
+            
+            if not (isinstance(nuevo_nombre_obtenido, str) and isinstance(nuevo_continente_obtenido, str)):
+                tk.messagebox.showerror("Datos Inválidos", "Error: El nombre y el continente deben ser texto válido")
+                return
+            
+            try:
+                ranking_entero = int(nuevo_ranking_obtenido)
+                if ranking_entero <= 0:
+                    tk.messagebox.showerror("Ranking Erróneo", "Error: El ranking FIFA debe ser un número positivo mayor a 0")
+                    return
+            except Exception:
+                tk.messagebox.showerror("Tipo de Dato Erróneo", "Error: El ranking debe ser un número entero válido (sin letras ni puntos)")
+                return
+
             lista_paises = cargar_pais()
+            pais_modificado = None
 
             for pais in lista_paises:
                 if pais.codigo_fifa == pais_buscado.codigo_fifa:
-                    pais.nombre = nuevo_nombre.get().strip()
-                    pais.continente = nuevo_continente.get().strip()
-                    pais.ranking_fifa = int(nuevo_ranking.get().strip())
+                    pais.nombre = nuevo_nombre_obtenido
+                    pais.continente = nuevo_continente_obtenido
+                    pais.ranking_fifa = nuevo_ranking_obtenido
+                    pais_modificado = pais
+                    break
 
-            modificar_pais(
-                lista_paises,
-                pais.codigo_fifa,
-                pais.nombre,
-                pais.continente,
-                pais.ranking_fifa,
-            )
+
+            if pais_buscado != None:
+                modificar_pais(lista_paises, pais_modificado.codigo_fifa, pais_modificado.nombre, pais_buscado.continente, pais_modificado.ranking_fifa)
+                tk.messagebox.showinfo("Cambios Guardados", f"Éxito: Los datos de {pais_modificado.nombre} han sido actualizados")
 
             self.cargar_paises_lista()
             self.actualizar_combo_paises()
             ventana_editar.destroy()
 
-        btn_confirmar = ctk.CTkButton(
-            ventana_editar, text="Guardar cambios", command=guardar_cambios
-        )
+        btn_confirmar = ctk.CTkButton(ventana_editar, text="Guardar cambios", command=guardar_cambios)
         btn_confirmar.pack(pady=20)
