@@ -2,3 +2,7 @@ CRC|SEL-CRC|None|None
 BRA|SEL-BRA|None|None
 FRA|SEL-FRA|None|None
 ARG|SEL-ARG|None|None
+CAN|SEL-CAN|None|None
+ESP|SEL-ESP|None|None
+GER|SEL-GER|None|None
+USA|SEL-USA|None|None

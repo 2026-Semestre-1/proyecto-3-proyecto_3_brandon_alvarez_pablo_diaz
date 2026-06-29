@@ -1,5 +1,6 @@
 # ========================================== Librerias =============================================
 from Persistencia import *
+import tkinter as tk
 import customtkinter as ctk
 import random
 # ==================================================================================================
@@ -152,16 +153,14 @@ class VentanaPlantilla(ctk.CTkToplevel):
             or experiencia_anios == ""
             or sistema_juego == ""
         ):
-            print(
-                "Error: Todos los campos son obligatorios"
-            )  # Reemplazar luego por un modal de alerta
+            tk.messagebox.showerror("Validación inválida", "Todos los campos del entrenador son obligatorios.")
             return False
 
         try:
             experiencia_anios = int(experiencia_anios)
 
         except ValueError:
-            print("Error: La experiencia debe ser un número entero")
+            tk.messagebox.showerror("Tipo inválido", "La experiencia debe ser un número entero.")
             return False
 
         guardar_entrenador(
@@ -174,9 +173,8 @@ class VentanaPlantilla(ctk.CTkToplevel):
             sistema_juego,
             codigo_equipo,
         )
-        print(
-            f"Éxito: {nombre} {apellido} guardado correctamente"
-        )  # cambiar esto, solo es por probar
+
+        tk.messagebox.showinfo("Entrenador guardado", f"El entrenador {nombre} {apellido} se guardó correctamente.")
 
         # Si se seleccionó una selección, actualizar el archivo de selecciones
         if codigo_equipo != "" and codigo_equipo != "No hay selecciones":
@@ -265,7 +263,7 @@ class VentanaPlantilla(ctk.CTkToplevel):
         )
         self.posicion_futbolista.pack(pady=(0, 5))
 
-        # Menu desplegable (ComboBox) que contendrá los países del TXT
+        # Menu desplegable
         ctk.CTkLabel(scroll, text="Seleccione un equipo de la lista:").pack(
             pady=(10, 0)
         )
@@ -376,20 +374,18 @@ class VentanaPlantilla(ctk.CTkToplevel):
             or dorsal == ""
             or posicion == ""
         ):
-            print(
-                "Error: Todos los campos son obligatorios"
-            )  # Reemplazar luego por un modal de alerta
+            tk.messagebox.showerror("Validación inválida", "Todos los campos del futbolista son obligatorios.")
             return False
 
         try:
             dorsal = int(dorsal)
 
         except ValueError:
-            print("Error: El dorsal debe ser un número entero")
+            tk.messagebox.showerror("Tipo inválido", "El dorsal debe ser un número entero.")
             return False
 
         if codigo_equipo == "No hay selecciones":
-            print("Error: Debe haber al menos una selección registrada")
+            tk.messagebox.showerror("Selección no válida", "Debe haber al menos una selección registrada para asignar el futbolista.")
             return False
 
         # Generar estadísticas aleatorias
@@ -413,6 +409,8 @@ class VentanaPlantilla(ctk.CTkToplevel):
             puntaje_individual,
             codigo_equipo,
         )
+
+        tk.messagebox.showinfo("Futbolista guardado", f"El futbolista {nombre} {apellido} se guardó correctamente.")
 
         self.nombre_futbolista.delete(0, "end")
         self.apellido_futbolista.delete(0, "end")
@@ -549,7 +547,8 @@ class VentanaPlantilla(ctk.CTkToplevel):
             f"Eliminar: {jugador_buscado.nombre} {jugador_buscado.apellido}"
         )
         ventana_eliminar.geometry("400x200")
-        ventana_eliminar.grab_set()  # bloquea la principal hasta que esta se cierre
+        ventana_eliminar.attributes('-topmost', True)
+        ventana_eliminar.grab_set()
 
         ctk.CTkLabel(
             ventana_eliminar,
@@ -644,13 +643,14 @@ class VentanaPlantilla(ctk.CTkToplevel):
                 or dorsal_editado == ""
                 or posicion_editado == ""
             ):
-                print("Error: Todos los campos son obligatorios")
+                tk.messagebox.showerror("Validación inválida", "Todos los campos del futbolista son obligatorios.")
                 return
 
             try:
                 dorsal_int = int(dorsal_editado)
+
             except ValueError:
-                print("Error: El dorsal debe ser un número entero")
+                tk.messagebox.showerror("Tipo inválido", "El dorsal debe ser un número entero.",)
                 return
 
             for jugador in lista_jugadores:
@@ -664,6 +664,8 @@ class VentanaPlantilla(ctk.CTkToplevel):
                     jugador.posicion = posicion_editado
 
             modificar_futbolistas(lista_jugadores)
+
+            tk.messagebox.showinfo("Futbolista modificado", f"Los cambios de {nombre_editado} {apellido_editado} se guardaron correctamente.")
 
             self.cargar_jugadores_lista()
             ventana_editar.destroy()
