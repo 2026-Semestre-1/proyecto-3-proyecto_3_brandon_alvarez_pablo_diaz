@@ -106,6 +106,7 @@ def cargar_entrenadores():
                 partes[5],
                 partes[6],
             )
+            lista += [entrenador]
 
         archivo.close()
 
