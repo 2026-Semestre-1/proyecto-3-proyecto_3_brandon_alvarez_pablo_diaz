@@ -1,8 +1,14 @@
+# ========================================== Librerias =============================================
 import customtkinter as ctk
 from Persistencia import *
-from Clases.Mundial import Mundial
+# ==================================================================================================
 
-
+# ========================================= Clase Ventana Configuracion ============================
+# Nombre: VentanaConfiguracion
+# Entradas: ninguna.
+# Salidas: Ventana de configuración de grupos del mundial. 
+# Restricciones:
+# ==================================================================================================
 class VentanaConfiguracion(ctk.CTkToplevel):
     def __init__(self, parent, mundial_instancia):
         super().__init__(parent)
@@ -35,6 +41,12 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         self.scroll_grupos = ctk.CTkScrollableFrame(self, width=700, height=350)
         self.scroll_grupos.pack(padx=20, pady=15, fill="both", expand=True)
 
+    # =================================== Funcion generar grupos ===================================
+    # Nombre: generar_grupos
+    # Entradas: Ninguna.
+    # Salidas: Distribución de selecciones en grupos según la cantidad ingresada.
+    # Restricciones:
+    # ==============================================================================================
     def generar_grupos(self):
         entrada = self.cantidad_grupos.get().strip()
 
@@ -78,6 +90,12 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         else:
             print("Error: no se pudieron crear los grupos")
 
+    # =================================== Funcion mostrar grupos ===================================
+    # Nombre: mostrar_grupos
+    # Entradas: Ninguna.
+    # Salidas: Muestra los grupos generados en la ventana de configuración.
+    # Restricciones:
+    # ==============================================================================================
     def mostrar_grupos(self, lista_grupos):
 
         for componentes in self.scroll_grupos.winfo_children():
