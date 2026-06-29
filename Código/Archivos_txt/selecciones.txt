@@ -1,8 +1,8 @@
-CRC|SEL-CRC|None|None
-BRA|SEL-BRA|None|None
-FRA|SEL-FRA|None|None
-ARG|SEL-ARG|None|None
-CAN|SEL-CAN|None|None
-ESP|SEL-ESP|None|None
-GER|SEL-GER|None|None
-USA|SEL-USA|None|None
+ARG|SEL-ARG|Lionel|Scaloni
+FRA|SEL-FRA|Didier|Deschamps
+BRA|SEL-BRA|Dorival|Júnior
+ESP|SEL-ESP|Luis|de la Fuente
+CRC|SEL-CRC|Gustavo|Alfaro
+JPN|SEL-JPN|Hajime|Moriyasu
+MAR|SEL-MAR|Walid|Regragui
+NZL|SEL-NZL|Darren|Bazeley

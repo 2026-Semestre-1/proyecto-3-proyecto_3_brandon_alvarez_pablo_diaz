@@ -1,8 +1,8 @@
-Canada|7|0|Semifinal
-Espanna|6|2|Final
-Brasil|6|0|Semifinal
-Francia|6|2|Final
-Costa Rica|3|0|Fase de Grupos
-Argentina|3|0|Fase de Grupos
-Estados Unidos|3|0|Fase de Grupos
-Alemania|1|0|Fase de Grupos
+Espanna|7|2|Semifinal
+Brasil|7|3|Semifinal
+Marruecos|5|2|Final
+Nueva Zelanda|4|3|Final
+Argentina|4|0|Fase de Grupos
+Francia|3|0|Fase de Grupos
+Japón|3|0|Fase de Grupos
+Costa Rica|0|0|Fase de Grupos

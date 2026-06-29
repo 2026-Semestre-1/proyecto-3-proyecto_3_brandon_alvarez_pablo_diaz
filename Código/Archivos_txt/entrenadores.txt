@@ -1,0 +1,8 @@
+Lionel|Scaloni|16/05/1978|Argentina|CONMEBOL Pro|8|4-3-3|SEL-ARG
+Didier|Deschamps|15/10/1968|Francesa|UEFA Pro|23|4-2-3-1|SEL-FRA
+Dorival|Júnior|25/04/1962|Brasileña|CONMEBOL Pro|22|4-2-3-1|SEL-BRA
+Luis|de la Fuente|21/06/1961|Española|UEFA Pro|26|4-3-3|SEL-ESP
+Gustavo|Alfaro|14/08/1962|Argentina|CONMEBOL Pro|34|5-4-1|SEL-CRC
+Hajime|Moriyasu|23/08/1968|Japonesa|AFC Pro|14|4-2-3-1|SEL-JPN
+Walid|Regragui|23/09/1975|Marroquí|CAF Pro|12|4-3-3|SEL-MAR
+Darren|Bazeley|05/10/1972|Inglesa|OFC Pro|17|4-3-3|SEL-NZL

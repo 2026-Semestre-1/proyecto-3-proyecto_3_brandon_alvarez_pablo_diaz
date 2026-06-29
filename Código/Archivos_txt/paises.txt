@@ -1,9 +1,8 @@
-CRC|Costa Rica|America|25
-BRA|Brasil|America|62
-FRA|Francia|Europa|40
-ARG|Argentina|America|60
-CAN|Canada|Europa|76
-ESP|Espanna|Europa|15
-GER|Alemania|Europa|23
-USA|Estados Unidos|America|25
-MEX|Mexico|America|86
+ARG|Argentina|América del Sur|1
+FRA|Francia|Europa|2
+BRA|Brasil|América del Sur|5
+ESP|Espanna|Europa|8
+CRC|Costa Rica|América Central|52
+JPN|Japón|Asia|18
+MAR|Marruecos|África|12
+NZL|Nueva Zelanda|Oceanía|104
