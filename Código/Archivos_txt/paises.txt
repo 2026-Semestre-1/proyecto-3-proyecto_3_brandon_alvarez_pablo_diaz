@@ -6,3 +6,4 @@ CAN|Canada|Europa|76
 ESP|Espanna|Europa|15
 GER|Alemania|Europa|23
 USA|Estados Unidos|America|25
+MEX|Mexico|America|86

@@ -3,6 +3,7 @@ import tkinter as tk
 from Clases.Seleccion import Seleccion
 import customtkinter as ctk
 from Persistencia import *
+from Utilidades import *
 # ==================================================================================================
 
 # ========================================= Clase Administracion ===================================
@@ -79,8 +80,12 @@ class VentanaAdministracion(ctk.CTkToplevel):
             tk.messagebox.showerror("Datos inválidos", "Error: Todos los campos son obligatorios")
             return
         
-        if not (isinstance(codigo_fifa, str) and isinstance(nombre_pais, str) and isinstance(continente, str)):
+        if not (isinstance(codigo_fifa, str) or isinstance(nombre_pais, str) or isinstance(continente, str)):
             tk.messagebox.showerror("Datos Inválidos", "Error: El nombre y el continente deben ser texto válido")
+            return
+        
+        if largoLista(codigo_fifa) != 3:
+            tk.messagebox.showerror("Código Inválido", "Error: El código FIFA debe tener exactamente 3 caracteres (ej: CRC)")
             return
         
         try:
@@ -91,6 +96,22 @@ class VentanaAdministracion(ctk.CTkToplevel):
         except Exception:
             tk.messagebox.showerror("Tipo de Dato Erróneo", "Error: El ranking debe ser un número entero válido (sin letras ni puntos)")
             return
+        
+        try:
+            int(nombre_pais)
+            # Si llega a esta linea, es porque el nombre era un número puro
+            tk.messagebox.showerror("Nombre Inválido", "Error: El nombre del país no puede ser un número numérico")
+            return
+        except Exception:
+            # Si explota el int(), significa que sí es un texto con letras
+            pass
+
+        try:
+            int(continente)
+            tk.messagebox.showerror("Continente Inválido", "Error: El continente no puede ser un número numérico")
+            return
+        except Exception:
+            pass
 
         guardar_pais(codigo_fifa, nombre_pais, continente, int(ranking_fifa))
         tk.messagebox.showinfo("Notificación", f"Éxito: {nombre_pais} guardado correctamente")  
@@ -299,6 +320,22 @@ class VentanaAdministracion(ctk.CTkToplevel):
             except Exception:
                 tk.messagebox.showerror("Tipo de Dato Erróneo", "Error: El ranking debe ser un número entero válido (sin letras ni puntos)")
                 return
+            
+            try:
+                int(nuevo_nombre_obtenido)
+                # Si llega a esta línea, es porque el nombre era un número puro
+                tk.messagebox.showerror("Nombre Inválido", "Error: El nombre del país no puede ser un número numérico")
+                return
+            except Exception:
+                # Si explota el int(), significa que sí es un texto con letras
+                pass
+
+            try:
+                int(nuevo_continente_obtenido)
+                tk.messagebox.showerror("Continente Inválido", "Error: El continente no puede ser un número numérico")
+                return
+            except Exception:
+                pass
 
             lista_paises = cargar_pais()
             pais_modificado = None
