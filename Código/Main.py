@@ -62,7 +62,7 @@ def abrir_jugar():
 # Restricciones:
 # ==============================================================================================
 def abrir_estadisticas():
-    VentanaEstadisticas()
+    VentanaEstadisticas(ventana)
 
 
 # =================================== Ventana Principal ========================================

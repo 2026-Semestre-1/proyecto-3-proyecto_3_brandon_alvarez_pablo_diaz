@@ -10,8 +10,8 @@ import customtkinter as ctk
 # Restricciones:
 # ==================================================================================================
 class VentanaEstadisticas(ctk.CTkToplevel):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent): 
+        super().__init__(parent)
         self.title("Estadísticas / Rankings")
         self.geometry("700x500")
         self.resizable(False, False)
@@ -159,18 +159,40 @@ class VentanaEstadisticas(ctk.CTkToplevel):
     # Restricciones:
     # ==============================================================================================
     def cargar_selecciones_general_lista(self):
+        
         for componentes in self.frame_generales.winfo_children():
             componentes.destroy()
 
         lista_paises = cargar_pais()
-
+        
         lista_entrenadores = cargar_entrenadores()
-
+        
         lista_jugadores = cargar_futbolista()
+        
+        lista_selecciones = cargar_seleccion(lista_paises, lista_entrenadores, lista_jugadores)
 
-        lista_selecciones = cargar_seleccion(
-            lista_paises, lista_entrenadores, lista_jugadores
-        )
+        if lista_selecciones == []:
+            ctk.CTkLabel(self.frame_generales,text="No hay datos. Registre selecciones y juegue el torneo primero.", font=("Arial", 12)).pack(pady=20)
+
+            return
+
+        todos_en_cero = True
+
+        for seleccion in lista_selecciones:
+        
+            if seleccion.total_goles_favor > 0:
+        
+                todos_en_cero = False
+                break
+
+        if todos_en_cero:
+            ctk.CTkLabel(
+                self.frame_generales,
+                text="Las estadísticas estarán disponibles después de jugar el torneo.",
+                font=("Arial", 12),
+                wraplength=400
+            ).pack(pady=20)
+            return
 
         max_goles = None
         max_amarillas = None
@@ -178,42 +200,26 @@ class VentanaEstadisticas(ctk.CTkToplevel):
 
         for seleccion in lista_selecciones:
 
-            if (
-                max_goles == None
-                or seleccion.total_goles_favor > max_goles.total_goles_favor
-            ):
+            if max_goles == None or seleccion.total_goles_favor > max_goles.total_goles_favor:
                 max_goles = seleccion
 
-            if (
-                max_amarillas == None
-                or seleccion.total_tarjetas_amarillas
-                > max_amarillas.total_tarjetas_amarillas
-            ):
+            if max_amarillas == None or seleccion.total_tarjetas_amarillas > max_amarillas.total_tarjetas_amarillas:
                 max_amarillas = seleccion
-
-            if (
-                max_rojas == None
-                or seleccion.total_tarjetas_rojas > max_rojas.total_tarjetas_rojas
-            ):
+                
+            if max_rojas == None or seleccion.total_tarjetas_rojas > max_rojas.total_tarjetas_rojas:
                 max_rojas = seleccion
 
         if max_goles != None:
-            ctk.CTkLabel(
-                self.frame_generales,
+            ctk.CTkLabel(self.frame_generales,
                 text=f"⚽ Selección con más goles: {max_goles.pais.nombre} ({max_goles.total_goles_favor} goles)",
-                font=("Arial", 14),
-            ).pack(pady=10)
+                font=("Arial", 14)).pack(pady=10)
 
         if max_amarillas != None:
-            ctk.CTkLabel(
-                self.frame_generales,
+            ctk.CTkLabel(self.frame_generales,
                 text=f"🟨 Más tarjetas amarillas: {max_amarillas.pais.nombre} ({max_amarillas.total_tarjetas_amarillas})",
-                font=("Arial", 14),
-            ).pack(pady=10)
+                font=("Arial", 14)).pack(pady=10)
 
         if max_rojas != None:
-            ctk.CTkLabel(
-                self.frame_generales,
+            ctk.CTkLabel(self.frame_generales,
                 text=f"🟥 Más tarjetas rojas: {max_rojas.pais.nombre} ({max_rojas.total_tarjetas_rojas})",
-                font=("Arial", 14),
-            ).pack(pady=10)
+                font=("Arial", 14)).pack(pady=10)
