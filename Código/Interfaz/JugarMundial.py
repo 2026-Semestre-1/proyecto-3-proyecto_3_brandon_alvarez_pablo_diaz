@@ -1,8 +1,15 @@
+# ========================================== Librerias =============================================
 import customtkinter as ctk
 from Persistencia import *
 from Clases.Mundial import Mundial
+# ==================================================================================================
 
-
+# ========================================= Clase Jugar Mundial ====================================
+# Nombre: VentanaJugarMundial
+# Entradas: ninguna.
+# Salidas: Ventana de juego del mundial.
+# Restricciones:
+# ==================================================================================================
 class VentanaJugarMundial(ctk.CTkToplevel):
 
     def __init__(self, parent, mundial_instancia):
@@ -39,6 +46,12 @@ class VentanaJugarMundial(ctk.CTkToplevel):
         self.scroll_resultados = ctk.CTkScrollableFrame(self, width=750, height=400)
         self.scroll_resultados.pack(padx=20, pady=15, fill="both", expand=True)
 
+    # =================================== Funcion simular fase grupos ==============================
+    # Nombre: simular_fase_grupos
+    # Entradas: Ninguna.
+    # Salidas: Simulación de la fase de grupos del mundial y muestra de los resultados.
+    # Restricciones:
+    # ==============================================================================================
     def simular_fase_grupos(self):
         if self.mundial == None or self.mundial.grupos == []:
             self.imprimir_en_pantalla("Error: no se ha configurado los grupos del Mundial aún\n")
@@ -72,6 +85,12 @@ class VentanaJugarMundial(ctk.CTkToplevel):
                 "Fase de grupos finalizada. Clasificados listos para las eliminatorias\n\n"
             )
 
+    # =================================== Funcion avanzar ronda ====================================
+    # Nombre: avanzar_ronda
+    # Entradas: Ninguna.
+    # Salidas: Simulación de la siguiente ronda del mundial y muestra de los resultados.
+    # Restricciones:
+    # ==============================================================================================
     def avanzar_ronda(self):
 
         cantidad_equipos = largoLista(self.clasificados_actuales)
@@ -106,6 +125,12 @@ class VentanaJugarMundial(ctk.CTkToplevel):
             self.mundial.campeon = self.clasificados_actuales[0]
             self.btn_siguiente_ronda.configure(text="Ver campeón")
 
+    # =================================== Funcion mostrar campeon destacado ========================
+    # Nombre: mostrar_campeon_destacado
+    # Entradas: campeon_seleccion (objeto de tipo Seleccion).
+    # Salidas: Muestra en pantalla al campeón del mundial.
+    # Restricciones:
+    # ==============================================================================================
     def mostrar_campeon_destacado(self, campeon_seleccion):
 
         for componenetes in self.scroll_resultados.winfo_children():
@@ -137,6 +162,12 @@ class VentanaJugarMundial(ctk.CTkToplevel):
 
         self.btn_siguiente_ronda.configure(state="disabled", text="Torneo concluido")
 
+    # =================================== Funcion imprimir en pantalla =============================
+    # Nombre: imprimir_en_pantalla
+    # Entradas: texto (string).
+    # Salidas: Muestra el texto recibido en la pantalla de resultados del juego.
+    # Restricciones:
+    # ==============================================================================================
     def imprimir_en_pantalla(self, texto):
         lbl = ctk.CTkLabel(
             self.scroll_resultados,

@@ -1,4 +1,4 @@
-Alisson|Becker|02/10/1992|Brasileño|1|Portero|0|0|0|0|92|SEL-BRA
+Alissone|Becker|02/10/1992|Brasileño|1|Portero|0|0|0|0|92|SEL-BRA
 Thiago|Silva|22/09/1984|Brasileño|3|Defensa|0|0|0|0|88|SEL-BRA
 Marquinhos|Santos|14/05/1994|Brasileño|4|Defensa|0|0|0|0|87|SEL-BRA
 Casemiro|Henrique|23/02/1992|Brasileño|5|Mediocampista|0|0|0|0|86|SEL-BRA

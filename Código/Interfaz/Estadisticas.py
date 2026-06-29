@@ -1,7 +1,14 @@
+# ========================================== Librerias =============================================
 from Persistencia import *
 import customtkinter as ctk
+# ==================================================================================================
 
-
+# ========================================= Clase Ventana Estadisticas =============================
+# Nombre: VentanaEstadisticas
+# Entradas: ninguna.
+# Salidas: Ventana de estadísticas y rankings del mundial.
+# Restricciones:
+# ==================================================================================================
 class VentanaEstadisticas(ctk.CTkToplevel):
     def __init__(self):
         super().__init__()
@@ -19,11 +26,17 @@ class VentanaEstadisticas(ctk.CTkToplevel):
         self.pestanas.add("Ranking Selecciones")
         self.pestanas.add("Estadísticas Generales")
 
-        self.pestaña_goleadores()
+        self.pestana_goleadores()
         self.pestana_selecciones()
         self.pestana_generales()
 
-    def pestaña_goleadores(self):
+    # =================================== Funcion pestaña goleadores ===============================
+    # Nombre: pestana_goleadores
+    # Entradas: Ninguna.
+    # Salidas: Pestaña de ranking de goleadores.
+    # Restricciones:
+    # ==============================================================================================
+    def pestana_goleadores(self):
         pestana = self.pestanas.tab("Ranking Goleadores")
 
         # ComboBox para elegir selección
@@ -41,6 +54,12 @@ class VentanaEstadisticas(ctk.CTkToplevel):
 
         self.cargar_goleadores_lista()
 
+    # =================================== Funcion cargar goleadores lista ===============================
+    # Nombre: cargar_goleadores_lista
+    # Entradas: Ninguna.
+    # Salidas: Lista de goleadores en la pestaña correspondiente.
+    # Restricciones:
+    # ==============================================================================================
     def cargar_goleadores_lista(self):
 
         for componentes in self.scroll_goleadores.winfo_children():
@@ -60,6 +79,12 @@ class VentanaEstadisticas(ctk.CTkToplevel):
             )
             label.pack(pady=5)
 
+    # =================================== Funcion pestana selecciones ===============================
+    # Nombre: pestana_selecciones
+    # Entradas: Ninguna.
+    # Salidas: Pestaña de ranking de selecciones.
+    # Restricciones:
+    # ==============================================================================================
     def pestana_selecciones(self):
         pestana = self.pestanas.tab("Ranking Selecciones")
 
@@ -78,6 +103,12 @@ class VentanaEstadisticas(ctk.CTkToplevel):
 
         self.cargar_selecciones_lista()
 
+    # =================================== Funcion cargar selecciones lista ===============================
+    # Nombre: cargar_selecciones_lista
+    # Entradas: Ninguna.
+    # Salidas: Lista de selecciones en la pestaña correspondiente.
+    # Restricciones:
+    # ==============================================================================================
     def cargar_selecciones_lista(self):
 
         for componentes in self.scroll_selecciones.winfo_children():
@@ -99,6 +130,12 @@ class VentanaEstadisticas(ctk.CTkToplevel):
             )
             label.pack(pady=5)
 
+    # =================================== Funcion pestana generales ===============================
+    # Nombre: pestana_generales
+    # Entradas: Ninguna.
+    # Salidas: Pestaña de estadísticas generales.
+    # Restricciones:
+    # ==============================================================================================
     def pestana_generales(self):
         pestana = self.pestanas.tab("Estadísticas Generales")
 
@@ -115,6 +152,12 @@ class VentanaEstadisticas(ctk.CTkToplevel):
 
         self.cargar_selecciones_general_lista()
 
+    # =================================== Funcion cargar selecciones general lista =================
+    # Nombre: cargar_selecciones_general_lista
+    # Entradas: Ninguna.
+    # Salidas: Lista de selecciones con estadísticas generales en la pestaña correspondiente.
+    # Restricciones:
+    # ==============================================================================================
     def cargar_selecciones_general_lista(self):
         for componentes in self.frame_generales.winfo_children():
             componentes.destroy()
@@ -174,8 +217,3 @@ class VentanaEstadisticas(ctk.CTkToplevel):
                 text=f"🟥 Más tarjetas rojas: {max_rojas.pais.nombre} ({max_rojas.total_tarjetas_rojas})",
                 font=("Arial", 14),
             ).pack(pady=10)
-
-
-if __name__ == "__main__":
-    app = VentanaEstadisticas()
-    app.mainloop()

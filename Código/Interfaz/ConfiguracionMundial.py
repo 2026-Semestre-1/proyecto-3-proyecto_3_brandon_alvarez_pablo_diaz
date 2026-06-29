@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 import tkinter as tk
+=======
+# ========================================== Librerias =============================================
+>>>>>>> bf26815ad7cc2dc58a42c9491369d9bd6b31cc30
 import customtkinter as ctk
 from Persistencia import *
-from Clases.Mundial import Mundial
+# ==================================================================================================
 
-
+# ========================================= Clase Ventana Configuracion ============================
+# Nombre: VentanaConfiguracion
+# Entradas: ninguna.
+# Salidas: Ventana de configuración de grupos del mundial. 
+# Restricciones:
+# ==================================================================================================
 class VentanaConfiguracion(ctk.CTkToplevel):
     def __init__(self, parent, mundial_instancia):
         super().__init__(parent)
@@ -34,6 +43,12 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         self.scroll_grupos = ctk.CTkScrollableFrame(self, width=700, height=350)
         self.scroll_grupos.pack(padx=20, pady=15, fill="both", expand=True)
 
+    # =================================== Funcion generar grupos ===================================
+    # Nombre: generar_grupos
+    # Entradas: Ninguna.
+    # Salidas: Distribución de selecciones en grupos según la cantidad ingresada.
+    # Restricciones:
+    # ==============================================================================================
     def generar_grupos(self):
         entrada = self.cantidad_grupos.get().strip()
 
@@ -43,10 +58,17 @@ class VentanaConfiguracion(ctk.CTkToplevel):
 
         try:
             cantidad_grupos = int(entrada)
+<<<<<<< HEAD
         except Exception:
             tk.messagebox.showerror("Dato Inválido", "Error: Debe ingresar un número entero válido (ej: 2, 4)")
             return
         
+=======
+        except ValueError:
+            print("Error: Ingrese un número válido")
+            return
+
+>>>>>>> bf26815ad7cc2dc58a42c9491369d9bd6b31cc30
         if cantidad_grupos < 2:
             tk.messagebox.showerror("Configuración Inválida", "La cantidad mínima de grupos permitida es de 2")
             return
@@ -80,6 +102,12 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         else:
             tk.messagebox.showerror("Error", "No se pudieron crear los grupos")
 
+    # =================================== Funcion mostrar grupos ===================================
+    # Nombre: mostrar_grupos
+    # Entradas: Ninguna.
+    # Salidas: Muestra los grupos generados en la ventana de configuración.
+    # Restricciones:
+    # ==============================================================================================
     def mostrar_grupos(self, lista_grupos):
 
         for componentes in self.scroll_grupos.winfo_children():
