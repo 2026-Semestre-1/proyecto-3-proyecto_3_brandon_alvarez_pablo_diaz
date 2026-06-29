@@ -1,4 +1,8 @@
-Costa Rica|3|1|Final
-Argentina|3|0|Final
-Francia|0|0|Semifinal
-Brasil|0|1|Semifinal
+Canada|7|0|Semifinal
+Espanna|6|2|Final
+Brasil|6|0|Semifinal
+Francia|6|2|Final
+Costa Rica|3|0|Fase de Grupos
+Argentina|3|0|Fase de Grupos
+Estados Unidos|3|0|Fase de Grupos
+Alemania|1|0|Fase de Grupos
