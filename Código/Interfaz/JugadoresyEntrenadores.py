@@ -1,8 +1,15 @@
+# ========================================== Librerias =============================================
 from Persistencia import *
 import customtkinter as ctk
 import random
+# ==================================================================================================
 
-
+# ========================================= Clase Ventana Plantilla ================================
+# Nombre: VentanaPlantilla
+# Entradas: ninguna.
+# Salidas: Ventana de administración de jugadores y entrenadores.
+# Restricciones:
+# ==================================================================================================
 class VentanaPlantilla(ctk.CTkToplevel):
     def __init__(self):
         super().__init__()
@@ -28,6 +35,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
         # Actualizar los combos después de que todos los componentes estén creados
         self.actualizar_combo_selecciones()
 
+    # =================================== Funcion registro entrenador ==============================
+    # Nombre: registro_entrenador
+    # Entradas: Ninguna.
+    # Salidas: Formulario para registrar un entrenador.
+    # Restricciones:
+    # ==============================================================================================
     def registro_entrenador(self):
 
         pestana_entrenador = self.pestanas.tab("Registrar Entrenador")
@@ -106,6 +119,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
         )
         btn_guardar.pack(pady=20)
 
+    # =================================== Funcion guardar entrenador ===============================
+    # Nombre: guardar_entrenador
+    # Entradas: Ninguna.
+    # Salidas: Guarda los datos del entrenador en el archivo correspondiente.
+    # Restricciones:
+    # ==============================================================================================
     def guardar_entrenador(self):
 
         nombre = self.nombre_entrenador.get().strip()
@@ -181,7 +200,13 @@ class VentanaPlantilla(ctk.CTkToplevel):
         self.combo_seleccion_entrenador.set("")
 
         self.actualizar_combo_selecciones()
-
+    
+    # =================================== Funcion registro futbolista ==============================
+    # Nombre: registro_futbolista
+    # Entradas: Ninguna.
+    # Salidas: Formulario para registrar un futbolista.
+    # Restricciones:
+    # ==============================================================================================
     def registro_futbolista(self):
 
         pestana_futbolista = self.pestanas.tab("Registrar Futbolista")
@@ -264,6 +289,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
 
         self.actualizar_combo_selecciones()
 
+    # =================================== Funcion generar random ==============================
+    # Nombre: generar_random
+    # Entradas: Ninguna.
+    # Salidas: Un número aleatorio entre 4 y 100 que representa el puntaje individual del futbolista.
+    # Restricciones:
+    # ==============================================================================================
     def generar_random(self):
 
         velocidad = random.randint(1, 25)
@@ -275,7 +306,13 @@ class VentanaPlantilla(ctk.CTkToplevel):
         fuerza = random.randint(1, 25)
 
         return velocidad + estratega + dominio_balon + fuerza
-
+    
+    # =================================== Funcion actualizar combo selecciones =====================
+    # Nombre: actualizar_combo_selecciones
+    # Entradas: Ninguna.
+    # Salidas: Actualiza los valores de los combos de selecciones en las pestañas de registro de futbolistas y entrenadores.
+    # Restricciones:
+    # ==============================================================================================
     def actualizar_combo_selecciones(self):
 
         lista_paises = cargar_pais()
@@ -309,6 +346,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
             self.combo_seleccion_entrenador.configure(values=["No hay selecciones"])
             self.combo_seleccion_entrenador.set("No hay selecciones")
 
+    # =================================== Funcion guardar futbolista ===============================
+    # Nombre: guardar_futbolista
+    # Entradas: Ninguna.
+    # Salidas: Guarda los datos del futbolista en el archivo correspondiente.
+    # Restricciones:
+    # ==============================================================================================
     def guardar_futbolista(self):
 
         nombre = self.nombre_futbolista.get().strip()
@@ -380,6 +423,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
 
         self.actualizar_combo_selecciones()
 
+    # =================================== Funcion pestana listado ==================================
+    # Nombre: pestana_listado
+    # Entradas: Ninguna.
+    # Salidas: Formulario para registrar un futbolista.
+    # Restricciones:
+    # ==============================================================================================        
     def pestana_listado(self):
         pestana = self.pestanas.tab("Listado de Jugadores")
 
@@ -404,6 +453,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
 
         self.cargar_jugadores_lista()
 
+    # =================================== Funcion registro futbolista ==============================
+    # Nombre: cargar_jugadores_lista
+    # Entradas: Ninguna.
+    # Salidas: Formulario para registrar un futbolista.
+    # Restricciones:
+    # ==============================================================================================
     def cargar_jugadores_lista(self, valor=None):
 
         for componentes in self.scroll_jugadores.winfo_children():
@@ -481,6 +536,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
                 )
                 btn_eliminar.pack(side="right", padx=10, pady=10)
 
+    # =================================== Funcion ventana eliminacion ==============================
+    # Nombre: ventana_eliminacion
+    # Entradas: Ninguna.
+    # Salidas: Formulario para eliminar un futbolista.
+    # Restricciones:
+    # ==============================================================================================
     def ventana_eliminacion(self, jugador_buscado):
 
         ventana_eliminar = ctk.CTkToplevel(self)
@@ -525,6 +586,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
         )
         btn_cancelar.pack(pady=10)
 
+    # =================================== Funcion ventana edicion ==============================
+    # Nombre: ventana_edicion
+    # Entradas: Ninguna.
+    # Salidas: Formulario para editar un futbolista.
+    # Restricciones:
+    # ==============================================================================================
     def ventana_edicion(self, jugador_buscado):
 
         ventana_editar = ctk.CTkToplevel(self)
@@ -556,6 +623,12 @@ class VentanaPlantilla(ctk.CTkToplevel):
         nuevo_posicion.insert(0, jugador_buscado.posicion)
         nuevo_posicion.pack(pady=10)
 
+        # =================================== Funcion guardar cambios ==================================
+        # Nombre: guardar_cambios
+        # Entradas: Ninguna.
+        # Salidas: Guarda los cambios realizados en el futbolista y actualiza la lista de jugadores.
+        # Restricciones:
+        # ==============================================================================================
         def guardar_cambios():
 
             lista_jugadores = cargar_futbolista()
@@ -579,8 +652,3 @@ class VentanaPlantilla(ctk.CTkToplevel):
             ventana_editar, text="Guardar cambios", command=guardar_cambios
         )
         btn_confirmar.pack(pady=20)
-
-
-if __name__ == "__main__":
-    app = VentanaPlantilla()
-    app.mainloop()
