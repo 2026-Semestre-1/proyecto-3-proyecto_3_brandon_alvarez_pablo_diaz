@@ -1,4 +1,4 @@
-# ========================================== Librerias =============================================
+import tkinter as tk
 import customtkinter as ctk
 from Persistencia import *
 # ==================================================================================================
@@ -15,9 +15,7 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         self.attributes('-topmost', True)
         self.mundial = mundial_instancia
 
-        self.titulo = ctk.CTkLabel(
-            self, text="Configurar Grupos del Torneo", font=("Arial", 20, "bold")
-        )
+        self.titulo = ctk.CTkLabel(self, text="Configurar Grupos del Torneo", font=("Arial", 20, "bold"))
         self.titulo.pack(pady=15)
 
         self.controles = ctk.CTkFrame(self)
@@ -51,31 +49,34 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         entrada = self.cantidad_grupos.get().strip()
 
         if entrada == "":
-            print("Error: Ingrese un número")  # esto se cambia
+            tk.messagebox.showerror("Campo Vacío", "Por favor, ingrese un número de grupos")
             return
 
         try:
             cantidad_grupos = int(entrada)
-        except ValueError:
-            print("Error: Ingrese un número válido")
+        except Exception:
+            tk.messagebox.showerror("Dato Inválido", "Error: Debe ingresar un número entero válido")
             return
-
+        
         if cantidad_grupos < 2:
-            print("Error: cantidad mínima es de 2")  # esto se cambia
+            tk.messagebox.showerror("Configuración Inválida", "La cantidad mínima de grupos permitida es de 2")
             return
 
         lista_paises = cargar_pais()
         lista_selecciones = cargar_seleccion(lista_paises, [], [])
 
         if largoLista(lista_selecciones) < 8:
-            print(f"Error: Se requieren al menos 8 selecciones registradas para jugar el Mundial. "
-                    f"Actuales: {largoLista(lista_selecciones)}")
+            tk.messagebox.showerror("Selecciones Insuficientes", 
+                f"Se requieren al menos 8 selecciones registradas para jugar el Mundial.\n\n"
+                f"Faltan selecciones (Actuales: {largoLista(lista_selecciones)})")
             return
 
-        if (largoLista(lista_selecciones) // cantidad_grupos):
-            print(f"Error: Distribución inválida. Con {largoLista(lista_selecciones)} selecciones y "
-                  f"{cantidad_grupos} grupos, quedarían menos de 4 equipos por grupo.\n"
-                  f"¡Reduzca la cantidad de grupos o registre más selecciones!")
+        if (largoLista(lista_selecciones) // cantidad_grupos) < 4:
+            tk.messagebox.showerror("Distribución Imposible", 
+                f"Con {largoLista(lista_selecciones)} selecciones y {cantidad_grupos} grupos, "
+                f"quedarían menos de 4 equipos por grupo.\n\n"
+                f"Reduzca la cantidad de grupos o registre más selecciones")
+            print(largoLista(lista_selecciones))
             return
 
         self.mundial.selecciones = []
@@ -88,7 +89,7 @@ class VentanaConfiguracion(ctk.CTkToplevel):
         if creado == True:
             self.mostrar_grupos(self.mundial.grupos)
         else:
-            print("Error: no se pudieron crear los grupos")
+            tk.messagebox.showerror("Error", "No se pudieron crear los grupos")
 
     # =================================== Funcion mostrar grupos ===================================
     # Nombre: mostrar_grupos
@@ -103,7 +104,7 @@ class VentanaConfiguracion(ctk.CTkToplevel):
 
         for grupo in lista_grupos:
 
-            tarjeta = ctk.CTkFrame(self.scroll_grupos)
+            tarjeta = ctk.CTkFrame(self.scroll_grupos, fg_color="#242323")
             tarjeta.pack(pady=8, fill="x", padx=10)
 
             lbl_grupo = ctk.CTkLabel(tarjeta, text=str(grupo.nombre_grupo), font=("Arial", 20, "bold"))  # hay que cambiar cosas aqui

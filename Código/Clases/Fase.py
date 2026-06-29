@@ -88,7 +88,7 @@ class Fase:
             equipo1 = datos_partido["equipo_1"]
             equipo2 = datos_partido["equipo_2"]
 
-            texto_partido = f" {equipo1.pais.nombre} {partido.goles_equipo1} VS {partido.goles_equipo2} {equipo2.pais.nombre}"
+            texto_partido = f"    {equipo1.pais.nombre} {partido.goles_equipo1} VS {partido.goles_equipo2} {equipo2.pais.nombre}"
 
             for registro in self.penales:
                 if registro[0] == partido:  # es para buscar el partido exacto

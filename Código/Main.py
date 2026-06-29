@@ -87,7 +87,7 @@ titulo.pack(pady=20)
 
 btn_paises = ctk.CTkButton(
     ventana,
-    text="Administrar Países y Selecciones.",
+    text="Administrar Países y Selecciones",
     command=abrir_paises,
     fg_color="green",
 )
@@ -95,7 +95,7 @@ btn_paises.pack(pady=20)
 
 btn_plantilla = ctk.CTkButton(
     ventana,
-    text="Administrar Entrenadores y Jugadores.",
+    text="Administrar Entrenadores y Jugadores",
     command=abrir_plantilla,
     fg_color="green",
 )
@@ -103,7 +103,7 @@ btn_plantilla.pack(pady=20)
 
 btn_configuracion = ctk.CTkButton(
     ventana,
-    text="Configurar Mundial (grupos).",
+    text="Configurar Mundial (grupos)",
     command=abrir_configuracion,
     fg_color="green",
 )
@@ -111,7 +111,7 @@ btn_configuracion.pack(pady=20)
 
 btn_jugar = ctk.CTkButton(
     ventana,
-    text="Jugar Mundial.",
+    text="Jugar Mundial",
     command=abrir_jugar,
     fg_color="green",
 )
@@ -119,7 +119,7 @@ btn_jugar.pack(pady=20)
 
 btn_estadisticas = ctk.CTkButton(
     ventana,
-    text="Ver Estadísticas / Rankings.",
+    text="Ver Estadísticas / Rankings",
     command=abrir_estadisticas,
     fg_color="green",
 )

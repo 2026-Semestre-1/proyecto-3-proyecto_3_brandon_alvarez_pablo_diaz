@@ -31,8 +31,7 @@ class VentanaJugarMundial(ctk.CTkToplevel):
         self.btn_grupos = ctk.CTkButton(
             self.controles,
             text="Simular fase de grupos",
-            command=self.simular_fase_grupos,
-        )  # falta poner color
+            command=self.simular_fase_grupos)  # falta poner color
         self.btn_grupos.pack(side="left", padx=15, pady=10)
 
         # boton para la siguiente ronda
@@ -40,12 +39,11 @@ class VentanaJugarMundial(ctk.CTkToplevel):
             self.controles,
             text="Simular siguiente ronda",
             command=self.avanzar_ronda,
-            state="disabled",
-        )  # falta poner cosas
+            state="disabled") 
         self.btn_siguiente_ronda.pack(side="right", padx=15, pady=10)
 
         # pantalla de los resultados
-        self.scroll_resultados = ctk.CTkScrollableFrame(self, width=700, height=400)
+        self.scroll_resultados = ctk.CTkScrollableFrame(self, width=750, height=400)
         self.scroll_resultados.pack(padx=20, pady=15, fill="both", expand=True)
 
     # =================================== Funcion simular fase grupos ==============================
@@ -56,9 +54,7 @@ class VentanaJugarMundial(ctk.CTkToplevel):
     # ==============================================================================================
     def simular_fase_grupos(self):
         if self.mundial == None or self.mundial.grupos == []:
-            self.imprimir_en_pantalla(
-                "Error: no se ha configurado los grupos del Mundial aún\n"
-            )
+            self.imprimir_en_pantalla("Error: no se ha configurado los grupos del Mundial aún\n")
             return
 
         self.imprimir_en_pantalla("Iniciando fase de grupos...")
@@ -142,26 +138,27 @@ class VentanaJugarMundial(ctk.CTkToplevel):
 
         self.mundial.generar_reporte()
 
-        tarjeta_oro = ctk.CTkFrame(
-            self.scroll_resultados, fg_color="#d4af37", border_width=3
-        )
+        tarjeta_oro = ctk.CTkFrame(self.scroll_resultados, fg_color="#d4af37", border_width=3)
         tarjeta_oro.pack(pady=30, padx=20, fill="both", expand=True)
 
         lbl_copa = ctk.CTkLabel(
             tarjeta_oro,
             text="🏆 ¡HABEMUS CAMPEÓN! 🏆",
             font=("Arial", 24, "bold"),
-            text_color="#d4af37",
-        )
+            text_color="#ffffff")
         lbl_copa.pack(pady=20)
 
         lbl_campeon = ctk.CTkLabel(
             tarjeta_oro,
             text=f"{campeon_seleccion.pais.nombre.upper()}",
             font=("Arial", 36, "bold"),
-            text_color="white",
-        )
+            text_color="white")
         lbl_campeon.pack(pady=15)
+
+        lbl_detalles = ctk.CTkLabel(tarjeta_oro, 
+            text=f"Ganador oficial de la Copa Mundial FIFA {self.mundial.anio}\nCódigo de equipo: {campeon_seleccion.codigo_equipo}\n\n",
+            font=("Arial", 13, "italic"))
+        lbl_detalles.pack(pady=15)
 
         self.btn_siguiente_ronda.configure(state="disabled", text="Torneo concluido")
 
@@ -176,7 +173,6 @@ class VentanaJugarMundial(ctk.CTkToplevel):
             self.scroll_resultados,
             text=texto,
             justify="left",
-            font=("Courier New", 13),
-            anchor="w",
-        )
+            font=("Courier New", 16),
+            anchor="w")
         lbl.pack(fill="x", padx=10, anchor="w")
