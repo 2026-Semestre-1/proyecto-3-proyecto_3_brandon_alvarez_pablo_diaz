@@ -633,15 +633,35 @@ class VentanaPlantilla(ctk.CTkToplevel):
 
             lista_jugadores = cargar_futbolista()
 
+            nombre_editado = nuevo_nombre.get().strip()
+            apellido_editado = nuevo_apellido.get().strip()
+            dorsal_editado = nuevo_dorsal.get().strip()
+            posicion_editado = nuevo_posicion.get().strip()
+
+            if (
+                nombre_editado == ""
+                or apellido_editado == ""
+                or dorsal_editado == ""
+                or posicion_editado == ""
+            ):
+                print("Error: Todos los campos son obligatorios")
+                return
+
+            try:
+                dorsal_int = int(dorsal_editado)
+            except ValueError:
+                print("Error: El dorsal debe ser un número entero")
+                return
+
             for jugador in lista_jugadores:
                 if (
                     jugador.nombre == jugador_buscado.nombre
                     and jugador.apellido == jugador_buscado.apellido
                 ):
-                    jugador.nombre = nuevo_nombre.get().strip()
-                    jugador.apellido = nuevo_apellido.get().strip()
-                    jugador.dorsal = int(nuevo_dorsal.get().strip())
-                    jugador.posicion = nuevo_posicion.get().strip()
+                    jugador.nombre = nombre_editado
+                    jugador.apellido = apellido_editado
+                    jugador.dorsal = dorsal_int
+                    jugador.posicion = posicion_editado
 
             modificar_futbolistas(lista_jugadores)
 
