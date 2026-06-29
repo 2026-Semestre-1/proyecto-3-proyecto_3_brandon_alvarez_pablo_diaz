@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import tkinter as tk
-=======
-# ========================================== Librerias =============================================
->>>>>>> bf26815ad7cc2dc58a42c9491369d9bd6b31cc30
 import customtkinter as ctk
 from Persistencia import *
 # ==================================================================================================
@@ -58,17 +54,10 @@ class VentanaConfiguracion(ctk.CTkToplevel):
 
         try:
             cantidad_grupos = int(entrada)
-<<<<<<< HEAD
         except Exception:
-            tk.messagebox.showerror("Dato Inválido", "Error: Debe ingresar un número entero válido (ej: 2, 4)")
+            tk.messagebox.showerror("Dato Inválido", "Error: Debe ingresar un número entero válido")
             return
         
-=======
-        except ValueError:
-            print("Error: Ingrese un número válido")
-            return
-
->>>>>>> bf26815ad7cc2dc58a42c9491369d9bd6b31cc30
         if cantidad_grupos < 2:
             tk.messagebox.showerror("Configuración Inválida", "La cantidad mínima de grupos permitida es de 2")
             return
